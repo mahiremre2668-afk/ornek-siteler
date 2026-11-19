@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site paketleri · Mahir</title>
+<meta name="description" content="Yerel işletmeler için telefona göre site: üç paket, ne aldığınız madde madde, bakım ve ödeme nasıl işler.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Site paketleri: 15.000 / 20.000 / 25.000 TL">
+<meta property="og:description" content="Ne aldığınız madde madde. Önce taslağı görün, beğenirseniz ödeyin.">
+<meta property="og:image" content="https://mahiremre2668-afk.github.io/ornek-siteler/paketler/og.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%231F5C4A%22/%3E%3Cpath d=%22M9 17l5 5 9-11%22 stroke=%22white%22 stroke-width=%223.5%22 fill=%22none%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--kagit:#F7F4EE;--kart:#FFFDF8;--murekkep:#17202A;--ikincil:#4A4F55;--cizgi:#D9D1C1;--yesil:#1F5C4A;--yesil-acik:#E3EDE7;--kum:#EBE1CB;--r:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-wrap:anywhere;background:var(--kagit);color:var(--murekkep);font:400 17px/1.6 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.08;margin:0}
+a{color:var(--yesil)}
+.kap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.ust{border-bottom:1px solid var(--cizgi)}
+header.ust .kap{display:flex;justify-content:space-between;align-items:center;min-height:60px;gap:12px}
+.ad{font-weight:700;font-size:1.05rem}
+.ad small{font-weight:400;color:var(--ikincil);font-size:.95rem}
+nav.git{display:flex;gap:6px;flex-wrap:wrap}
+nav.git a{font-weight:600;text-decoration:none;padding:8px 12px;border-radius:999px;border:1.5px solid var(--cizgi);color:var(--murekkep);font-size:.95rem}
+.giris{padding-top:56px;padding-bottom:28px}
+.giris h1{font-size:clamp(2.4rem,9.4vw,4.6rem);max-width:15ch}
+.paket,.adimlar li,.sizin div,.ornekler a,.bakim>*{min-width:0}
+.gir{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.gir.gorundu{opacity:1;transform:none}
+.paket{transition:transform .25s ease,box-shadow .25s ease}
+@media (hover:hover){.paket:hover{transform:translateY(-4px);box-shadow:0 22px 40px -30px rgba(23,32,42,.5)}}
+.giris p{font-size:1.15rem;color:var(--ikincil);max-width:48ch;margin:18px 0 0}
+.ana{display:inline-block;margin-top:22px;background:var(--yesil);color:#fff;font-weight:700;text-decoration:none;padding:14px 22px;border-radius:999px;font-size:1.05rem}
+.ozet{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding:0;list-style:none}
+.ozet li{background:var(--kart);border:1px solid var(--cizgi);border-radius:999px;padding:8px 14px;font-weight:600}
+section{padding:36px 0}
+.bas{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.bas h2{font-size:clamp(2rem,5vw,3rem)}
+.bas p{margin:0;color:var(--ikincil)}
+.paketler{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.paket{background:var(--kart);border:1.5px solid var(--cizgi);border-radius:var(--r);padding:24px 22px 22px;position:relative}
+.paket .no{font-weight:700;font-size:.95rem;color:var(--ikincil)}
+.paket h3{font-size:2rem;margin:6px 0 4px}
+.fiyat{font-size:2.3rem;font-family:"Instrument Serif",Georgia,serif;margin:6px 0 2px}
+.fiyat small{font-family:"Instrument Sans",sans-serif;font-size:.95rem;color:var(--ikincil)}
+.kime{color:var(--ikincil);margin:0 0 14px;font-size:1rem}
+.paket ul{list-style:none;padding:0;margin:0;border-top:1px solid var(--cizgi)}
+.paket li{padding:10px 0 10px 30px;border-bottom:1px solid var(--cizgi);position:relative;line-height:1.45}
+.paket li::before{content:"";position:absolute;left:4px;top:15px;width:12px;height:7px;border-left:2.5px solid var(--yesil);border-bottom:2.5px solid var(--yesil);transform:rotate(-45deg)}
+.paket li.ust{font-weight:700;padding-left:0}
+.paket li.ust::before{display:none}
+.paket.onerilen{border:3px solid var(--yesil);box-shadow:0 24px 48px -32px rgba(31,92,74,.55)}
+.etiket{position:absolute;top:-15px;left:20px;background:var(--yesil);color:#fff;font-weight:700;font-size:.92rem;padding:5px 12px;border-radius:999px}
+.not{margin-top:16px;color:var(--ikincil);font-size:1rem}
+.bakim{display:grid;grid-template-columns:1fr 1.3fr;gap:24px;background:var(--murekkep);color:#F3EFE6;border-radius:var(--r);padding:30px}
+.bakim h2{font-size:clamp(2rem,5vw,2.8rem);color:#fff}
+.bakim .fiyat{color:#fff}
+.bakim .fiyat small{color:#CFC8BA}
+.bakim p{color:#CFC8BA}
+.bakim ol{margin:0;padding:0;list-style:none;counter-reset:b}
+.bakim li{counter-increment:b;padding:11px 0 11px 44px;border-bottom:1px solid rgba(255,255,255,.14);position:relative}
+.bakim li::before{content:counter(b);position:absolute;left:0;top:9px;width:30px;height:30px;border-radius:50%;border:1.5px solid #CFC8BA;display:grid;place-items:center;font-weight:700;font-size:.92rem}
+.bakim li b{color:#fff}
+.adimlar{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:a}
+.adimlar li{counter-increment:a;background:var(--kart);border:1.5px solid var(--cizgi);border-radius:var(--r);padding:18px 16px}
+.adimlar li::before{content:"Adım " counter(a);display:block;font-weight:700;font-size:.95rem;color:var(--ikincil);margin-bottom:6px}
+.adimlar b{display:block;font-size:1.12rem;margin-bottom:4px}
+.adimlar li.vurgu{border:3px solid var(--yesil)}
+.sizin{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sizin div{border-top:3px solid var(--murekkep);padding-top:12px}
+.sizin b{display:block;font-size:1.1rem}
+.sss details{border-bottom:1px solid var(--cizgi)}
+.sss summary{cursor:pointer;list-style:none;padding:16px 44px 16px 0;font-weight:600;font-size:1.08rem;position:relative}
+.sss summary::-webkit-details-marker{display:none}
+.sss summary::after{content:"+";position:absolute;right:6px;top:10px;font-size:1.6rem;font-weight:400}
+.sss details[open] summary{color:var(--yesil)}
+.sss details[open] summary::after{content:"–"}
+.sss details[open]{background:var(--yesil-acik);border-left:4px solid var(--yesil);padding-left:14px}
+.sss p{margin:0 0 16px;color:var(--ikincil);max-width:68ch}
+.ornekler{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ornekler a{display:block;background:var(--kart);border:1.5px solid var(--cizgi);border-radius:var(--r);padding:16px;text-decoration:none;color:var(--murekkep);font-weight:600}
+.ornekler a span{display:block;color:var(--ikincil);font-weight:400;font-size:.95rem}
+footer{padding:36px 0 60px;color:var(--ikincil);border-top:1px solid var(--cizgi);margin-top:24px}
+@media (max-width:900px){
+  .paketler,.sizin{grid-template-columns:1fr}
+  .paket.onerilen{margin-top:10px}
+  .adimlar{grid-template-columns:1fr 1fr}
+  .ornekler{grid-template-columns:1fr 1fr}
+  .bakim{grid-template-columns:1fr;padding:24px 20px}
+}
+@media (max-width:520px){
+  .kap{padding:0 16px}
+  nav.git{display:none}
+  .giris{padding-top:36px;padding-bottom:16px}
+  .adimlar,.ornekler{grid-template-columns:1fr}
+  section{padding:28px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gir{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<header class="ust"><div class="kap">
+  <div class="ad">Mahir <small>· yerel işletmelere site</small></div>
+  <nav class="git" aria-label="Bölümler"><a href="#paketler">Paketler</a><a href="#bakim">Bakım</a><a href="#nasil">Nasıl işler</a><a href="#sorular">Sorular</a></nav>
+</div></header>
+
+<main>
+<div class="kap giris">
+  <h1>Telefona göre, size ait bir site.</h1>
+  <p>Üç seçenek var. Hepsinde site, Google'da çıkma ayarları ve Haritalar kartınızın düzenlenmesi var. Fark, sitenin dışındaki ölçüm, randevu ve bakımda.</p>
+  <a class="ana" href="#paketler">Paketleri gör</a>
+  <ul class="ozet"><li>7 günde teslim</li><li>Önce taslağı görürsünüz</li><li>Her şey sizin adınıza</li></ul>
+</div>
+
+<section id="paketler"><div class="kap">
+  <div class="bas"><h2>Paketler</h2><p>Fiyatlar tek seferlik. Herkese aynı.</p></div>
+  <div class="paketler">
+    <article class="paket">
+      <div class="no">Paket 1</div>
+      <h3>Site</h3>
+      <div class="fiyat">15.000 TL <small>tek sefer</small></div>
+      <p class="kime">Yalnız site isteyenlere.</p>
+      <ul>
+        <li>Telefona göre site: adınız, hizmetleriniz, fiyatlarınız, fotoğraflarınız, semtleriniz, saatleriniz</li>
+        <li>Örnekte gördüğünüz özel bölüm (fiyat fişi, randevu defteri, önce/sonra sürgüsü)</li>
+        <li>Müşterinin seçtikleriyle WhatsApp'ınıza hazır gelen mesaj</li>
+        <li>Yayına alma, kendi alan adınıza bağlama, kilit simgesi (güvenli bağlantı)</li>
+        <li>Google'da çıkma ayarları (SEO)</li>
+        <li>Yapay zekâ aramalarında doğru anlatılma: ChatGPT, Gemini (GEO)</li>
+        <li>Google'a sitenizin tanıtılması (Search Console)</li>
+        <li>Haritalar kartınızın düzenlenmesi: kategori, saat, açıklama, site bağlantısı</li>
+        <li>Form için kişisel veri bilgilendirme metni</li>
+        <li>2 düzeltme hakkı</li>
+      </ul>
+    </article>
+    <article class="paket onerilen">
+      <span class="etiket">Önerilen</span>
+      <div class="no">Paket 2</div>
+      <h3>Site + ölçüm</h3>
+      <div class="fiyat">20.000 TL <small>tek sefer</small></div>
+      <p class="kime">Siteden kaç müşteri geldiğini görmek isteyenlere.</p>
+      <ul>
+        <li class="ust">Paket 1'deki her şey, artı:</li>
+        <li>Haritalar kartının tam düzenlenmesi: hizmet listesi, 10 fotoğraf, ilk gönderi</li>
+        <li>Ziyaretçi sayacı: kaç kişi girdi, kaçı WhatsApp'a bastı (Google Analytics)</li>
+        <li>Meta pikseli: ileride Instagram/Facebook reklamı verirseniz, sitenize gelenlere yeniden gösterebilirsiniz</li>
+        <li>Çerez izin bandı (izin vermeyen ziyaretçide ölçüm çalışmaz)</li>
+        <li>30. gün raporu: Google'da kaç kez çıktınız, kaç kişi girdi, kaç kişi yazdı</li>
+        <li>İlk ay bakım ücretsiz</li>
+      </ul>
+    </article>
+    <article class="paket">
+      <div class="no">Paket 3</div>
+      <h3>Tam paket</h3>
+      <div class="fiyat">25.000 TL <small>tek sefer</small></div>
+      <p class="kime">Randevuyla çalışan ve işini göstermek isteyenlere.</p>
+      <ul>
+        <li class="ust">Paket 2'deki her şey, artı:</li>
+        <li>Online randevu takvimi: müşteri boş saatleri görür, 8 haftaya kadar ileri randevu alır</li>
+        <li>Randevu telefonunuzdaki takvime düşer, size bildirim, müşteriye onay e-postası gider</li>
+        <li>İş galerisi sayfası: 6-10 işinizin önce/sonra fotoğrafı, ayrı sayfa</li>
+        <li>İlk 3 ay bakım dahil</li>
+        <li>3 düzeltme hakkı</li>
+      </ul>
+    </article>
+  </div>
+  <p class="not">Randevu takvimi için size aylık ücret çıkmaz (Google Takvim'in ücretsiz randevu sayfası kullanılır). Halı yıkamada "adresten alım günü", tadilatta "keşif günü" olarak kurulur.</p>
+</div></section>
+
+<section id="bakim"><div class="kap">
+  <div class="bakim">
+    <div>
+      <h2>Bakım</h2>
+      <div class="fiyat">1.000 TL'den <small>aylık, isteğe bağlı</small></div>
+      <p>Site bir kez kurulur ve bakım almasanız da çalışır. Google'da üstte kalmak için kartınızın ve sitenizin canlı tutulması gerekir; bakım bunun içindir. Yapılacak işe göre ücret artabilir; önceden söylenir.</p>
+    </div>
+    <ol>
+      <li><b>Her gün kontrol:</b> site açık mı, kilit simgesi geçerli mi, alan adının süresi doluyor mu</li>
+      <li><b>Ayda bir:</b> Google'ın gördüğü hatalar bulunur, düzeltilir</li>
+      <li><b>Ayda 1-2:</b> Haritalar kartına gönderi ya da yeni fotoğraf (fotoğrafı siz gönderirsiniz)</li>
+      <li><b>Ayda 3'e kadar:</b> fiyat, saat, kampanya, fotoğraf değişikliği</li>
+      <li><b>Ayda bir rapor:</b> WhatsApp'tan kısa özet; Google'da kaç kez çıktınız, kaç kişi girdi, neler güncellendi</li>
+    </ol>
+  </div>
+</div></section>
+
+<section id="nasil"><div class="kap">
+  <div class="bas"><h2>Nasıl işler</h2><p>Ödeme, taslağı beğendikten sonra.</p></div>
+  <ol class="adimlar">
+    <li><b>Bilgileri gönderirsiniz</b>Adınız, fiyatlar, 6-10 fotoğraf, saatler, semtler. Belge istemiyorum.</li>
+    <li><b>Taslağınız hazır</b>3 gün içinde kendi adınız ve fotoğraflarınızla taslak link.</li>
+    <li class="vurgu"><b>Beğenirseniz ödeme</b>Beğenmezseniz hiçbir şey ödemezsiniz.</li>
+    <li><b>Düzeltme ve alan adı</b>Düzeltmeleriniz yapılır, alan adı sizin adınıza alınır.</li>
+    <li><b>Yayın</b>Site açılır, Haritalar kartınız bağlanır. Toplam 7 gün.</li>
+  </ol>
+</div></section>
+
+<section><div class="kap">
+  <div class="bas"><h2>Her şey sizin adınıza</h2></div>
+  <div class="sizin">
+    <div><b>Alan adı</b>Sizin adınıza, sizin kartınızla alınır. Yılda yaklaşık 500-1.000 TL, fiyatın içinde değil.</div>
+    <div><b>Site hesabı</b>Siteniz sizin açtığınız ücretsiz hesapta durur. Bana şifre vermezsiniz, davetle yetki verirsiniz.</div>
+    <div><b>Dosyalar</b>Teslimde sitenin dosyaları size verilir. İstediğiniz an başka birine geçebilirsiniz.</div>
+  </div>
+</div></section>
+
+<section id="sorular" class="sss"><div class="kap">
+  <div class="bas"><h2>Sorular</h2></div>
+  <details><summary>Google'da çıkma ayarı (SEO) her ay mı yapılıyor?</summary><p>Kurulumu bir kez, site yapılırken yapılır ve her pakette var. Her ay yapılan iş, Haritalar kartınızın ve sitenizin güncel tutulması; bu bakımın içinde.</p></details>
+  <details><summary>Reklam vermiyorum. Meta pikseli bana ne kazandırır?</summary><p>Reklam vermiyorsanız bugün bir faydası yok. İleride Instagram ya da Facebook reklamı düşünüyorsanız, şimdiden kurulursa sitenize gelenlerin listesi birikir. Düşünmüyorsanız Paket 1 yeterli.</p></details>
+  <details><summary>Bakım almazsam site kapanır mı?</summary><p>Hayır. Site çalışmaya devam eder. Yalnız alan adınızın yıllık yenilemesini sizin yapmanız gerekir; teslimde tarihini yazıp veriyorum.</p></details>
+  <details><summary>Düzeltme ne demek?</summary><p>Yazı, fiyat, fotoğraf, renk tonu gibi değişiklikler. Yeni bölüm ya da baştan başka bir tasarım düzeltme sayılmaz, ayrıca konuşulur.</p></details>
+  <details><summary>7 gün ne zaman başlar?</summary><p>Bilgiler ve fotoğraflar geldiği gün başlar. Taslak 3 gün içinde, yayın en geç 7. günde.</p></details>
+  <details><summary>Taslağı beğenmezsem?</summary><p>Ödeme yapmazsınız, taslak silinir. Bir şey borçlu kalmazsınız.</p></details>
+</div></section>
+
+<section><div class="kap">
+  <div class="bas"><h2>Örnek siteler</h2><p>İşletme adları örnektir.</p></div>
+  <div class="ornekler">
+    <a href="../hali-yikama/">Halı yıkama<span>fiyat fişi</span></a>
+    <a href="../guzellik-salonu/">Güzellik salonu<span>randevu isteği</span></a>
+    <a href="../tadilat-dekorasyon/">Tadilat<span>önce/sonra sürgüsü</span></a>
+    <a href="../oto-kuafor/">Oto kuaför<span>boya kesiti</span></a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="kap">Sorularınızı bu sohbetten WhatsApp'a yazabilirsiniz. · Mahir</div></footer>
+<script>
+/* hafif kaydırma girişi; JS yoksa ya da hareket azaltılmışsa içerik zaten görünür */
+(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var el=document.querySelectorAll('.paket,.adimlar li,.bakim,.sizin div,.ornekler a');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('gorundu');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+el.forEach(function(x,i){x.classList.add('gir');x.style.transitionDelay=(i%3)*80+'ms';io.observe(x)});})();
+</script>
+</body>
+</html>

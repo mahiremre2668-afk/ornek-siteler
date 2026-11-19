@@ -74,6 +74,12 @@ a{color:var(--erik)}
 .guven b{font:600 1.6rem Fraunces,serif;margin-right:4px}
 
 /* defter */
+.defter legend,.defter legend span{white-space:normal!important;max-width:100%;overflow-wrap:anywhere}
+#gunler-sec{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+#gunler-sec label,#gunler-sec label:has(:checked){width:100%;min-width:0;white-space:normal!important;overflow-wrap:anywhere;justify-content:center;text-align:center;padding:6px 34px!important}
+@media (max-width:520px){#gunler-sec{grid-template-columns:1fr!important}}
+
+
 .defter{margin-top:40px;background:var(--sut);border-radius:var(--r);padding:28px;display:grid;grid-template-columns:1.25fr 1fr;gap:36px;box-shadow:0 30px 60px -40px rgba(75,29,63,.55)}
 .defter fieldset{border:0;margin:0 0 22px;padding:0}
 .defter legend{color:var(--erik);background:var(--sut);font:600 1.125rem Karla,sans-serif;margin-bottom:12px;padding:0;display:flex;gap:10px;align-items:center}
@@ -316,8 +322,13 @@ html{scroll-padding-bottom:96px}
         </fieldset>
         <p class="anlik" aria-hidden="true"></p>
         <fieldset>
-          <legend><span class="no">2</span><span>Gün</span></legend>
-          <div class="secenekler gunler-serit" id="gunler-sec"></div>
+          <legend><span class="no">2</span><span>Ne zaman uygunsunuz?</span></legend>
+          <div class="secenekler" id="gunler-sec">
+            <label><input type="radio" name="gun" value="bu hafta">Bu hafta</label>
+            <label><input type="radio" name="gun" value="gelecek hafta">Gelecek hafta</label>
+            <label><input type="radio" name="gun" value="2-3 hafta içinde">2-3 hafta içinde</label>
+            <label><input type="radio" name="gun" value="uygun bir gün">Yazışırken söylerim</label>
+          </div>
         </fieldset>
         <p class="anlik" aria-hidden="true"></p>
         <fieldset style="margin-bottom:0">
@@ -340,7 +351,7 @@ html{scroll-padding-bottom:96px}
           WhatsApp'tan randevu iste
         </a>
         <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-randevu"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan salonun WhatsApp numarasına gider.</small></div>
-        <p class="kucuk">Takvim bir randevu isteğidir: seçtiğiniz hizmet, gün ve saat mesaja yazılır, salon uygunluğa bakıp WhatsApp'tan onaylar. Pazar kapalıyız.</p>
+        <p class="kucuk">Bu bir randevu isteğidir: seçtiğiniz hizmet ve zaman tercihi mesaja yazılır, salon boş gün ve saati WhatsApp'tan yazıp onaylar. Pazar kapalıyız.</p>
       </div>
     </form>
 
@@ -445,17 +456,14 @@ html{scroll-padding-bottom:96px}
   var gunAd=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
   var kisa=['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
   var ay=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-  var d=new Date();d.setHours(12,0,0,0);var n=0,ilk=true;
-  while(n<6){d.setDate(d.getDate()+1);if(d.getDay()===0)continue;
-    var etiket=gunAd[d.getDay()]+' '+d.getDate()+' '+ay[d.getMonth()];
-    gs.insertAdjacentHTML('beforeend','<label><input type="radio" name="gun" value="'+etiket+'"'+' aria-label="'+etiket+'"><span>'+kisa[d.getDay()]+'</span><b>'+d.getDate()+'</b></label>');ilk=false;n++;}
+  /* Gün tercihi (Mahir 3380): gerçek takvim aracı bağlı değilken tarih ızgarası yok; boş saati salon WhatsApp'tan yazar. Gerçek takvim = paket 3 (Google Takvim randevu sayfası). */
   var f=document.getElementById('defter');
   function deger(ad){var e=f.querySelector('input[name="'+ad+'"]:checked');return e?e.value:null}
   function yaz(){
     var hi=deger('hizmet'),h=hi!==null?H[hi]:null,g=deger('gun'),s=deger('saat');
     var p=document.getElementById('d-hizmet');p.classList.toggle('bos',!h);
     p.innerHTML=h?'<strong>'+h[0]+'</strong>, '+h[2]:'Hizmet seçilmedi';
-    document.getElementById('d-gun').textContent=(g||'Gün seçilmedi')+', '+(s||'saat seçilmedi');
+    document.getElementById('d-gun').textContent=(g?g.charAt(0).toUpperCase()+g.slice(1):'Zaman seçilmedi')+', '+(s||'saat seçilmedi');
     document.getElementById('d-sure').textContent=h?'Süre yaklaşık '+h[1]+' dakika':'Süre hizmete göre';document.querySelectorAll('.anlik').forEach(function(x){x.textContent=h?'Seçtiniz: '+h[0]+', '+h[2]+', yaklaşık '+h[1]+' dk'+(g?'; '+g:''):''});
     var m='Merhaba, sitenizden yazıyorum. '+(h?h[0]+' için ':'')+(g?g:(h?'uygun bir gün':'Uygun bir gün'))+(s?', '+s:'')+' randevu almak istiyorum.'+(h?'':' Hizmeti yazışırken söyleyeceğim.')+(document.getElementById('foto').checked?' İstediğim modelin fotoğrafını bu mesajın ardından gönderiyorum.':'')+' Uygun saat var mı?';
     document.getElementById('wa-randevu').href='https://wa.me/?text='+encodeURIComponent(m);document.getElementById('wa-cubuk').href=dokundu?'https://wa.me/?text='+encodeURIComponent(m):'https://wa.me/?text='+encodeURIComponent('Merhaba, randevu almak istiyorum. Uygun gün ve saatleriniz nedir?');
