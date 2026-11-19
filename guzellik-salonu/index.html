@@ -284,6 +284,7 @@ html{scroll-padding-bottom:96px}
 /* Mahir 3361: çok satırlı yazı hap kutusuna sığmıyordu → yazı düz metin, yalnız "ÖRNEK" küçük etiket */
 .etiket,.etiket-ornek{display:block!important;background:none!important;color:var(--ikincil)!important;border:0!important;border-radius:0!important;padding:0!important;font-size:1.125rem;line-height:1.5;max-width:60ch}
 .etiket::before,.etiket-ornek::before{content:"ÖRNEK"!important;display:inline-block;margin-right:10px;padding:1px 10px;border-radius:6px;background:#1C1E22;color:#fff;font-weight:700;letter-spacing:.04em;line-height:1.5}
+@media (max-width:900px){.masa-foto{display:block!important;aspect-ratio:16/9;margin-top:18px}}
 </style>
 </head>
 <body>
@@ -303,7 +304,6 @@ html{scroll-padding-bottom:96px}
   <div class="kap">
     <div class="giris-ust"><div>
     <h1>Göztepe'de cilt bakımı, kaş ve tırnak</h1>
-    <img class="mobil-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası" width="1536" height="1024">
     <p class="alt">Küçük bir atölyeyiz: her randevuda aynı uzman, aynı oda. Hizmeti, günü ve saati seçin; randevunuz WhatsApp'a hazır gelsin.</p>
     <p class="guven"><b>4,9</b> Google puanı, 160 yorum (örnek), uzmanınız Defne Aydın, 12 yıl</p>
     <a class="randevu-git" href="#defter">Randevu iste: hizmet, gün, saat seç</a>
@@ -388,7 +388,7 @@ html{scroll-padding-bottom:96px}
       </div>
     </div>
     <figure class="isfoto"><img src="img/guz-manikur.jpg" alt="Manikür masası ve sıralı oje renkleri" loading="lazy" width="960" height="640"><figcaption>Örnek fotoğraf: sitede sizin salonunuzun ve işlerinizin fotoğrafları yer alır.</figcaption></figure>
-    <p class="dipnot">Fiyatlar başlangıç fiyatıdır; kesin tutarı randevu yazışmasında söyleriz. Sonuç kişiden kişiye değişir, kimseye kesin sonuç sözü vermeyiz.</p>
+    <p class="dipnot">Fiyatlar başlangıç fiyatıdır; kesin tutarı randevu yazışmasında söyleriz. Sonuç kişiden kişiye değişir; ne kadar süreceğini ve neyi beklemenizi ilk görüşmede konuşuruz.</p>
   </div>
 </section>
 
