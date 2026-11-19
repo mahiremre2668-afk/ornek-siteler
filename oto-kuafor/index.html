@@ -327,11 +327,11 @@ section[id],form[id],fieldset[id]{scroll-margin-top:calc(var(--bar) + 16px)}
         </div>
         <div class="sonuc" aria-live="polite">
           <div class="toplam-kutu"><p class="fiyat" id="s-fiyat">Sınıf ve iş seçince</p></div>
-          <p id="s-ozet" class="ikincil">fiyat ve süre burada görünür.</p>
+          <p id="s-ozet" class="ikincil">Sınıf ve iş seçince fiyat ve süre görünür.</p>
           <div id="s-liste"></div>
         </div>
         <button type="submit" class="dugme amber" id="wa-gonder"><svg class="ikon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>WhatsApp'tan gün iste</button>
-        <div class="giden"><b>Gidecek mesaj</b><p id="giden"></p></div>
+        <div class="giden"><b>Ustaya gidecek iş emri</b><p id="giden"></p></div>
         <p class="ne-olur">Gönderince ne olur: mesaj işletmenin WhatsApp'ına gider. Usta fotoğrafa ya da aracı görmeye göre kesin fiyatı ve boş günü yazar; o yazmadan randevu kesinleşmez. Burada WhatsApp kime göndereceğinizi sorar; gerçek sitede doğrudan işletmeye gider.</p>
       </div>
     </form>
@@ -436,7 +436,7 @@ section[id],form[id],fieldset[id]{scroll-margin-top:calc(var(--bar) + 16px)}
     <div>
       <h2>Küçükbakkalköy, Ataşehir</h2>
       <dl>
-        <dt>Adres</dt><dd>Örnek Sokak No: 5, Küçükbakkalköy, Ataşehir<br><a class="baglanti" href="https://www.google.com/maps/search/?api=1&amp;query=K%C3%BC%C3%A7%C3%BCkbakkalk%C3%B6y%20Ata%C5%9Fehir" target="_blank" rel="noopener">Haritada yol tarifi al</a></dd>
+        <dt>Adres</dt><dd>Örnek Sokak No: 5, Küçükbakkalköy, Ataşehir<br><span class="pasif-baglanti" title="Demoda kapalı; gerçek sitede işletmenin kendi Haritalar kaydını açar">Haritada yol tarifi al <small>(demoda kapalı)</small></span></dd>
         <dt>Saatler</dt><dd>Pazartesi - Cumartesi, 09.00 - 19.00</dd>
         <dt>Telefon</dt><dd><a class="baglanti" href="tel:+902160000000">0216 000 00 00</a></dd>
         <dt>Gelenler</dt><dd>En çok Ataşehir, Kadıköy, Ümraniye ve Maltepe'den</dd>
@@ -535,7 +535,7 @@ function tekFiyat(x){return x.f.h===x.f.s&&x.f.s===x.f.suv}
       $('s-ozet').textContent=L.length>1?L.length+' iş toplamı. Birlikte yapılırsa toplam süreyi yazarız.':'';
       $('s-liste').innerHTML=L.map(function(x){return '<p class="secim-satir"><b>'+x.ad+'</b>Süre: '+x.sure+'. '+x.dahil+'.</p>'}).join('');
       $('o-fiyat').textContent=den(top);$('o-alt').textContent=L.length>1?L.length+' iş toplamı':L[0].ad;$('serit').setAttribute('data-dolu','');}
-    else{$('s-fiyat').textContent=L.length?'Araç sınıfı?':'Sınıf ve iş seçince';$('s-ozet').textContent=L.length?'Sınıfı da seçince fiyat görünür.':(si?'Şimdi yapılacak işi işaretleyin.':'fiyat ve süre burada görünür.');$('s-liste').innerHTML='';
+    else{$('s-fiyat').textContent=L.length?'Araç sınıfı?':'Sınıf ve iş seçince';$('s-ozet').textContent=L.length?'Sınıfı da seçince fiyat görünür.':(si?'Şimdi yapılacak işi işaretleyin.':'Sınıf ve iş seçince fiyat ve süre görünür.');$('s-liste').innerHTML='';
       $('o-fiyat').textContent='';$('o-alt').textContent='';$('serit').removeAttribute('data-dolu');}
     $('giden').textContent=mesaj();
     if(dokundu){var u='https://wa.me/?text='+encodeURIComponent(mesaj());$('wa-ust').href=u;$('wa-serit').href=u}

@@ -141,6 +141,7 @@ section[id],footer[id]{scroll-margin-top:72px}
 .kutular input{position:absolute;width:1px;height:1px;margin:-1px;opacity:0;clip-path:inset(50%);pointer-events:none}
 .kutular label{position:relative;display:flex;align-items:center;min-height:56px;padding:6px 12px 6px 48px;border-right:1px solid var(--cizgi);border-bottom:1px solid var(--cizgi);cursor:pointer;font:500 1.125rem/1.25 var(--bas);background:var(--beyaz)}
 .kutular label::before{content:"";position:absolute;left:14px;top:50%;width:22px;height:22px;margin-top:-11px;border:2px solid var(--antrasit);background:var(--beyaz)}
+.kutular label::before{border-radius:50%!important}
 .kutular label:hover{background:var(--siva)}
 .kutular input:checked+label{background:var(--antrasit);color:#fff}
 .kutular input:checked+label::before{border-color:#fff;background:var(--turuncu)}
@@ -408,7 +409,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <form class="foy" id="kesif-form" aria-label="Keşif föyü" onsubmit="return false">
       <div class="foy-sol">
         <div class="foy-bas">Keşif föyü<small>işaretleyin, mesaj kendiliğinden yazılır</small></div>
-        <fieldset><legend>Ne yapılacak?</legend>
+        <fieldset><legend>Ne yapılacak? <small>Ana işi seçin; birden çok işse mesajda yazarsınız</small></legend>
           <div class="kutular">
             <input type="radio" name="tip" id="t1" value="Banyo"><label for="t1">Banyo</label>
             <input type="radio" name="tip" id="t2" value="Mutfak"><label for="t2">Mutfak</label>
@@ -455,7 +456,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
         </ul>
         <div class="ozet-ic">
           <a class="dugme" id="wa-kesif" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2"/></svg>WhatsApp'tan keşif iste</a>
-          <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-kesif" aria-live="polite"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan firmanın WhatsApp numarasına gider.</small></div>
+          <div class="giden"><b>Firmaya gidecek keşif notu</b><p id="giden-wa-kesif" aria-live="polite"></p><small>Demoda alıcı sorulur; gerçek sitede föy doğrudan firmanın WhatsApp numarasına gider.</small></div>
           <p class="fiyat-not">Fiyat: keşiften sonra yazılı teklif. Teklifte olmayan iş, yazılı onayınız olmadan yapılmaz ve ücretlendirilmez.</p>
           <p class="garanti" data-iddia-ok><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Garanti kapsamı ve süresi teklifte yazılı.</p>
         </div>
@@ -486,7 +487,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <div class="arsiv">
       <figure>
         <div class="ls" id="ls"><img src="img/tad-sonra.jpg" alt="Sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" loading="lazy" width="960" height="640" draggable="false"><img class="once" src="img/tad-once.jpg" alt="Önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" loading="lazy" width="960" height="640" draggable="false"><span class="etk e1">Önce</span><span class="etk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div></div>
-        <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Mutfak önce ve sonra karşılaştırma"><span aria-hidden="true">Sonra</span></div>
+        <div class="ls-bar"><span aria-hidden="true">◀ sonrası</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Mutfak önce ve sonra karşılaştırma: sola çekin sonrası, sağa çekin öncesi görünsün"><span aria-hidden="true">öncesi ▶</span></div>
         <figcaption><b>Mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans</span></figcaption>
       </figure>
       <div>
@@ -522,7 +523,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <div>
       <div class="bol-bas" style="display:block"><h2>İşi biz yaparız, taşerona vermeyiz</h2></div>
       <p class="usta-yazi">Örnek metin: Kalfa Yapı 2009'dan beri Ataşehir'de. Usta başı Hasan Kalfa. Sekiz kişilik kendi ekibimizle çalışırız: iki fayansçı, bir tesisatçı, bir elektrikçi, bir boyacı-alçıcı, bir marangoz-parkeci, bir yardımcı ve şantiyeyi her gün gezen usta başı. Hangi gün evde kim olacağını takvimde yazarız.</p>
-      <div class="puan-rozet"><span class="etiket">Puan örnektir; sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum. <a href="https://www.google.com/maps/search/?api=1&amp;query=Ata%C5%9Fehir%20tadilat" target="_blank" rel="noopener">Haritada aç</a></p></div>
+      <div class="puan-rozet"><span class="etiket">Puan örnektir; sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum. <span class="pasif-baglanti" title="Demoda kapalı; gerçek sitede işletmenin kendi Haritalar kaydını açar">Haritada aç <small>(demoda kapalı)</small></span></p></div>
     </div>
     <div class="lejant">
       <h3>Lejant: yaptığımız işler</h3>
@@ -565,7 +566,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
 <footer id="iletisim">
   <div class="kap antet-alt">
     <div><span class="firma">KALFA YAPI</span><span class="h" style="margin-top:6px">Tadilat, örnek site</span></div>
-    <div><span class="h">Adres</span>Örnek Sokak No: 3, Ataşehir / İstanbul<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Ata%C5%9Fehir%20tadilat" target="_blank" rel="noopener">Haritada aç</a></div>
+    <div><span class="h">Adres</span>Örnek Sokak No: 3, Ataşehir / İstanbul<br><span class="pasif-baglanti" title="Demoda kapalı; gerçek sitede işletmenin kendi Haritalar kaydını açar">Haritada aç <small>(demoda kapalı)</small></span></div>
     <div><span class="h">Saatler</span>Pazartesi - Cumartesi, 08.00 - 18.30</div>
     <div><span class="h">Telefon</span><a href="tel:+902160000000">0216 000 00 00</a></div>
     <div class="genis"><span class="h">Firma bilgisi</span>Ünvan, vergi dairesi ve no, işyeri sigortası: gerçek sitede firmanın kendi bilgisi yazılır.</div>

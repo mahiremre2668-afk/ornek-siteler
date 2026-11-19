@@ -41,7 +41,7 @@
 *{box-sizing:border-box;font-variant-numeric:lining-nums tabular-nums}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-bottom:96px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{margin:0;background:var(--zemin);color:var(--murekkep);font:400 var(--govde)/1.6 "Alegreya Sans",system-ui,sans-serif;font-variant-numeric:lining-nums tabular-nums}
+body{font-variant-numeric:lining-nums;margin:0;background:var(--zemin);color:var(--murekkep);font:400 var(--govde)/1.6 "Alegreya Sans",system-ui,sans-serif;font-variant-numeric:lining-nums tabular-nums}
 ::selection{background:var(--civit);color:#fff}
 :focus-visible{outline:3px solid var(--kokboya);outline-offset:3px}
 img{max-width:100%;height:auto;display:block}
@@ -423,7 +423,7 @@ body{padding-bottom:0}@media (max-width:1100px){body::after{content:"";display:b
         <img class="once" src="img/hali-leke-once.jpg" alt="Yıkamadan önce: aynı halıda çay ve kahve lekeleri, toz ve çamur izi" loading="lazy" width="960" height="640" draggable="false">
         <span class="etk e1">Önce</span><span class="etk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div>
       </div>
-      <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Önce ve sonra karşılaştırma: sağa çekin, yıkama öncesi görünsün"><span aria-hidden="true">Sonra</span></div>
+      <div class="ls-bar"><span aria-hidden="true">◀ sonrası</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Önce ve sonra karşılaştırma: sola çekin sonrası, sağa çekin öncesi görünsün"><span aria-hidden="true">öncesi ▶</span></div>
       <figcaption><span class="etiket">Görseller örnektir; sitede sizin önce/sonra fotoğraflarınız yer alır</span>Lekeli halı, yıkamadan önce ve sonra. Fotoğrafın üstünde parmağınızı ya da çubuğu çekin.</figcaption>
     </figure>
     <figure class="alinti">
@@ -464,7 +464,7 @@ body{padding-bottom:0}@media (max-width:1100px){body::after{content:"";display:b
     </div>
 
     <div class="fis" id="fis">
-      <div class="fis-ust"><h3>Fiş</h3><small>Fiş no 0427, <span id="fis-tarih">bugün</span></small></div>
+      <div class="fis-ust"><h3>Fiş</h3><small>Tahmini fiş, <span id="fis-tarih">bugün</span></small></div>
       <ul class="satirlar" id="satirlar" aria-live="polite"><li class="bos-satir">Henüz halı yok. Ölçüp cinsini seçin.</li></ul>
       <div class="satir"><label for="koltuk">Koltuk takımı<small>3+3+1, yerinde, 1.400&nbsp;TL</small></label><div class="adim"><button type="button" data-hedef="koltuk" data-d="-1" aria-label="Koltuk takımı azalt">−</button><input id="koltuk" inputmode="numeric" type="text" data-max="5" data-tam="1" placeholder="0" autocomplete="off"><button type="button" data-hedef="koltuk" data-d="1" aria-label="Koltuk takımı artır">+</button></div></div>
       <div class="satir"><label for="tekli">Tekli koltuk, berjer<small>300&nbsp;TL</small></label><div class="adim"><button type="button" data-hedef="tekli" data-d="-1" aria-label="Tekli koltuk azalt">−</button><input id="tekli" inputmode="numeric" type="text" data-max="10" data-tam="1" placeholder="0" autocomplete="off"><button type="button" data-hedef="tekli" data-d="1" aria-label="Tekli koltuk artır">+</button></div></div>
@@ -478,7 +478,7 @@ body{padding-bottom:0}@media (max-width:1100px){body::after{content:"";display:b
       <div class="toplam"><span>Tahmini toplam</span><output id="toplam">0&nbsp;TL</output></div>
       <p class="not">Halı atölyede ölçülür; kesin tutar teslimden önce yazılır. Gönderince fiş atölyenin WhatsApp'ına gider; atölye alım gününü yazışarak kesinleştirir.</p>
       <a class="dugme gonder" id="wa-fis" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>Fişi WhatsApp'tan gönder</a>
-      <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-fis" aria-live="polite"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan atölyenin WhatsApp numarasına gider.</small></div>
+      <div class="giden"><b>Atölyeye düşecek not</b><p id="giden-wa-fis" aria-live="polite"></p><small>Demoda WhatsApp kişi seçtirir; gerçek sitede not doğrudan atölyenin numarasına düşer.</small></div>
     </div>
   </form>
 </section>
@@ -574,7 +574,7 @@ body{padding-bottom:0}@media (max-width:1100px){body::after{content:"";display:b
         <dt>Atölye</dt><dd>Örnek Sokak No: 1, Kadıköy / İstanbul</dd>
         <dt>Saatler</dt><dd>Pazartesi - Cumartesi, 08.30 - 19.30</dd>
         <dt>Telefon</dt><dd><a href="tel:+902160000000">0216 000 00 00</a></dd>
-        <dt>Harita</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Kad%C4%B1k%C3%B6y%20hal%C4%B1%20y%C4%B1kama" target="_blank" rel="noopener">Haritada aç, yorumları gör</a></dd>
+        <dt>Harita</dt><dd><span class="pasif-baglanti" title="Demoda kapalı; gerçek sitede işletmenin kendi Haritalar kaydını açar">Haritada aç, yorumları gör <small>(demoda kapalı)</small></span></dd>
         <dt>Fiş</dt><dd>Her teslimde fiş verilir, fatura istenirse kesilir.</dd>
         <dt>Şikâyet</dt><dd>WhatsApp ya da telefonla doğrudan işletme sahibine.</dd>
       </dl>
