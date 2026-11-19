@@ -289,10 +289,26 @@ html{scroll-padding-bottom:96px}
 @media (max-width:900px){.hizli .cta{display:none}}
 @media (max-width:430px){.alt-cubuk .iki a svg{display:none}}
 .ls,.ls img{-webkit-user-select:none;user-select:none}
+
+/* esnaf-site-tarama S13/S18: 360 px altında (büyük yazı) hızlı bar gizli, uzun satırlar sarar */
+@media (max-width:360px){
+  .hizli{display:none!important}
+  .ust .tel span,.tel-ust span{display:none}
+  dd,.etiket,.etiket-ornek{overflow-wrap:anywhere;white-space:normal;max-width:100%}
+  .fiyat-tablo tr{display:grid;grid-template-columns:minmax(0,1fr)}
+  .fiyat-tablo th,.fiyat-tablo td{text-align:left!important;border-bottom:0}
+  .fiyat-tablo tr{border-bottom:1px solid var(--cizgi)}
+  .satir{grid-template-columns:minmax(0,1fr)!important}.adim{justify-self:start}
+}
+
+/* Mahir 3361: çok satırlı yazı hap kutusuna sığmıyordu → yazı düz metin, yalnız "ÖRNEK" küçük etiket */
+.etiket,.etiket-ornek{display:block!important;background:none!important;color:var(--ikincil)!important;border:0!important;border-radius:0!important;padding:0!important;font-size:1.125rem;line-height:1.5;max-width:60ch}
+.etiket::before,.etiket-ornek::before{content:"ÖRNEK"!important;display:inline-block;margin-right:10px;padding:1px 10px;border-radius:6px;background:#1C1E22;color:#fff;font-weight:700;letter-spacing:.04em;line-height:1.5}
+.toplam{position:relative}.toplam .fark{position:absolute;right:0;top:-6px;font:700 1.25rem Barlow,sans-serif;color:var(--civit);pointer-events:none}
 </style>
 </head>
 <body>
-<div class="ornek-serit"><b>Örnek site:</b> adınız ve fiyatlarınızla değişir.</div>
+<div class="ornek-serit"><b>Örnek site:</b> fiyat, süre, semt, alım günü ve fotoğraflar sizin bilginizle değişir.</div>
 
 <header class="ust">
   <div class="kap">
@@ -307,7 +323,7 @@ html{scroll-padding-bottom:96px}
 
 <main>
 <section class="hero">
-  <div class="hero-foto"><img src="img/hali-hero.jpg" alt="Atölyede kurutma askısında yıkanmış renkli halılar" width="960" height="640" fetchpriority="high"></div>
+  <div class="hero-foto"><img src="img/hali-hero.jpg" alt="Atölyede kurutma askısında yıkanmış renkli halılar" width="1536" height="1024" fetchpriority="high"></div>
   <div class="kap">
     <div class="hero-yazi">
       <h1>Halınızı kapıdan alıp yıkıyor, paketli getiriyoruz</h1>
@@ -395,7 +411,7 @@ html{scroll-padding-bottom:96px}
           <span class="etk e1">Önce</span><span class="etk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div>
         </div>
         <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Önce ve sonra karşılaştırma: sağa çekin, yıkama öncesi görünsün"><span aria-hidden="true">Sonra</span></div>
-        <figcaption><span class="etiket-ornek">görsel. Sitede sizin önce/sonra fotoğraflarınız yer alır</span>Lekeli halı, yıkamadan önce ve sonra. Çubuğu çekin.</figcaption>
+        <figcaption><span class="etiket-ornek">Görseller örnektir; sitede sizin önce/sonra fotoğraflarınız yer alır</span>Lekeli halı, yıkamadan önce ve sonra. Çubuğu çekin.</figcaption>
       </figure>
       <figure class="zoom"><img src="img/hali-paket.jpg" alt="Naylona sarılmış, etiketli halı ruloları rafta teslime hazır" loading="lazy" width="960" height="640"><figcaption>3. iş günü: her halı kendi numarasıyla naylona sarılır, öyle teslim edilir.</figcaption></figure>
     </div>
@@ -428,7 +444,7 @@ html{scroll-padding-bottom:96px}
     </div>
     <div class="doku">
       <div class="puan-kart">
-        <span class="etiket-ornek" style="margin-bottom:14px">sitede sizin gerçek Google puanınız yer alır</span>
+        <span class="etiket-ornek" style="margin-bottom:14px">Puan örnektir; sitede sizin gerçek Google puanınız yer alır</span>
         <p class="puan"><b>4,9</b> <span aria-hidden="true">★★★★★</span></p>
         <ul class="guven">
           <li>Her halı alırken numaralanır, fişten takip edilir</li>
@@ -458,7 +474,7 @@ html{scroll-padding-bottom:96px}
 <section class="b" style="padding-top:0">
   <div class="kap">
     <div class="b-bas"><h2>Müşterilerimiz ne diyor</h2></div>
-    <span class="etiket-ornek">yorumlar. Sitede sizin Google yorumlarınız yer alır</span>
+    <span class="etiket-ornek">Yorumlar örnektir; sitede sizin Google yorumlarınız yer alır</span>
     <div class="yorumlar">
       <figure class="yorum"><blockquote>Pazartesi aldılar, perşembe paketli geldi. Salondaki halının çay lekesi büyük ölçüde çıktı.</blockquote><figcaption>Kadıköy, Göztepe</figcaption></figure>
       <figure class="yorum"><blockquote>Koltukları evde yıkadılar, akşama kurumuştu. Fiyatı telefonda ne dedilerse o oldu.</blockquote><figcaption>Maltepe, İdealtepe</figcaption></figure>
@@ -519,7 +535,8 @@ html{scroll-padding-bottom:96px}
     var s=$('semt').value;
     $('gun-bilgi').innerHTML=(!s?'Semtinizi seçince alım gününü burada görürsünüz.':gunler[s]?'Alım günü: <b>'+gunler[s]+'</b>':'Başka semt: alım gününü yazışarak belirleriz.')+(ham>0&&ham<600?'<br>Asgari sipariş 600 TL uygulanır.':'');
     var o=$('toplam');
-    if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    if(t===son&&o.textContent.trim()!==''){}else if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var fark=t-son;if(fark&&son!==null){var d=document.createElement('span');d.className='fark';d.setAttribute('aria-hidden','true');d.textContent=(fark>0?'+':'−')+tl(Math.abs(fark));o.parentElement.appendChild(d);gsap.fromTo(d,{y:0,opacity:1},{y:-34,opacity:0,duration:1.1,ease:'power2.out',onComplete:function(){d.remove()}})}
       var n={v:son};gsap.to(n,{v:t,duration:.45,ease:'power2.out',onUpdate:function(){o.textContent=tl(Math.round(n.v))}});
     } else o.textContent=tl(t);
     son=t;

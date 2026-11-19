@@ -266,10 +266,28 @@ html{scroll-padding-bottom:96px}
 @media (max-width:900px){.hizli .cta{display:none}}
 @media (max-width:430px){.alt-cubuk .iki a svg{display:none}}
 .ls,.ls img{-webkit-user-select:none;user-select:none}
+.hizmet{cursor:pointer;border-radius:12px}.hizmet:hover{background:var(--ayva-koyu)}.hizmet:focus-visible{outline:3px solid var(--erik);outline-offset:2px}
+.mobil-foto{margin:18px 0 0!important}
+
+/* esnaf-site-tarama S13/S18: 360 px altında (büyük yazı) hızlı bar gizli, uzun satırlar sarar */
+@media (max-width:360px){
+  .hizli{display:none!important}
+  .ust .tel span,.tel-ust span{display:none}
+  dd,.etiket,.etiket-ornek{overflow-wrap:anywhere;white-space:normal;max-width:100%}
+  .fiyat-tablo tr{display:grid;grid-template-columns:minmax(0,1fr)}
+  .fiyat-tablo th,.fiyat-tablo td{text-align:left!important;border-bottom:0}
+  .fiyat-tablo tr{border-bottom:1px solid var(--cizgi)}
+  .satir{grid-template-columns:minmax(0,1fr)!important}.adim{justify-self:start}
+}
+.anlik{margin:4px 0 14px;font-weight:700;min-height:3.2em;line-height:1.6}
+
+/* Mahir 3361: çok satırlı yazı hap kutusuna sığmıyordu → yazı düz metin, yalnız "ÖRNEK" küçük etiket */
+.etiket,.etiket-ornek{display:block!important;background:none!important;color:var(--ikincil)!important;border:0!important;border-radius:0!important;padding:0!important;font-size:1.125rem;line-height:1.5;max-width:60ch}
+.etiket::before,.etiket-ornek::before{content:"ÖRNEK"!important;display:inline-block;margin-right:10px;padding:1px 10px;border-radius:6px;background:#1C1E22;color:#fff;font-weight:700;letter-spacing:.04em;line-height:1.5}
 </style>
 </head>
 <body>
-<div class="ornek-serit"><b>Örnek site:</b> adınız ve fiyatlarınızla değişir.</div>
+<div class="ornek-serit"><b>Örnek site:</b> hizmet, fiyat, süre, çalışma saati ve fotoğraflar sizin bilginizle değişir.</div>
 
 <header class="ust">
   <div class="kap">
@@ -285,22 +303,23 @@ html{scroll-padding-bottom:96px}
   <div class="kap">
     <div class="giris-ust"><div>
     <h1>Göztepe'de cilt bakımı, kaş ve tırnak</h1>
+    <img class="mobil-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası" width="1536" height="1024">
     <p class="alt">Küçük bir atölyeyiz: her randevuda aynı uzman, aynı oda. Hizmeti, günü ve saati seçin; randevunuz WhatsApp'a hazır gelsin.</p>
     <p class="guven"><b>4,9</b> Google puanı, 160 yorum (örnek), uzmanınız Defne Aydın, 12 yıl</p>
     <a class="randevu-git" href="#defter">Randevu iste: hizmet, gün, saat seç</a>
-    </div><img class="masa-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası, beyaz örtülü bakım yatağı" width="960" height="640" fetchpriority="high"></div>
-
-    <img class="mobil-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası" width="960" height="640">
+    </div><img class="masa-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası, beyaz örtülü bakım yatağı" width="1536" height="1024" fetchpriority="high"></div>
     <form class="defter" id="defter" onsubmit="return false" aria-label="Randevu defteri">
       <div>
         <fieldset>
           <legend><span class="no">1</span><span>Hizmet</span></legend>
           <div class="secenekler" id="hizmetler-sec"></div>
         </fieldset>
+        <p class="anlik" aria-hidden="true"></p>
         <fieldset>
           <legend><span class="no">2</span><span>Gün</span></legend>
           <div class="secenekler gunler-serit" id="gunler-sec"></div>
         </fieldset>
+        <p class="anlik" aria-hidden="true"></p>
         <fieldset style="margin-bottom:0">
           <legend><span class="no">3</span><span>Saat aralığı</span></legend>
           <div class="secenekler" id="saat-sec">
@@ -377,7 +396,7 @@ html{scroll-padding-bottom:96px}
   <div class="kap">
     <h2>Gelenler ne diyor</h2>
     <p class="puan-satir"><b>4,9</b> Google puanı (örnek) · <a href="https://www.google.com/maps/search/?api=1&amp;query=G%C3%B6ztepe%20Kad%C4%B1k%C3%B6y" target="_blank" rel="noopener">Haritada yorumlar</a></p>
-    <span class="etiket">yorumlar. Sitede sizin gerçek puanınız ve yorumlarınız yer alır</span>
+    <span class="etiket">Yorumlar örnektir; sitede sizin gerçek puanınız ve yorumlarınız yer alır</span>
     <div class="yorumlar">
       <figure class="yorum"><blockquote>Üç yıldır başka yere gitmiyorum. Cildim değişince ürünü de değiştirdi, bunu kendisi fark etti.</blockquote><figcaption>Göztepe</figcaption></figure>
       <figure class="yorum"><blockquote>Kaş için geldim, ölçüp çizip gösterdi, onaylamadan almadı.</blockquote><figcaption>Erenköy</figcaption></figure>
@@ -393,7 +412,7 @@ html{scroll-padding-bottom:96px}
       <details><summary>İlk cilt bakımında ne oluyor?</summary><p>İlk 10 dakika cildinize bakıp ne kullandığınızı konuşuruz, sonra bakım başlar. Toplam 60-75 dakika sürer.</p></details>
       <details><summary>Randevumu iptal edebilir miyim?</summary><p>Randevudan 3 saat önceye kadar WhatsApp'tan yazmanız yeterli, ücret alınmaz.</p></details>
       <details><summary>Kimlere uygun değil?</summary><p>Hamilelik, aktif cilt enfeksiyonu, yeni güneş yanığı ya da yakın zamanda yapılmış bir cilt işlemi varsa randevudan önce yazın. Uygun değilse işlem yapılmaz, başka zamana alınır. İlk gelişte kısa bir ön görüşme yaparız. Kirpik liftingde göz enfeksiyonu, ağdada varis ya da yeni lazer/peeling, kalıcı ojede tırnak mantarı varsa da önce yazın.</p></details>
-      <details><summary>Paket ve seanslarda iade var mı?</summary><p>Kullanılmamış seansların ücreti iade edilir. Kullanılan seanslar paket fiyatıyla değil tek seans fiyatıyla düşülür. Koşullar ödeme öncesi yazılı verilir.</p></details>
+      <details><summary>İade var mı?</summary><p>Tek seanslık çalışırız, paket satmayız. Ödeme işlemden sonra alınır; işlem yapılmadıysa ücret alınmaz. Sonuçtan memnun kalmazsanız 3 gün içinde yazın, ücretsiz rötuş yaparız (örnek koşul).</p></details>
       <details><summary>Malzemeler tek kullanımlık mı?</summary><p>Ağda spatulası, eldiven ve manikür törpüsü tek kullanımlıktır; metal aletler her müşteriden sonra temizlenip dezenfekte edilir.</p></details>
       <details><summary>Nasıl ödeme yapabilirim?</summary><p>Nakit, kart ya da havale. Ödeme işlem bitince alınır.</p></details>
     </div>
@@ -437,10 +456,9 @@ html{scroll-padding-bottom:96px}
     var p=document.getElementById('d-hizmet');p.classList.toggle('bos',!h);
     p.innerHTML=h?'<strong>'+h[0]+'</strong>, '+h[2]:'Hizmet seçilmedi';
     document.getElementById('d-gun').textContent=(g||'Gün seçilmedi')+', '+(s||'saat seçilmedi');
-    document.getElementById('d-sure').textContent=h?'Süre yaklaşık '+h[1]+' dakika':'Süre hizmete göre';
-    var m='Merhaba, sitenizden yazıyorum. '+(h?h[0]+' için ':'')+(g?g:'uygun bir gün')+(s?', '+s:'')+' randevu almak istiyorum.'+(h?'':' Hizmeti yazışırken söyleyeceğim.')+(document.getElementById('foto').checked?' İstediğim modelin fotoğrafını bu mesajın ardından gönderiyorum.':'')+' Uygun saat var mı?';
+    document.getElementById('d-sure').textContent=h?'Süre yaklaşık '+h[1]+' dakika':'Süre hizmete göre';document.querySelectorAll('.anlik').forEach(function(x){x.textContent=h?'Seçtiniz: '+h[0]+', '+h[2]+', yaklaşık '+h[1]+' dk'+(g?'; '+g:''):''});
+    var m='Merhaba, sitenizden yazıyorum. '+(h?h[0]+' için ':'')+(g?g:(h?'uygun bir gün':'Uygun bir gün'))+(s?', '+s:'')+' randevu almak istiyorum.'+(h?'':' Hizmeti yazışırken söyleyeceğim.')+(document.getElementById('foto').checked?' İstediğim modelin fotoğrafını bu mesajın ardından gönderiyorum.':'')+' Uygun saat var mı?';
     document.getElementById('wa-randevu').href='https://wa.me/?text='+encodeURIComponent(m);document.getElementById('wa-cubuk').href=dokundu?'https://wa.me/?text='+encodeURIComponent(m):'https://wa.me/?text='+encodeURIComponent('Merhaba, randevu almak istiyorum. Uygun gün ve saatleriniz nedir?');
-    if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo('.sayfa p:not(.kucuk)',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:.5,stagger:.08,ease:'power2.out'})}
   }
   var dokundu=false;f.addEventListener('change',function(){dokundu=true;yaz()});yaz();
 })();
@@ -488,6 +506,14 @@ window.addEventListener('load',function(){
 /* masaüstü sabit WhatsApp düğmesi alt çubukla aynı mesajı taşır; boş-form uyarısı formda her dokunuşta kapanır */
 (function(){var h=document.getElementById('wa-hizli'),c=document.getElementById('wa-cubuk');if(h&&c){var g=function(){h.href=c.href};g();['input','change','click'].forEach(function(e){document.addEventListener(e,function(){setTimeout(g,0)})})}
   document.querySelectorAll('form').forEach(function(f){f.addEventListener('click',function(e){if(e.target.closest('a'))return;var u=document.querySelector('.bos-uyari');if(u)u.hidden=true})});})();
+</script>
+<script>
+/* menüdeki hizmete dokununca randevu defterinde seçilir (eleştiri t2) */
+(function(){document.querySelectorAll('.hizmet').forEach(function(d){var ad=(d.querySelector('b')||{}).textContent;if(!ad)return;
+  d.setAttribute('role','button');d.tabIndex=0;d.title=ad+' için randevu iste';
+  function sec(){var i=[].slice.call(document.querySelectorAll('#defter input[name=hizmet]')).find(function(x){return x.parentElement.textContent.trim()===ad.trim()});
+    if(i){i.click();document.getElementById('defter').scrollIntoView({behavior:'smooth',block:'start'})}}
+  d.addEventListener('click',sec);d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sec()}});});})();
 </script>
 </body>
 </html>

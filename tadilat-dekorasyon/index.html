@@ -10,7 +10,7 @@
 <meta property="og:description" content="Keşif ücretsiz, teklif yazılı, teslim günü baştan belli.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%23C2410C%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-size=%2220%22 font-family=%22sans-serif%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22white%22%3EK%3C/text%3E%3C/svg%3E">
-<meta property="og:image" content="https://mahiremre2668-afk.github.io/ornek-siteler/tadilat-dekorasyon/img/tad-sonra.jpg">
+<meta property="og:image" content="https://mahiremre2668-afk.github.io/ornek-siteler/tadilat-dekorasyon/img/tad-banyo.jpg">
 <meta name="theme-color" content="#23262B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -275,10 +275,27 @@ html{scroll-padding-bottom:96px}
 @media (max-width:380px){.tel-ust span{display:none}}
 .hizli .cta{background:var(--turuncu);color:#fff;border-color:var(--turuncu);margin-left:auto}
 @media (max-width:900px){.hizli .cta{display:none}}
+
+/* esnaf-site-tarama S13/S18: 360 px altında (büyük yazı) hızlı bar gizli, uzun satırlar sarar */
+@media (max-width:360px){
+  .hizli{display:none!important}
+  .ust .tel span,.tel-ust span{display:none}
+  dd,.etiket,.etiket-ornek{overflow-wrap:anywhere;white-space:normal;max-width:100%}
+  .fiyat-tablo tr{display:grid;grid-template-columns:minmax(0,1fr)}
+  .fiyat-tablo th,.fiyat-tablo td{text-align:left!important;border-bottom:0}
+  .fiyat-tablo tr{border-bottom:1px solid var(--cizgi)}
+  .satir{grid-template-columns:minmax(0,1fr)!important}.adim{justify-self:start}
+}
+.anlik{margin:-12px 0 18px;font-weight:600;min-height:3.2em;line-height:1.6;color:#fff}
+
+/* Mahir 3361: çok satırlı yazı hap kutusuna sığmıyordu → yazı düz metin, yalnız "ÖRNEK" küçük etiket */
+.etiket,.etiket-ornek{display:block!important;background:none!important;color:var(--ikincil)!important;border:0!important;border-radius:0!important;padding:0!important;font-size:1.125rem;line-height:1.5;max-width:60ch}
+.etiket::before,.etiket-ornek::before{content:"ÖRNEK"!important;display:inline-block;margin-right:10px;padding:1px 10px;border-radius:6px;background:#1C1E22;color:#fff;font-weight:700;letter-spacing:.04em;line-height:1.5}
+@media (min-width:1229px){.karsilastir{max-width:1228px;margin-inline:auto}}
 </style>
 </head>
 <body>
-<div class="ornek-serit"><b>Örnek site:</b> adınız ve işlerinizle değişir.</div>
+<div class="ornek-serit"><b>Örnek site:</b> işler, süreler, semtler, ekip ve fotoğraflar sizin bilginizle değişir.</div>
 
 <header class="ust">
   <div class="kap">
@@ -292,8 +309,8 @@ html{scroll-padding-bottom:96px}
 <main>
 <section class="hero">
   <div class="karsilastir" id="karsilastir">
-    <img src="img/tad-sonra.jpg" alt="Tadilattan sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" width="960" height="640" fetchpriority="high">
-    <img class="once" src="img/tad-once.jpg" alt="Tadilattan önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" width="960" height="640">
+    <img src="img/tad-banyo.jpg" alt="Tadilattan sonra: gri taş fayanslı, cam duşakabinli yenilenmiş banyo, ahşap lavabo dolabı" width="1536" height="1024" fetchpriority="high">
+    <img class="once" src="img/tad-banyo-once.jpg" alt="Tadilattan önce: aynı banyo, çatlak sararmış fayans, küflü derz, paslı eski armatür" width="1536" height="1024">
     <span class="etk e1">Önce</span><span class="etk e2">Sonra</span><span class="ipucu" aria-hidden="true">Kaydırın</span>
     <div class="cizgi"></div>
     <div class="tutamak" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></div>
@@ -331,13 +348,12 @@ html{scroll-padding-bottom:96px}
   <div class="kap">
     <div class="b-bas"><h2>Son işler</h2><p>Her işte semt, süre ve kapsam yazılı.</p></div>
     <div class="isler">
-      <figure class="ls-fig"><div class="ls" id="ls"><img src="img/tad-banyo.jpg" alt="Sonra: gri taş fayanslı, cam duşakabinli yenilenmiş banyo" loading="lazy" width="960" height="640"><img class="once" src="img/tad-banyo-once.jpg" alt="Önce: aynı banyo, çatlak sararmış fayans, küflü derz, eski armatür" loading="lazy" width="960" height="640"><span class="lsk e1">Önce</span><span class="lsk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div></div>
-        <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Banyo önce ve sonra karşılaştırma"><span aria-hidden="true">Sonra</span></div><figcaption><b>Banyo yenileme</b><em>9 iş günü</em><span>Ataşehir, 6 m², duşakabin, gömme rezervuar</span></figcaption></figure>
+      <figure class="ls-fig"><div class="ls" id="ls"><img src="img/tad-sonra.jpg" alt="Sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" loading="lazy" width="960" height="640"><img class="once" src="img/tad-once.jpg" alt="Önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" loading="lazy" width="960" height="640"><span class="lsk e1">Önce</span><span class="lsk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div></div>
+        <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Mutfak önce ve sonra karşılaştırma"><span aria-hidden="true">Sonra</span></div><figcaption><b>Mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans (örnek iş)</span></figcaption></figure>
       <div class="kayit">
-        <span class="etiket">iş kaydı. Sitede sizin işleriniz ve önce/sonra fotoğraflarınız yer alır</span>
+        <span class="etiket">İş kaydı örnektir; sitede sizin işleriniz ve önce/sonra fotoğraflarınız yer alır</span>
         <ul>
           <li><b>Komple daire</b><em>7 hafta</em><span>Kadıköy, 3+1, 115 m², sıva, boya, zemin, elektrik</span></li>
-          <li><b>Mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans</span></li>
           <li><b>Boya, alçı</b><em>6 iş günü</em><span>Maltepe, 2+1, 85 m², tavan alçısı, iki kat boya</span></li>
           <li><b>Parke</b><em>2 iş günü</em><span>Üsküdar, 45 m², laminat, süpürgelik</span></li>
         </ul>
@@ -351,7 +367,7 @@ html{scroll-padding-bottom:96px}
     <div>
       <div class="b-bas" style="display:block"><h2>İşi biz yaparız, taşerona vermeyiz</h2></div>
       <p class="usta-yazi">Örnek metin: Kalfa Yapı 2009'dan beri Ataşehir'de. Usta başı Hasan Kalfa. Sekiz kişilik kendi ekibimizle çalışırız: iki fayansçı, bir tesisatçı, bir elektrikçi, bir boyacı-alçıcı, bir marangoz-parkeci, bir yardımcı ve şantiyeyi her gün gezen usta başı. Hangi gün evde kim olacağını takvimde yazarız.</p>
-      <div class="puan-rozet"><span class="etiket" style="margin:0 0 10px">sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ata%C5%9Fehir%20tadilat" target="_blank" rel="noopener">Haritada aç</a></p></div>
+      <div class="puan-rozet"><span class="etiket" style="margin:0 0 10px">Puan örnektir; sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ata%C5%9Fehir%20tadilat" target="_blank" rel="noopener">Haritada aç</a></p></div>
     </div>
     <div>
       <h3 class="hiz-bas">Yaptığımız işler</h3>
@@ -376,6 +392,7 @@ html{scroll-padding-bottom:96px}
             <input type="radio" name="tip" id="t6" value="Diğer iş"><label for="t6">Diğer / küçük iş</label>
           </div>
         </fieldset>
+        <p class="anlik" aria-hidden="true"></p>
         <fieldset id="alan-k"><legend>Yaklaşık alan</legend>
           <div class="tip">
             <input type="radio" name="m2" id="a1" value="10 m²'den az"><label for="a1">10 m²'den az</label>
@@ -386,6 +403,7 @@ html{scroll-padding-bottom:96px}
           </div>
         <p class="alan-not" id="alan-not" aria-live="polite"></p>
         </fieldset>
+        <p class="anlik" aria-hidden="true"></p>
         <fieldset><legend><label for="semt" style="display:inline-flex;align-items:center;min-height:44px;min-width:44px">Semt</label></legend>
           <select id="semt"><option value="">Semtinizi seçin</option><option>Ataşehir</option><option>Kadıköy</option><option>Ümraniye</option><option>Maltepe</option><option>Üsküdar</option><option value="başka semt (semtimi yazacağım)">Başka semt</option></select>
         </fieldset>
@@ -411,7 +429,7 @@ html{scroll-padding-bottom:96px}
 <section class="b">
   <div class="kap">
     <div class="b-bas"><h2>Ev sahipleri ne diyor</h2></div>
-    <span class="etiket">yorumlar. Sitede sizin Google yorumlarınız yer alır</span>
+    <span class="etiket">Yorumlar örnektir; sitede sizin Google yorumlarınız yer alır</span>
     <div class="yorumlar">
       <figure class="yorum"><blockquote>Banyo için 9 gün dediler, 9. gün akşam anahtarı verdiler. Her akşam ne yapıldığını fotoğrafla attılar.</blockquote><figcaption>Ataşehir, Atatürk Mahallesi</figcaption></figure>
       <figure class="yorum"><blockquote>Teklifte yazmayan tek kuruş istemediler. Malzemeyi ben seçtim, sadece işçilik ödedim.</blockquote><figcaption>Kadıköy, Kozyatağı</figcaption></figure>
@@ -466,6 +484,7 @@ html{scroll-padding-bottom:96px}
     f.querySelectorAll('input[name=m2]').forEach(function(x,i){var l=f.querySelector('label[for='+x.id+']');var gizle=i>=sinir||i<((t&&altSinir[t])||0);x.disabled=gizle;l.classList.toggle('pasif',gizle);l.title=gizle?t+' için bu alan seçilemez':'';var an=document.getElementById('alan-not');if(an)an.textContent=t&&(kucukTip[t]||altSinir[t])?'Üstü çizili alanlar '+t.toLowerCase()+' için uygun değil.':'';if(gizle&&x.checked)x.checked=false});
     var mE=f.querySelector('input[name=m2]:checked'),m=mE?mE.value:null,se=document.getElementById('semt').value,fo=document.getElementById('foto').checked;
     document.getElementById('o-tip').textContent=t||'seçilmedi';document.getElementById('o-m2').textContent=m||'keşifte ölçülür';document.getElementById('o-semt').textContent=se||'seçilmedi';document.getElementById('o-sure').textContent=!t||t==='Diğer iş'?'keşifte belirlenir':(m?sure[t][alanSira.indexOf(m)]:sure[t][0]+' ve üstü (alana göre)');
+    document.querySelectorAll('.anlik').forEach(function(x){x.textContent=t?'Tahmini süre: '+document.getElementById('o-sure').textContent:''});
     var msg='Merhaba, sitenizden yazıyorum. '+(!t?'Tadilat için keşif istiyorum (işi yazışırken anlatacağım). '+(m?'Yaklaşık '+m+'. ':''):t==='Diğer iş'?'Küçük bir tadilat işi için (ne olduğunu aşağıda yazıyorum) keşif istiyorum. '+(m?'Yaklaşık '+m+'. ':''):t+' için keşif istiyorum. '+(m?'Yaklaşık '+m+'. ':'Alanı keşifte ölçersiniz. '))+'Semt: '+(se||'yazışırken söyleyeceğim')+'.'+(fo?' Fotoğrafları da gönderiyorum.':'')+' Ne zaman gelebilirsiniz?';
     document.getElementById('wa-kesif').href='https://wa.me/?text='+encodeURIComponent(msg);document.getElementById('wa-cubuk').href=dokundu?document.getElementById('wa-kesif').href:'https://wa.me/?text='+encodeURIComponent('Merhaba, tadilat için ücretsiz keşif istiyorum. Ne zaman gelebilirsiniz?');
   }
