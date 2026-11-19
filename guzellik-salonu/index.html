@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ayva Cilt ve Bakım Atölyesi | Göztepe, Kadıköy</title>
-<meta name="description" content="Göztepe'de cilt bakımı, kaş tasarımı, manikür ve epilasyon. Hizmeti, günü ve saati seçin; randevunuz WhatsApp'tan iki dokunuşla gelsin.">
+<meta name="description" content="Göztepe'de cilt bakımı, kaş tasarımı, manikür ve ağda. Hizmeti, günü ve saati seçin; randevunuz WhatsApp'tan iki dokunuşla gelsin.">
 <link rel="canonical" href="https://ayvaatolye.com/">
 <meta property="og:title" content="Ayva Cilt ve Bakım Atölyesi">
 <meta property="og:description" content="Göztepe'de küçük bir bakım atölyesi. Her randevuda aynı uzman.">
@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"BeautySalon","@id":"https://ayvaatolye.com/#isletme","name":"Ayva Cilt ve Bakım Atölyesi","description":"Göztepe'de cilt bakımı, kaş tasarımı, manikür ve ağda. Randevuyla çalışır.","image":"https://ayvaatolye.com/img/guz-hero.jpg","url":"https://ayvaatolye.com/","telephone":"+90-216-000-0000","priceRange":"450-1500 TL","address":{"@type":"PostalAddress","streetAddress":"Örnek Sokak No: 2","addressLocality":"Kadıköy","addressRegion":"İstanbul","postalCode":"34730","addressCountry":"TR"},"areaServed":["Göztepe","Kadıköy","Erenköy","Suadiye"],
+{"@type":"BeautySalon","@id":"https://ayvaatolye.com/#isletme","name":"Ayva Cilt ve Bakım Atölyesi","description":"Göztepe'de cilt bakımı, kaş tasarımı, manikür ve ağda. Randevuyla çalışır.","image":"https://ayvaatolye.com/img/guz-hero.jpg","url":"https://ayvaatolye.com/","telephone":"+90-216-000-0000","priceRange":"250-1500 TL","address":{"@type":"PostalAddress","streetAddress":"Örnek Sokak No: 2","addressLocality":"Kadıköy","addressRegion":"İstanbul","postalCode":"34730","addressCountry":"TR"},"areaServed":["Göztepe","Kadıköy","Erenköy","Suadiye"],
 "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"20:00"}],
 "hasOfferCatalog":{"@type":"OfferCatalog","name":"Hizmetler","itemListElement":[
 {"@type":"Offer","itemOffered":{"@type":"Service","name":"Klasik cilt bakımı"},"price":"1500","priceCurrency":"TRY"},
@@ -61,7 +61,7 @@ a{color:var(--erik)}
 .ust nav a:hover{background:var(--ayva-koyu)}
 
 .giris{padding:40px 0 0}
-.giris h1{font-size:max(2.05rem,min(clamp(2.7rem,6.8vw,5.8rem),12vw));letter-spacing:-.02em;max-width:15ch}
+.giris h1{font-size:max(2.05rem,min(clamp(2.7rem,6.8vw,5.8rem),12vw));letter-spacing:0;max-width:15ch}
 .giris .alt{font-size:1.3rem;max-width:44ch;margin:22px 0 0;color:var(--ikincil)}
 .giris-ust{display:block}
 .masa-foto{width:100%;aspect-ratio:21/8;object-fit:cover;border-radius:var(--r);margin-top:28px}
@@ -249,6 +249,23 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
 .bos-uyari{margin:10px 0 0;padding:10px 12px;border:2px solid currentColor;font-weight:600;font-size:1.125rem}
 .bos-uyari::before{content:"! ";font-weight:800}
 .giden{min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
+
+/* tur 14 (eleştiri t1): */
+.randevu-git{display:inline-flex;align-items:center;min-height:52px;margin-top:18px;padding:0 24px;border-radius:999px;background:var(--erik);color:var(--sut);font-weight:700;text-decoration:none}
+.randevu-git:focus-visible{outline:3px solid var(--erik);outline-offset:3px}
+.foto-kap{border-radius:var(--r)}
+.foto-kap img{display:block}
+#d-gun,#d-hizmet,#d-sure{min-height:2.9em}
+.gunler-serit{grid-template-columns:repeat(auto-fill,minmax(4.2em,1fr))!important}
+.gunler-serit label{min-width:0}
+.alt-cubuk .iki a{white-space:normal!important;overflow:visible!important;text-align:center;line-height:1.15}
+html{scroll-padding-bottom:96px}
+.secenekler label:has(input:checked){padding-left:32px;padding-right:24px}
+@media (min-width:901px){.hizli{display:block}.ust nav{display:none}}
+.hizli .cta{background:var(--erik);color:var(--sut);margin-left:auto}
+@media (max-width:900px){.hizli .cta{display:none}}
+@media (max-width:430px){.alt-cubuk .iki a svg{display:none}}
+.ls,.ls img{-webkit-user-select:none;user-select:none}
 </style>
 </head>
 <body>
@@ -261,7 +278,7 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
     <nav aria-label="Sayfa içi"><a href="#hizmetler">Hizmetler</a><a href="#uzman">Uzman</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a></nav>
   </div>
 </header>
-<nav class="hizli" aria-label="Hızlı geçiş"><div class="kap"><a href="#defter">Randevu</a><a href="#uzman">Uzman</a><a href="#hizmetler">Hizmetler</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a></div></nav>
+<nav class="hizli" aria-label="Hızlı geçiş"><div class="kap"><a href="#defter">Randevu</a><a href="#uzman">Uzman</a><a href="#hizmetler">Hizmetler</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a><a class="cta" id="wa-hizli" href="#" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div></nav>
 
 <main>
 <section class="giris">
@@ -269,7 +286,8 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
     <div class="giris-ust"><div>
     <h1>Göztepe'de cilt bakımı, kaş ve tırnak</h1>
     <p class="alt">Küçük bir atölyeyiz: her randevuda aynı uzman, aynı oda. Hizmeti, günü ve saati seçin; randevunuz WhatsApp'a hazır gelsin.</p>
-    <p class="guven"><b>4,9</b> Google puanı (örnek), uzmanınız Defne Aydın, 12 yıl</p>
+    <p class="guven"><b>4,9</b> Google puanı, 160 yorum (örnek), uzmanınız Defne Aydın, 12 yıl</p>
+    <a class="randevu-git" href="#defter">Randevu iste: hizmet, gün, saat seç</a>
     </div><img class="masa-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası, beyaz örtülü bakım yatağı" width="960" height="640" fetchpriority="high"></div>
 
     <img class="mobil-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası" width="960" height="640">
@@ -293,7 +311,7 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
         </fieldset>
         <label class="foto-onay"><input type="checkbox" id="foto"> İstediğim modelin fotoğrafını da göndereceğim (kaş, tırnak)</label>
       </div>
-      <div class="sayfa" aria-live="polite">
+      <div class="sayfa">
         <h2>Randevu defteri</h2>
         <p id="d-hizmet" class="bos">Hizmet seçin</p>
         <p id="d-gun">&nbsp;</p>
@@ -302,13 +320,13 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>
           WhatsApp'tan randevu iste
         </a>
-        <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-randevu" aria-live="polite"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan salonun WhatsApp numarasına gider.</small></div>
+        <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-randevu"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan salonun WhatsApp numarasına gider.</small></div>
         <p class="kucuk">Takvim bir randevu isteğidir: seçtiğiniz hizmet, gün ve saat mesaja yazılır, salon uygunluğa bakıp WhatsApp'tan onaylar. Pazar kapalıyız.</p>
       </div>
     </form>
 
-    <div class="foto-bant zoom">
-      <img src="img/guz-eller.jpg" alt="Eldivenli eller, ahşap tepside kil maskesi kâsesi ve fırça" width="960" height="640" loading="lazy">
+    <div class="foto-bant">
+      <div class="zoom foto-kap"><img src="img/guz-eller.jpg" alt="Eldivenli eller, ahşap tepside kil maskesi kâsesi ve fırça" width="960" height="640" loading="lazy"></div>
       <p>Tek oda, tek uzman. Randevular arka arkaya sıkıştırılmaz.</p>
     </div>
   </div>
@@ -374,7 +392,7 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
     <div>
       <details><summary>İlk cilt bakımında ne oluyor?</summary><p>İlk 10 dakika cildinize bakıp ne kullandığınızı konuşuruz, sonra bakım başlar. Toplam 60-75 dakika sürer.</p></details>
       <details><summary>Randevumu iptal edebilir miyim?</summary><p>Randevudan 3 saat önceye kadar WhatsApp'tan yazmanız yeterli, ücret alınmaz.</p></details>
-      <details><summary>Kimlere uygun değil?</summary><p>Hamilelik, aktif cilt enfeksiyonu, yeni güneş yanığı ya da yakın zamanda yapılmış bir cilt işlemi varsa randevudan önce yazın. Uygun değilse işlem yapılmaz, başka zamana alınır. İlk gelişte kısa bir ön görüşme yaparız.</p></details>
+      <details><summary>Kimlere uygun değil?</summary><p>Hamilelik, aktif cilt enfeksiyonu, yeni güneş yanığı ya da yakın zamanda yapılmış bir cilt işlemi varsa randevudan önce yazın. Uygun değilse işlem yapılmaz, başka zamana alınır. İlk gelişte kısa bir ön görüşme yaparız. Kirpik liftingde göz enfeksiyonu, ağdada varis ya da yeni lazer/peeling, kalıcı ojede tırnak mantarı varsa da önce yazın.</p></details>
       <details><summary>Paket ve seanslarda iade var mı?</summary><p>Kullanılmamış seansların ücreti iade edilir. Kullanılan seanslar paket fiyatıyla değil tek seans fiyatıyla düşülür. Koşullar ödeme öncesi yazılı verilir.</p></details>
       <details><summary>Malzemeler tek kullanımlık mı?</summary><p>Ağda spatulası, eldiven ve manikür törpüsü tek kullanımlıktır; metal aletler her müşteriden sonra temizlenip dezenfekte edilir.</p></details>
       <details><summary>Nasıl ödeme yapabilirim?</summary><p>Nakit, kart ya da havale. Ödeme işlem bitince alınır.</p></details>
@@ -433,7 +451,6 @@ section[id],footer[id],form[id]{scroll-margin-top:76px}
 window.addEventListener('load',function(){
   if(!window.gsap||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   gsap.registerPlugin(ScrollTrigger);
-  gsap.from('.giris h1',{y:30,opacity:0,duration:.9,ease:'power3.out'});
   gsap.fromTo('.foto-bant img',{clipPath:'inset(12% 8% 12% 8% round 22px)'},{clipPath:'inset(0% 0% 0% 0% round 22px)',ease:'none',scrollTrigger:{trigger:'.foto-bant',start:'top 90%',end:'top 35%',scrub:true}});
   gsap.utils.toArray('.hizmet').forEach(function(h){gsap.from(h,{x:-20,opacity:0,duration:.5,scrollTrigger:{trigger:h,start:'top 92%'}})});
   gsap.from('.yorum',{y:30,opacity:0,stagger:.12,duration:.7,scrollTrigger:{trigger:'.yorumlar',start:'top 85%'}});
@@ -445,7 +462,7 @@ window.addEventListener('load',function(){
 <script>
 /* hızlı geçiş barı: görünen bölümün bağlantısı dolu görünür (Mahir 3340 #3) */
 (function(){var bar=document.querySelector('.hizli');if(!bar||!('IntersectionObserver' in window))return;
-  var L=[].slice.call(bar.querySelectorAll('a'));var hedef=L.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var L=[].slice.call(bar.querySelectorAll('a:not(.cta)'));var hedef=L.map(function(a){return document.querySelector(a.getAttribute('href'))});
   function sec(i){L.forEach(function(a,j){if(j===i)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
     var a=L[i];if(a)bar.scrollTo({left:a.offsetLeft-16,behavior:'smooth'})}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=hedef.indexOf(e.target);if(i>-1)sec(i)}})},{rootMargin:'-30% 0px -60% 0px'});
@@ -466,6 +483,11 @@ window.addEventListener('load',function(){
   uy.textContent='Henüz hizmet seçmediniz. Seçin ya da yine de genel randevu sorusu göndermek için tekrar basın.';a.insertAdjacentElement('afterend',uy);var izin=false;
   a.addEventListener('click',function(e){if(!document.querySelector('#defter input[name=hizmet]:checked')&&!izin){e.preventDefault();e.stopImmediatePropagation();uy.hidden=false;izin=true;a.focus();}},true);
   document.addEventListener('change',function(){uy.hidden=true;izin=false});})();
+</script>
+<script>
+/* masaüstü sabit WhatsApp düğmesi alt çubukla aynı mesajı taşır; boş-form uyarısı formda her dokunuşta kapanır */
+(function(){var h=document.getElementById('wa-hizli'),c=document.getElementById('wa-cubuk');if(h&&c){var g=function(){h.href=c.href};g();['input','change','click'].forEach(function(e){document.addEventListener(e,function(){setTimeout(g,0)})})}
+  document.querySelectorAll('form').forEach(function(f){f.addEventListener('click',function(e){if(e.target.closest('a'))return;var u=document.querySelector('.bos-uyari');if(u)u.hidden=true})});})();
 </script>
 </body>
 </html>
