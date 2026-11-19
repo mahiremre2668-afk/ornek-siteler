@@ -65,7 +65,7 @@ h1,h2,h3{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:700;line-h
 .hero-foto img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .hero-foto{left:34%}
 .hero-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--zemin) 0%,rgba(232,238,243,.55) 22%,rgba(232,238,243,0) 48%)}
-.hero .kap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end;padding:72px 0 64px}
+.hero .kap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start;padding:48px 0 64px}
 .hero h1{font-size:clamp(2.8rem,6.4vw,5.6rem);text-transform:none;max-width:12ch}
 .hero p.alt{font-size:1.3rem;max-width:34ch;margin:22px 0 0;color:var(--ikincil)}
 .hero h1{color:var(--civit)}
@@ -118,8 +118,8 @@ section.b{padding:88px 0}
 .akis h3{font-size:1.5rem;margin:10px 0 6px}
 .akis p{margin:0;color:var(--ikincil)}
 .akis-foto{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:48px}
-.akis-foto figure{margin:0;overflow:hidden;background:var(--civit-acik)}
-.akis-foto img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/2}
+.akis-foto figure{margin:0;background:transparent}
+.akis-foto img{width:100%;height:auto;object-fit:cover;aspect-ratio:3/2}
 .akis-foto figcaption{font-size:1.125rem;color:var(--ikincil);padding:8px 0 0}
 
 .fiyat{background:var(--kagit)}
@@ -217,6 +217,65 @@ dd a{display:inline-flex;align-items:center;min-height:44px}
 .ust .kap{flex-wrap:wrap;row-gap:0}
 h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
 .hizmet{grid-template-columns:minmax(0,1fr) auto}
+
+/* tur 13: simgeler yazıyla büyür; 360 px altı + büyük yazıda alt çubuk simgesiz */
+.tel svg,.tel-ust svg,.rozetler svg,.birincil svg,.buyuk svg,.alt-cubuk .iki svg{width:1.2em!important;height:1.2em!important;flex:none}
+@media (max-width:360px){.alt-cubuk .iki a svg{display:none}}
+@media (max-width:360px){.fiyat-tablo td{white-space:normal}}
+
+/* tur 13: önce/sonra leke */
+.ls{position:relative;aspect-ratio:3/2;overflow:hidden;--x:50%}
+.ls img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ls .once{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.ls .cizgi{position:absolute;top:0;bottom:0;left:var(--x);width:3px;background:#fff;transform:translateX(-1.5px)}
+.ls .etk{position:absolute;top:12px;background:var(--murekkep);color:#fff;font-weight:600;padding:4px 12px;font-size:1.125rem}
+.ls .e1{left:12px}.ls .e2{right:12px}
+.ls-bar{display:flex;align-items:center;gap:12px;padding:10px 0 0;font-weight:600}
+.ls-bar input{flex:1;min-width:0;height:44px;accent-color:var(--murekkep)}
+.akis-foto .etiket-ornek{margin:0 0 8px;display:table}
+.fis-no{margin:-4px 0 6px;font:500 1.125rem Barlow,sans-serif;color:var(--ikincil);letter-spacing:.02em}
+.foto-onay{display:flex;gap:12px;align-items:center;min-height:48px;padding:8px 0;border-bottom:1px solid var(--cizgi);cursor:pointer;font-weight:500}
+.foto-onay input{width:24px;height:24px;flex:none;accent-color:var(--murekkep)}
+
+/* hızlı geçiş barı (Mahir 3340 #3): hamburger yok, tek dokunuşla bölüme; yatay kayar */
+.hizli{position:sticky;top:0;z-index:30;background:var(--kagit);border-bottom:1px solid var(--murekkep);overflow-x:auto;scrollbar-width:none}
+.hizli::-webkit-scrollbar{display:none}
+.hizli .kap{display:flex;gap:8px;padding-block:8px}
+.hizli a{flex:none;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1.5px solid var(--murekkep);border-radius:0;color:var(--murekkep);font-weight:600;font-size:1.125rem;text-decoration:none;white-space:nowrap}
+.hizli a[aria-current]{background:var(--murekkep);color:#fff;border-color:var(--murekkep)}
+.hizli a:focus-visible{outline:3px solid var(--murekkep);outline-offset:2px}
+section[id],footer[id],form[id]{scroll-margin-top:76px}
+
+/* Mahir 3340 #9: fiyat listesi kısa okunur; satır sıkı, alt açıklama aynı satırda */
+.fiyat-tablo th,.fiyat-tablo td{padding:10px 0!important}
+.fiyat-tablo th small{display:inline!important;margin-left:6px}
+.fiyat-tablo td{font-size:1.4rem!important}
+.kurallar li{padding-block:6px}
+
+/* fotoğraf üzerine gelince yavaş yakınlaşma (yalnız fare, hareket azaltma kapalıysa) */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .zoom{overflow:hidden}
+  .zoom img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .zoom:hover img{transform:scale(1.06)}
+}
+@media (hover:hover){.gun{transition:transform .25s,box-shadow .25s}.gun:hover{transform:translateY(-3px);box-shadow:var(--golge)}}
+
+/* gidecek mesaj kutusu */
+.giden{margin-top:14px;padding:10px 0 2px 14px;border-left:3px solid currentColor;font-size:1.125rem}
+.giden p{margin:4px 0 8px;font-style:italic;overflow-wrap:anywhere}
+.giden small{display:block;font-size:1.125rem}
+
+/* 195 px (%200) taşma: ızgara çocukları içerikten geniş olmasın */
+.akis-foto{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+@media (max-width:900px){.akis-foto{grid-template-columns:minmax(0,1fr)}}
+.akis-foto>*{min-width:0}
+.akis-foto .etiket-ornek{display:inline-block;max-width:100%}
+.ls-bar span{flex:none}
+@media (min-width:901px){.hero h1{font-size:clamp(2.8rem,5vw,4.6rem);max-width:14ch}}
+
+.bos-uyari{margin:10px 0 0;padding:10px 12px;border:2px solid currentColor;font-weight:600;font-size:1.125rem}
+.bos-uyari::before{content:"! ";font-weight:800}
+.giden{min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -231,6 +290,7 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
     </a>
   </div>
 </header>
+<nav class="hizli" aria-label="Hızlı geçiş"><div class="kap"><a href="#fis">İş fişi</a><a href="#surec">Süreç</a><a href="#fiyat">Fiyatlar</a><a href="#gunler">Alım günleri</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a></div></nav>
 
 <main>
 <section class="hero">
@@ -243,15 +303,16 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>Ücretsiz alım-teslim</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11zM9 20v-6h6v6"/></svg>Kapalı kurutma odası</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Teslimde ödeme</li>
-        <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21l1.4-7L2 9.3l7-.8z"/></svg>Google puanınız burada (örnek: 4,9)</li>
+        <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.6 5.8 21l1.4-7L2 9.3l7-.8z"/></svg>4,9 Google puanı (örnek)</li>
       </ul>
     </div>
 
     <form class="fis" id="fis" aria-labelledby="fis-baslik" onsubmit="return false">
       <div class="fis-ust"><h2 id="fis-baslik">İş fişi</h2><small>tahmini tutar</small></div>
+      <p class="fis-no">Fiş no 0427, <span id="fis-tarih">bugün</span></p>
       <div class="satir">
         <label for="m2">Makine halısı<small>m², 150&nbsp;TL (2,5 gibi yazılabilir)</small></label>
-        <div class="adim"><button type="button" data-hedef="m2" data-d="-1" aria-label="Makine halısı azalt">−</button><input id="m2" inputmode="decimal" type="text" min="0" max="200" value="12"><button type="button" data-hedef="m2" data-d="1" aria-label="Makine halısı artır">+</button></div>
+        <div class="adim"><button type="button" data-hedef="m2" data-d="-1" aria-label="Makine halısı azalt">−</button><input id="m2" inputmode="decimal" type="text" min="0" max="200" value="0"><button type="button" data-hedef="m2" data-d="1" aria-label="Makine halısı artır">+</button></div>
       </div>
       <div class="satir">
         <label for="yun">Yün / el dokuma<small>m², 220&nbsp;TL</small></label>
@@ -283,16 +344,19 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
       <div class="satir">
         <label for="semt">Semtiniz</label>
         <select id="semt">
+          <option value="">Semtinizi seçin</option>
           <option value="Kadıköy">Kadıköy</option><option value="Maltepe">Maltepe</option><option value="Ataşehir">Ataşehir</option><option value="Üsküdar">Üsküdar</option><option value="başka semt (semtimi yazacağım)">Başka semt</option>
         </select>
       </div>
+      <label class="foto-onay"><input type="checkbox" id="foto"> Halının ya da lekenin fotoğrafını da göndereceğim</label>
       <p class="gun-bilgi" id="gun-bilgi" aria-live="polite"></p>
-      <div class="toplam"><span>Toplam</span><output id="toplam" for="m2 yun shaggy perde koltuk yatak tekli">1.800&nbsp;TL</output></div>
-      <p class="not">Halı atölyede ölçülür; kesin tutar teslimden önce yazılır.</p>
+      <div class="toplam"><span>Toplam</span><output id="toplam" for="m2 yun shaggy perde koltuk yatak tekli">0&nbsp;TL</output></div>
+      <p class="not">Halı atölyede ölçülür; kesin tutar teslimden önce yazılır. Gönderince fiş atölyenin WhatsApp'ına gider; atölye alım gününü yazışarak kesinleştirir.</p>
       <a class="birincil" id="wa-fis" href="#" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2m4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3"/></svg>
         Fişi WhatsApp'tan gönder
       </a>
+      <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-fis" aria-live="polite"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan atölyenin WhatsApp numarasına gider.</small></div>
       <div class="yirtma" aria-hidden="true"></div>
     </form>
   </div>
@@ -311,8 +375,16 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
       <li><span class="sure">3. gün</span><h3>Paketli teslim</h3><p>Kuru ve kokusuz, naylon pakette kapınıza bırakırız. Ödeme teslimde.</p></li>
     </ol>
     <div class="akis-foto">
-      <figure><img src="img/hali-doku.jpg" alt="Yıkanmış kilimin kırmızı, çivit ve krem desenine yakından bakış" loading="lazy" width="960" height="640"><figcaption>Yün kilimler ayrı yıkanır, renk vermemesi için soğuk suyla.</figcaption></figure>
-      <figure><img src="img/hali-koltuk.jpg" alt="Yerinde yıkanmış açık gri üçlü koltuk" loading="lazy" width="960" height="640"><figcaption>Koltuk takımı evinizde, makineyle yıkanır; kuruma süresi kumaşa ve havaya göre değişir, çoğunlukla aynı gün.</figcaption></figure>
+      <figure class="leke">
+        <div class="ls" id="ls">
+          <img src="img/hali-leke-sonra.jpg" alt="Yıkamadan sonra: aynı halı temiz, kırmızı zemin ve krem kenar canlı" loading="lazy" width="960" height="640">
+          <img class="once" src="img/hali-leke-once.jpg" alt="Yıkamadan önce: aynı halıda çay ve kahve lekeleri, toz ve çamur izi" loading="lazy" width="960" height="640">
+          <span class="etk e1">Önce</span><span class="etk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div>
+        </div>
+        <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Önce ve sonra karşılaştırma: sağa çekin, yıkama öncesi görünsün"><span aria-hidden="true">Sonra</span></div>
+        <figcaption><span class="etiket-ornek">görsel. Sitede sizin önce/sonra fotoğraflarınız yer alır</span>Lekeli halı, yıkamadan önce ve sonra. Çubuğu çekin.</figcaption>
+      </figure>
+      <figure class="zoom"><img src="img/hali-paket.jpg" alt="Naylona sarılmış, etiketli halı ruloları rafta teslime hazır" loading="lazy" width="960" height="640"><figcaption>3. gün: her halı kendi numarasıyla naylona sarılır, öyle teslim edilir.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -345,7 +417,6 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
       <div class="puan-kart">
         <span class="etiket-ornek" style="margin-bottom:14px">sitede sizin gerçek Google puanınız yer alır</span>
         <p class="puan"><b>4,9</b> <span aria-hidden="true">★★★★★</span></p>
-        <p class="puan-alt">Örnek rakam: sitede Google'daki gerçek puanınız ve yorum sayınız, bağlantısıyla yer alır.</p>
         <ul class="guven">
           <li>Her halı alırken numaralanır, fişten takip edilir</li>
           <li>Leke çıkmayacaksa alırken önceden söylenir</li>
@@ -433,7 +504,7 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
   function guncelle(){
     var ham=0;kalem.forEach(function(k){ham+=sayi(k[0])*k[1]});ham=Math.round(ham);var t=ham>0&&ham<600?600:ham;
     var s=$('semt').value;
-    $('gun-bilgi').innerHTML=(gunler[s]?'Alım günü: <b>'+gunler[s]+'</b>':'Başka semt: alım gününü yazışarak belirleriz.')+(ham>0&&ham<600?'<br>Asgari sipariş 600 TL uygulanır.':'');
+    $('gun-bilgi').innerHTML=(!s?'Semtinizi seçince alım gününü burada görürsünüz.':gunler[s]?'Alım günü: <b>'+gunler[s]+'</b>':'Başka semt: alım gününü yazışarak belirleriz.')+(ham>0&&ham<600?'<br>Asgari sipariş 600 TL uygulanır.':'');
     var o=$('toplam');
     if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
       var n={v:son};gsap.to(n,{v:t,duration:.45,ease:'power2.out',onUpdate:function(){o.textContent=tl(Math.round(n.v))}});
@@ -441,18 +512,22 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
     son=t;
     var parca=[];
     kalem.forEach(function(k){if(sayi(k[0]))parca.push(goster(sayi(k[0]))+k[2])});
-    var msg=parca.length?'Merhaba, sitenizdeki fişten yazıyorum. '+parca.join(', ')+' için alım istiyorum. Semt: '+s+'. Tahmini tutar: '+tl(t)+'. Uygun gün ne zaman?':'Merhaba, sitenizden yazıyorum. Halı yıkama fiyatı sormak istiyorum. Semt: '+s+'. Alım gününüz ne zaman?';
+    var msg=parca.length?'Merhaba, sitenizdeki fişten yazıyorum. '+parca.join(', ')+' için alım istiyorum. Semt: '+(s||'yazışırken söyleyeceğim')+'. Tahmini tutar: '+tl(t)+'.'+($('foto').checked?' Fotoğrafını bu mesajın ardından gönderiyorum.':'')+' Uygun gün ne zaman?':'Merhaba, sitenizden yazıyorum. Halı yıkama fiyatı sormak istiyorum. Semt: '+(s||'yazışırken söyleyeceğim')+'.'+($('foto').checked?' Halının fotoğrafını bu mesajın ardından gönderiyorum.':'')+' Alım gününüz ne zaman?';
     $('wa-fis').href='https://wa.me/?text='+encodeURIComponent(msg);$('wa-cubuk').href=dokundu?$('wa-fis').href:genel;
   }
   document.querySelectorAll('.adim button').forEach(function(b){b.addEventListener('click',function(){dokundu=true;
     var i=$(b.dataset.hedef);var mx=parseInt(i.getAttribute('max'),10);i.value=goster(Math.min(mx,Math.max(0,sayi(i.id)+parseInt(b.dataset.d,10))));guncelle();
   })});
-  kalem.map(function(k){return k[0]}).concat(['semt']).forEach(function(id){$(id).addEventListener('input',function(){dokundu=true;guncelle()})});
+  kalem.map(function(k){return k[0]}).concat(['semt','foto']).forEach(function(id){$(id).addEventListener('input',function(){dokundu=true;guncelle()})});
   kalem.map(function(k){return k[0]}).forEach(function(id){$(id).addEventListener('change',function(){sinirla(id);guncelle()})});
   genel='https://wa.me/?text='+encodeURIComponent('Merhaba, halı yıkama için alım günü öğrenmek istiyorum.');
   $('wa-alt').href=genel;
   guncelle();
 })();
+(function(){var t=document.getElementById('fis-tarih');if(t)t.textContent=new Date().toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});})();
+(function(){var l=document.getElementById('ls'),r=document.getElementById('ls-surgu');if(!l||!r)return;
+  function a(){l.style.setProperty('--x',r.value+'%');l.querySelector('.e1').style.opacity=r.value<15?0:1;l.querySelector('.e2').style.opacity=r.value>85?0:1}
+  r.addEventListener('input',a);a();})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -464,11 +539,43 @@ window.addEventListener('load',function(){
   gsap.to('.hero-foto img',{yPercent:8,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
   gsap.utils.toArray('.akis li').forEach(function(li,i){gsap.from(li,{y:28,opacity:0,duration:.6,delay:i*.08,scrollTrigger:{trigger:'.akis',start:'top 82%'}})});
   gsap.from('.gun',{y:16,duration:.6,stagger:.08,ease:'power2.out',scrollTrigger:{trigger:'.gunler',start:'top 85%'}});
-  document.querySelectorAll('.akis-foto img,.doku img').forEach(function(im){
+  document.querySelectorAll('.doku img').forEach(function(im){
     im.parentElement.addEventListener('mousemove',function(e){var r=im.getBoundingClientRect();gsap.to(im,{x:(e.clientX-r.left-r.width/2)/40,y:(e.clientY-r.top-r.height/2)/40,scale:1.03,duration:.5})});
     im.parentElement.addEventListener('mouseleave',function(){gsap.to(im,{x:0,y:0,scale:1,duration:.5})});
   });
 });
+</script>
+<script>
+/* hızlı geçiş barı: görünen bölümün bağlantısı dolu görünür (Mahir 3340 #3) */
+(function(){var bar=document.querySelector('.hizli');if(!bar||!('IntersectionObserver' in window))return;
+  var L=[].slice.call(bar.querySelectorAll('a'));var hedef=L.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function sec(i){L.forEach(function(a,j){if(j===i)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var a=L[i];if(a)bar.scrollTo({left:a.offsetLeft-16,behavior:'smooth'})}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=hedef.indexOf(e.target);if(i>-1)sec(i)}})},{rootMargin:'-30% 0px -60% 0px'});
+  hedef.forEach(function(h){if(h)io.observe(h)});})();
+</script>
+<script>
+/* önce/sonra sürgüsü görünüme girince bir kez gidip gelir: kullanıcı oynadığını görür (Mahir 3340 #2, #8) */
+window.addEventListener('load',function(){
+  var r=document.getElementById('ls-surgu');if(!r||!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var o={v:50},dokundu=false;r.addEventListener('input',function(){dokundu=true});
+  function yaz(){if(dokundu)return;r.value=Math.round(o.v);r.dispatchEvent(new Event('input'));dokundu=false}
+  ScrollTrigger.create({trigger:r,start:'top 85%',once:true,onEnter:function(){
+    gsap.timeline().to(o,{v:82,duration:.9,ease:'power2.inOut',onUpdate:yaz}).to(o,{v:22,duration:1.1,ease:'power2.inOut',onUpdate:yaz}).to(o,{v:50,duration:.8,ease:'power2.out',onUpdate:yaz});}});
+});
+</script>
+<script>
+/* gidecek mesaj önizlemesi: düğmenin ne yaptığı görünür (Mahir 3343 a/b) */
+(function(){var a=document.getElementById('wa-fis'),o=document.getElementById('giden-wa-fis');if(!a||!o)return;
+  function g(){var t=(a.getAttribute('href')||'').split('text=')[1];try{o.textContent=t?decodeURIComponent(t):''}catch(e){}}
+  ['input','change','click'].forEach(function(ev){document.addEventListener(ev,function(){setTimeout(g,0)})});setTimeout(g,0);})();
+</script>
+<script>
+/* boş form: ilk basışta görünür uyarı, ikinci basışta genel soru gider (site-sistemi S04, Mahir 3343) */
+(function(){var a=document.getElementById('wa-fis');if(!a)return;var uy=document.createElement('p');uy.className='bos-uyari';uy.setAttribute('role','alert');uy.hidden=true;
+  uy.textContent='Fişe henüz halı eklemediniz. Ekleyin ya da yine de genel fiyat sorusu göndermek için tekrar basın.';a.insertAdjacentElement('afterend',uy);var izin=false;
+  a.addEventListener('click',function(e){if(document.getElementById('toplam').textContent.trim().indexOf('0')===0&&!izin){e.preventDefault();e.stopImmediatePropagation();uy.hidden=false;izin=true;a.focus();}},true);
+  document.addEventListener('change',function(){uy.hidden=true;izin=false});})();
 </script>
 </body>
 </html>

@@ -54,15 +54,22 @@ a{color:var(--erik)}
 .logo b{font:600 2.1rem Fraunces,serif;letter-spacing:-.01em}
 .logo span{font-size:1.125rem;color:var(--ikincil);margin-top:4px}
 .ust nav{display:flex;gap:6px}
-.ust .tel{display:none;align-items:center;gap:8px;min-height:48px;font-weight:700;text-decoration:none}
+.ust .tel{display:inline-flex;margin-left:auto;margin-right:8px;align-items:center;gap:8px;min-height:48px;font-weight:700;text-decoration:none}
 .ust .tel svg{width:20px;height:20px}
 .mobil-foto{display:none}
 .ust nav a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;font-weight:500}
 .ust nav a:hover{background:var(--ayva-koyu)}
 
 .giris{padding:40px 0 0}
-.giris h1{font-size:min(clamp(2.7rem,6.8vw,5.8rem),12vw);letter-spacing:-.02em;max-width:15ch}
+.giris h1{font-size:max(2.05rem,min(clamp(2.7rem,6.8vw,5.8rem),12vw));letter-spacing:-.02em;max-width:15ch}
 .giris .alt{font-size:1.3rem;max-width:44ch;margin:22px 0 0;color:var(--ikincil)}
+.giris-ust{display:block}
+.masa-foto{width:100%;aspect-ratio:21/8;object-fit:cover;border-radius:var(--r);margin-top:28px}
+@media (max-width:900px){.giris-ust{display:block}.masa-foto{display:none}}
+.uzman{grid-template-columns:1fr!important;max-width:760px}
+.portre{aspect-ratio:auto!important;min-height:0!important;flex-direction:row!important;align-items:center;gap:18px;padding:18px!important}
+.portre .bas{font-size:2.6rem!important;width:88px;height:88px;flex:none;display:grid;place-items:center;border-radius:50%;border:2px solid var(--ayva)}
+.portre .not{border:0!important;padding:0!important}
 .guven{margin:14px 0 0;font-size:1.125rem;font-weight:600}
 .guven b{font:600 1.6rem Fraunces,serif;margin-right:4px}
 
@@ -77,7 +84,7 @@ a{color:var(--erik)}
 .secenekler label{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border-radius:999px;border:1.5px solid var(--erik);cursor:pointer;font-weight:500;background:var(--sut);transition:background .2s}
 .secenekler label:hover{background:#F6EBCB}
 .secenekler label:has(input:checked){background:var(--erik);color:var(--sut)}
-.secenekler label:has(input:checked)::before{content:"";width:9px;height:14px;border:solid var(--sut);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translateY(-2px);margin-right:2px}
+.secenekler label:has(input:checked)::before{content:"";position:absolute;left:12px;top:50%;width:8px;height:13px;margin-top:-9px;border:solid var(--sut);border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
 .secenekler label:has(input:focus-visible){outline:3px solid var(--erik-2);outline-offset:3px}
 .secenekler label small{font-weight:400;font-size:1.125rem}
 .gunler-serit{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
@@ -99,7 +106,7 @@ a{color:var(--erik)}
 .foto-bant p{position:absolute;right:24px;bottom:-28px;background:var(--erik);color:var(--sut);border-radius:18px;padding:18px 22px;max-width:340px;margin:0;font-size:1.125rem}
 
 section.b{padding:96px 0}
-.b h2{font-size:min(clamp(2.2rem,4.6vw,3.6rem),10vw);letter-spacing:-.015em}
+.b h2{font-size:max(1.8rem,min(clamp(2.2rem,4.6vw,3.6rem),10vw));letter-spacing:-.015em}
 .uzman{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center}
 .portre{aspect-ratio:4/5;border-radius:var(--r);background:var(--erik);color:var(--ayva);display:flex;flex-direction:column;justify-content:space-between;padding:28px}
 .portre .bas{font:400 clamp(5rem,16vw,9rem)/1 Fraunces,serif}
@@ -167,7 +174,6 @@ footer a{color:var(--sut);display:inline-block;min-height:44px;line-height:44px}
   .ust nav{display:none}
   .ust .tel{display:inline-flex}
   .mobil-foto{display:block;margin-top:22px;border-radius:18px;aspect-ratio:16/9;object-fit:cover;width:100%}
-  .foto-bant img{display:none}
   .foto-bant{margin-top:40px}
   .foto-bant p{margin:0!important;max-width:none;width:100%;right:auto;left:auto}
   .portre{flex-direction:row;align-items:center;gap:18px;min-height:0;padding:18px}
@@ -188,7 +194,7 @@ footer a{color:var(--sut);display:inline-block;min-height:44px;line-height:44px}
 }
 @media (max-width:520px){
   .gunler-serit{grid-template-columns:repeat(3,1fr)}
-  .secenekler label{padding:0 14px}
+  .secenekler label{padding:0 24px}
 }
 @media (max-width:300px){.gunler-serit{grid-template-columns:repeat(2,1fr)}.defter{padding:16px 12px}.secenekler label{white-space:normal}}
 @media (max-width:300px){.hizmet{grid-template-columns:1fr}.hizmet .fiyat{white-space:normal}h1,h2,h3{hyphens:auto;overflow-wrap:break-word}}
@@ -202,6 +208,47 @@ dd a{display:inline-flex;align-items:center;min-height:44px}
 h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
 .hizmet{grid-template-columns:minmax(0,1fr) auto}
 @media (max-width:300px){.portre{flex-direction:column!important;align-items:flex-start!important}.portre .bas{width:64px!important;height:64px!important;font-size:1.8rem!important}.portre .not{min-width:0}}
+
+/* tur 13: simgeler yazıyla büyür; 360 px altı alt çubuk simgesiz; ÖRNEK çipi */
+.tel svg,.tel-ust svg,.rozetler svg,.birincil svg,.buyuk svg,.alt-cubuk .iki svg{width:1.2em!important;height:1.2em!important;flex:none}
+@media (max-width:360px){.alt-cubuk .iki a svg{display:none}}
+.etiket{display:inline-block;font-size:1.125rem;color:#fff!important;background:#1C1E22!important;border:0!important;border-radius:999px!important;padding:4px 14px!important}
+.etiket::before{content:"ÖRNEK";font-weight:700;letter-spacing:.04em;margin-right:8px}
+
+/* tur 13 / Mahir 3340 #1: seçim düzeni oynatmaz; tik işareti iç boşlukta mutlak durur */
+.secenekler label{padding:0 28px}
+.foto-onay{display:flex;gap:12px;align-items:center;min-height:48px;margin-top:4px;cursor:pointer;font-weight:500}
+.foto-onay input{width:24px;height:24px;flex:none;accent-color:var(--erik)}
+
+/* hızlı geçiş barı (Mahir 3340 #3): hamburger yok, tek dokunuşla bölüme; yatay kayar */
+.hizli{position:sticky;top:0;z-index:30;background:var(--sut);border-bottom:1px solid var(--erik);overflow-x:auto;scrollbar-width:none}
+.hizli::-webkit-scrollbar{display:none}
+.hizli .kap{display:flex;gap:8px;padding-block:8px}
+.hizli a{flex:none;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1.5px solid var(--erik);border-radius:999px;color:var(--erik);font-weight:600;font-size:1.125rem;text-decoration:none;white-space:nowrap}
+.hizli a[aria-current]{background:var(--erik);color:var(--sut);border-color:var(--erik)}
+.hizli a:focus-visible{outline:3px solid var(--erik);outline-offset:2px}
+section[id],footer[id],form[id]{scroll-margin-top:76px}
+@media (min-width:901px){.hizli{display:none}}
+/* fotoğraf üzerine gelince yavaş yakınlaşma (yalnız fare, hareket azaltma kapalıysa) */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .zoom{overflow:hidden}
+  .zoom img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .zoom:hover img{transform:scale(1.06)}
+}
+
+/* gidecek mesaj kutusu */
+.giden{margin-top:14px;padding:10px 0 2px 14px;border-left:3px solid currentColor;font-size:1.125rem}
+.giden p{margin:4px 0 8px;font-style:italic;overflow-wrap:anywhere}
+.giden small{display:block;font-size:1.125rem}
+
+/* 195 px (%200) taşma */
+.defter fieldset{min-width:0}
+@media (max-width:300px){.secenekler label{padding:0 22px}.secenekler label:has(input:checked)::before{left:8px}}
+@media (max-width:300px){.gunler-serit{grid-template-columns:repeat(2,minmax(0,1fr))!important}.gunler-serit label{min-width:0;padding-inline:4px}}
+
+.bos-uyari{margin:10px 0 0;padding:10px 12px;border:2px solid currentColor;font-weight:600;font-size:1.125rem}
+.bos-uyari::before{content:"! ";font-weight:800}
+.giden{min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -214,13 +261,16 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
     <nav aria-label="Sayfa içi"><a href="#hizmetler">Hizmetler</a><a href="#uzman">Uzman</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a></nav>
   </div>
 </header>
+<nav class="hizli" aria-label="Hızlı geçiş"><div class="kap"><a href="#defter">Randevu</a><a href="#uzman">Uzman</a><a href="#hizmetler">Hizmetler</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a></div></nav>
 
 <main>
 <section class="giris">
   <div class="kap">
+    <div class="giris-ust"><div>
     <h1>Göztepe'de cilt bakımı, kaş ve tırnak</h1>
     <p class="alt">Küçük bir atölyeyiz: her randevuda aynı uzman, aynı oda. Hizmeti, günü ve saati seçin; randevunuz WhatsApp'a hazır gelsin.</p>
     <p class="guven"><b>4,9</b> Google puanı (örnek), uzmanınız Defne Aydın, 12 yıl</p>
+    </div><img class="masa-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası, beyaz örtülü bakım yatağı" width="960" height="640" fetchpriority="high"></div>
 
     <img class="mobil-foto" src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası" width="960" height="640">
     <form class="defter" id="defter" onsubmit="return false" aria-label="Randevu defteri">
@@ -236,11 +286,12 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
         <fieldset style="margin-bottom:0">
           <legend><span class="no">3</span><span>Saat aralığı</span></legend>
           <div class="secenekler" id="saat-sec">
-            <label><input type="radio" name="saat" value="sabah (10.00-13.00)">Sabah <small>10-13</small></label>
-            <label><input type="radio" name="saat" value="öğleden sonra (13.00-16.00)" checked>Öğleden sonra <small>13-16</small></label>
-            <label><input type="radio" name="saat" value="akşam (16.00-20.00)">Akşam <small>16-20</small></label>
+            <label><input type="radio" name="saat" value="sabah, 10.00-13.00">Sabah <small>10-13</small></label>
+            <label><input type="radio" name="saat" value="öğleden sonra, 13.00-16.00">Öğleden sonra <small>13-16</small></label>
+            <label><input type="radio" name="saat" value="akşam, 16.00-20.00">Akşam <small>16-20</small></label>
           </div>
         </fieldset>
+        <label class="foto-onay"><input type="checkbox" id="foto"> İstediğim modelin fotoğrafını da göndereceğim (kaş, tırnak)</label>
       </div>
       <div class="sayfa" aria-live="polite">
         <h2>Randevu defteri</h2>
@@ -251,12 +302,13 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>
           WhatsApp'tan randevu iste
         </a>
-        <p class="kucuk">Randevunuzu yazışarak onaylıyoruz. Pazar kapalıyız.</p>
+        <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-randevu" aria-live="polite"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan salonun WhatsApp numarasına gider.</small></div>
+        <p class="kucuk">Takvim bir randevu isteğidir: seçtiğiniz hizmet, gün ve saat mesaja yazılır, salon uygunluğa bakıp WhatsApp'tan onaylar. Pazar kapalıyız.</p>
       </div>
     </form>
 
-    <div class="foto-bant">
-      <img src="img/guz-hero.jpg" alt="Gün ışığı alan bakım odası, beyaz örtülü bakım yatağı ve ahşap raf" width="960" height="640">
+    <div class="foto-bant zoom">
+      <img src="img/guz-eller.jpg" alt="Eldivenli eller, ahşap tepside kil maskesi kâsesi ve fırça" width="960" height="640" loading="lazy">
       <p>Tek oda, tek uzman. Randevular arka arkaya sıkıştırılmaz.</p>
     </div>
   </div>
@@ -307,7 +359,7 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
   <div class="kap">
     <h2>Gelenler ne diyor</h2>
     <p class="puan-satir"><b>4,9</b> Google puanı (örnek) · <a href="https://www.google.com/maps/search/?api=1&amp;query=G%C3%B6ztepe%20Kad%C4%B1k%C3%B6y" target="_blank" rel="noopener">Haritada yorumlar</a></p>
-    <span class="etiket">Örnek yorumlar: sitede sizin gerçek puanınız ve yorumlarınız yer alır</span>
+    <span class="etiket">yorumlar. Sitede sizin gerçek puanınız ve yorumlarınız yer alır</span>
     <div class="yorumlar">
       <figure class="yorum"><blockquote>Üç yıldır başka yere gitmiyorum. Cildim değişince ürünü de değiştirdi, bunu kendisi fark etti.</blockquote><figcaption>Göztepe</figcaption></figure>
       <figure class="yorum"><blockquote>Kaş için geldim, ölçüp çizip gösterdi, onaylamadan almadı.</blockquote><figcaption>Erenköy</figcaption></figure>
@@ -351,7 +403,7 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
 (function(){
   var H=[["Klasik cilt bakımı",75,"1.500\u00a0TL"],["Nem bakımı",45,"1.250\u00a0TL"],["Kirpik lifting",50,"900\u00a0TL"],["Kaş tasarımı",30,"450\u00a0TL"],["Kalıcı oje",60,"750\u00a0TL"],["Manikür",45,"500\u00a0TL"],["Yüz ağdası",15,"250\u00a0TL"],["Tüm bacak ağda",40,"600\u00a0TL"]];
   var hs=document.getElementById('hizmetler-sec');
-  H.forEach(function(h,i){hs.insertAdjacentHTML('beforeend','<label><input type="radio" name="hizmet" value="'+i+'"'+(i===0?' checked':'')+'>'+h[0]+'</label>')});
+  H.forEach(function(h,i){hs.insertAdjacentHTML('beforeend','<label><input type="radio" name="hizmet" value="'+i+'"'+'>'+h[0]+'</label>')});
   var gs=document.getElementById('gunler-sec');
   var gunAd=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
   var kisa=['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
@@ -363,12 +415,12 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
   var f=document.getElementById('defter');
   function deger(ad){var e=f.querySelector('input[name="'+ad+'"]:checked');return e?e.value:null}
   function yaz(){
-    var h=H[deger('hizmet')],g=deger('gun'),s=deger('saat');
-    var p=document.getElementById('d-hizmet');p.classList.remove('bos');
-    p.innerHTML='<strong>'+h[0]+'</strong>, '+h[2];
-    document.getElementById('d-gun').textContent=g?g+', '+s:'Gün: listeden seçebilirsiniz ('+s+')';
-    document.getElementById('d-sure').textContent='Süre yaklaşık '+h[1]+' dakika';
-    var m='Merhaba, sitenizden yazıyorum. '+h[0]+' için '+(g?g+' '+(s||''):'uygun bir gün'+(s?', '+s:''))+' randevu almak istiyorum. Uygun saat var mı?';
+    var hi=deger('hizmet'),h=hi!==null?H[hi]:null,g=deger('gun'),s=deger('saat');
+    var p=document.getElementById('d-hizmet');p.classList.toggle('bos',!h);
+    p.innerHTML=h?'<strong>'+h[0]+'</strong>, '+h[2]:'Hizmet seçilmedi';
+    document.getElementById('d-gun').textContent=(g||'Gün seçilmedi')+', '+(s||'saat seçilmedi');
+    document.getElementById('d-sure').textContent=h?'Süre yaklaşık '+h[1]+' dakika':'Süre hizmete göre';
+    var m='Merhaba, sitenizden yazıyorum. '+(h?h[0]+' için ':'')+(g?g:'uygun bir gün')+(s?', '+s:'')+' randevu almak istiyorum.'+(h?'':' Hizmeti yazışırken söyleyeceğim.')+(document.getElementById('foto').checked?' İstediğim modelin fotoğrafını bu mesajın ardından gönderiyorum.':'')+' Uygun saat var mı?';
     document.getElementById('wa-randevu').href='https://wa.me/?text='+encodeURIComponent(m);document.getElementById('wa-cubuk').href=dokundu?'https://wa.me/?text='+encodeURIComponent(m):'https://wa.me/?text='+encodeURIComponent('Merhaba, randevu almak istiyorum. Uygun gün ve saatleriniz nedir?');
     if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo('.sayfa p:not(.kucuk)',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:.5,stagger:.08,ease:'power2.out'})}
   }
@@ -389,6 +441,31 @@ window.addEventListener('load',function(){
   u.addEventListener('mousemove',function(e){var r=u.getBoundingClientRect();gsap.to(u,{rotateY:(e.clientX-r.left-r.width/2)/45,rotateX:-(e.clientY-r.top-r.height/2)/45,scale:1.02,transformPerspective:900,duration:.5})});
   u.addEventListener('mouseleave',function(){gsap.to(u,{rotateX:0,rotateY:0,scale:1,duration:.5})});
 });
+</script>
+<script>
+/* hızlı geçiş barı: görünen bölümün bağlantısı dolu görünür (Mahir 3340 #3) */
+(function(){var bar=document.querySelector('.hizli');if(!bar||!('IntersectionObserver' in window))return;
+  var L=[].slice.call(bar.querySelectorAll('a'));var hedef=L.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function sec(i){L.forEach(function(a,j){if(j===i)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var a=L[i];if(a)bar.scrollTo({left:a.offsetLeft-16,behavior:'smooth'})}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=hedef.indexOf(e.target);if(i>-1)sec(i)}})},{rootMargin:'-30% 0px -60% 0px'});
+  hedef.forEach(function(h){if(h)io.observe(h)});})();
+</script>
+<script>
+
+</script>
+<script>
+/* gidecek mesaj önizlemesi: düğmenin ne yaptığı görünür (Mahir 3343 a/b) */
+(function(){var a=document.getElementById('wa-randevu'),o=document.getElementById('giden-wa-randevu');if(!a||!o)return;
+  function g(){var t=(a.getAttribute('href')||'').split('text=')[1];try{o.textContent=t?decodeURIComponent(t):''}catch(e){}}
+  ['input','change','click'].forEach(function(ev){document.addEventListener(ev,function(){setTimeout(g,0)})});setTimeout(g,0);})();
+</script>
+<script>
+/* boş form: ilk basışta görünür uyarı, ikinci basışta genel soru gider (site-sistemi S04, Mahir 3343) */
+(function(){var a=document.getElementById('wa-randevu');if(!a)return;var uy=document.createElement('p');uy.className='bos-uyari';uy.setAttribute('role','alert');uy.hidden=true;
+  uy.textContent='Henüz hizmet seçmediniz. Seçin ya da yine de genel randevu sorusu göndermek için tekrar basın.';a.insertAdjacentElement('afterend',uy);var izin=false;
+  a.addEventListener('click',function(e){if(!document.querySelector('#defter input[name=hizmet]:checked')&&!izin){e.preventDefault();e.stopImmediatePropagation();uy.hidden=false;izin=true;a.focus();}},true);
+  document.addEventListener('change',function(){uy.hidden=true;izin=false});})();
 </script>
 </body>
 </html>

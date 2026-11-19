@@ -78,7 +78,7 @@ a{color:var(--metin)}
 
 section.b{padding:88px 0}
 .b-bas{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:40px}
-.b-bas h2{font-size:min(clamp(2.1rem,4.4vw,3.4rem),10vw);max-width:18ch}
+.b-bas h2{font-size:max(1.8rem,min(clamp(2.1rem,4.4vw,3.4rem),10vw));max-width:18ch}
 .b-bas p{max-width:44ch;color:var(--ikincil);margin:0;font-size:1.15rem}
 
 /* takvim */
@@ -125,17 +125,17 @@ section.b{padding:88px 0}
 .kesif legend{font-weight:600;margin-bottom:12px;padding:0;font-size:1.125rem}
 .tip{display:flex;flex-wrap:wrap;gap:8px}
 .tip input{position:absolute;width:1px;height:1px;margin:-1px;opacity:0;clip-path:inset(50%);pointer-events:none}
-.tip label{min-height:50px;display:inline-flex;align-items:center;gap:8px;padding:0 18px;border:1.5px solid #8C9098;cursor:pointer;font-weight:500}
+.tip label{position:relative;min-height:50px;display:inline-flex;align-items:center;gap:8px;padding:0 28px;border:1.5px solid #8C9098;cursor:pointer;font-weight:500}
 .tip label:hover{border-color:#fff}
 .tip input:checked+label{background:#fff;color:var(--metin);border-color:#fff}
-.tip input:checked+label::before{content:"";width:8px;height:14px;border:solid var(--turuncu);border-width:0 3px 3px 0;transform:rotate(45deg) translateY(-2px)}
+.tip input:checked+label::before{content:"";position:absolute;left:11px;top:50%;width:7px;height:13px;margin-top:-9px;border:solid var(--turuncu);border-width:0 3px 3px 0;transform:rotate(45deg)}
 .tip input:focus-visible+label{outline:3px solid var(--turuncu);outline-offset:3px}
 .m2-satir{display:flex;align-items:center;gap:18px}
 .m2-satir output{font:800 2rem/1 Archivo,sans-serif;font-stretch:112%;min-width:5ch}
 .m2-satir input[type=range]{flex:1;accent-color:var(--turuncu);height:44px}
 .karsilastir{touch-action:pan-y;cursor:ew-resize}
 .karsilastir.dokundu .ipucu{opacity:0}
-@media (min-width:901px){.karsilastir{max-height:62vh}}
+@media (min-width:901px){.karsilastir{max-height:min(54vh,calc(100vh - 380px))}.hero-yazi{max-width:none!important;padding:28px 0 36px!important;display:grid;grid-template-columns:1.35fr 1fr;gap:12px 48px;align-items:start}.hero-yazi h1{font-size:clamp(2.4rem,5vw,4.5rem)!important;grid-row:span 2}.hero-yazi p{margin-top:4px!important}.hero-yazi .eylem{margin-top:8px!important}}
 .karsilastir input[type=range]{height:100%;pointer-events:none}
 .karsilastir .etk{transition:opacity .2s}
 .karsilastir:has(#surgu:focus-visible) .tutamak{outline:3px solid #fff;outline-offset:4px}
@@ -143,15 +143,15 @@ section.b{padding:88px 0}
 .kesif select{min-height:50px;font:500 1.125rem "IBM Plex Sans",sans-serif;background:var(--antrasit-2);color:#fff;border:1.5px solid #8C9098;padding:0 12px;border-radius:0;width:100%;max-width:320px}
 .onay{display:flex;gap:12px;align-items:center;min-height:44px;cursor:pointer}
 .onay input{width:24px;height:24px;accent-color:var(--turuncu)}
-.ozet{background:#DAD6CD;color:var(--metin);padding:28px}
+.ozet{background:var(--antrasit-2);color:#fff;border:1.5px solid #8C9098;padding:28px}
 .ozet h3{font-size:1.6rem}
 .ozet ul{list-style:none;margin:16px 0 0;padding:0}
-.ozet li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--cizgi)}
-.ozet li span{color:var(--ikincil)}
+.ozet li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #4A4F57}
+.ozet li span{color:#C9C6BF}
 .ozet li b{font-weight:600;text-align:right}
 .ozet .buyuk{width:100%;justify-content:center;margin-top:22px}
 .ozet .fiyat-not{margin:16px 0 0;font-weight:600}
-.ozet .garanti{margin:18px 0 0;font-size:1.125rem;color:var(--ikincil);display:flex;gap:10px}
+.ozet .garanti{margin:18px 0 0;font-size:1.125rem;color:#D8D5CE;display:flex;gap:10px}
 .ozet .garanti svg{width:22px;height:22px;flex:none;color:var(--turuncu)}
 
 .yorumlar{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--metin)}
@@ -186,7 +186,7 @@ footer dt{color:#9C9A94}footer dd{margin:0;color:#fff}
 @media (max-width:900px){
   .karsilastir{aspect-ratio:4/3.4}
   .hero-yazi{margin-top:0;padding:28px 16px 32px;max-width:none}
-  .hero-yazi h1{font-size:min(2.65rem,10.5vw)}
+  .hero-yazi h1{font-size:max(2rem,min(2.65rem,10.5vw))}
   .takvim{padding:16px;overflow:hidden}
   .gun-baslik{display:none}
   .is{grid-template-columns:1fr;gap:6px;padding:12px 0}
@@ -219,6 +219,48 @@ h1,h2,h3{overflow-wrap:break-word;hyphens:manual}
 .ozet li b{min-width:0}
 .buyuk{white-space:normal;text-align:center}
 footer dl{grid-template-columns:auto minmax(0,1fr)}
+
+/* tur 13: simgeler yazıyla büyür; 360 px altı alt çubuk simgesiz; ÖRNEK çipi */
+.tel svg,.tel-ust svg,.rozetler svg,.birincil svg,.buyuk svg,.alt-cubuk .iki svg{width:1.2em!important;height:1.2em!important;flex:none}
+@media (max-width:360px){.alt-cubuk .iki a svg{display:none}}
+.etiket{display:inline-block;font-size:1.125rem;color:#fff!important;background:#1C1E22!important;border:0!important;border-radius:999px!important;padding:4px 14px!important}
+.etiket::before{content:"ÖRNEK";font-weight:700;letter-spacing:.04em;margin-right:8px}
+
+/* tur 13: banyo önce/sonra */
+.ls{position:relative;aspect-ratio:3/2;overflow:hidden;--x:50%}
+.isler .ls img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+.ls .once{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.ls .cizgi{position:absolute;top:0;bottom:0;left:var(--x);width:3px;background:#fff;transform:translateX(-1.5px)}
+.lsk{position:absolute;top:12px;background:#1C1E22;color:#fff;font-weight:600;padding:4px 12px;font-size:1.125rem}
+.lsk.e1{left:12px}.lsk.e2{right:12px}
+.ls-bar{display:flex;align-items:center;gap:12px;padding:10px 18px 0;font-weight:600}
+.ls-bar input{flex:1;min-width:0;height:44px;accent-color:var(--turuncu)}
+
+/* Mahir 3340 #1: seçim düzeni oynatmaz; uygun olmayan alan gizlenmez, pasif görünür (çizili + soluk) */
+.tip label.pasif{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+
+/* hızlı geçiş barı (Mahir 3340 #3): hamburger yok, tek dokunuşla bölüme; yatay kayar */
+.hizli{position:sticky;top:0;z-index:30;background:var(--antrasit);border-bottom:1px solid #8C9098;overflow-x:auto;scrollbar-width:none}
+.hizli::-webkit-scrollbar{display:none}
+.hizli .kap{display:flex;gap:8px;padding-block:8px}
+.hizli a{flex:none;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1.5px solid #8C9098;border-radius:0;color:#fff;font-weight:600;font-size:1.125rem;text-decoration:none;white-space:nowrap}
+.hizli a[aria-current]{background:#fff;color:var(--metin);border-color:#fff}
+.hizli a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+section[id],footer[id],form[id]{scroll-margin-top:76px}
+
+/* gidecek mesaj kutusu */
+.giden{margin-top:14px;padding:10px 0 2px 14px;border-left:3px solid currentColor;font-size:1.125rem}
+.giden p{margin:4px 0 8px;font-style:italic;overflow-wrap:anywhere}
+.giden small{display:block;font-size:1.125rem}
+
+/* 195 px (%200) taşma */
+.isler figcaption{grid-template-columns:minmax(0,1fr) auto}
+.isler>*{min-width:0}
+@media (max-width:300px){.isler figcaption{grid-template-columns:1fr}.ls-bar{padding-inline:10px}}
+
+.bos-uyari{margin:10px 0 0;padding:10px 12px;border:2px solid currentColor;font-weight:600;font-size:1.125rem}
+.bos-uyari::before{content:"! ";font-weight:800}
+.giden{min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -231,6 +273,7 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
     <a class="kesif-kucuk" href="#kesif">Ücretsiz keşif</a>
   </div>
 </header>
+<nav class="hizli" aria-label="Hızlı geçiş"><div class="kap"><a href="#takvim">Takvim</a><a href="#isler">İşler</a><a href="#usta">Usta</a><a href="#kesif">Keşif iste</a><a href="#sss">Sorular</a><a href="#iletisim">Adres</a></div></nav>
 
 <main>
 <section class="hero">
@@ -244,8 +287,8 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
   </div>
   <div class="kap">
     <div class="hero-yazi">
-      <h1>Mutfak, banyo, komple daire. Teslim günü teklifte yazar.</h1>
-      <p>Ataşehir, Kadıköy, Ümraniye, Maltepe ve Üsküdar'da tadilat. Keşif ücretsiz, teklif ve sözleşme yazılı.</p>
+      <h1>Mutfak, banyo, komple daire.</h1>
+      <p>Teslim günü teklifte yazar. Ataşehir, Kadıköy, Ümraniye, Maltepe ve Üsküdar'da tadilat. Keşif ücretsiz, teklif ve sözleşme yazılı.</p>
       <div class="eylem"><a class="buyuk" href="#kesif">Ücretsiz keşif iste</a><a class="tel" href="tel:+902160000000">ya da arayın: 0216 000 00 00</a></div>
     </div>
   </div>
@@ -270,13 +313,14 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
   </div>
 </section>
 
-<section class="b" style="padding-top:0">
+<section class="b" id="isler" style="padding-top:0">
   <div class="kap">
     <div class="b-bas"><h2>Son işler</h2><p>Her işte semt, süre ve kapsam yazılı.</p></div>
     <div class="isler">
-      <figure><img src="img/tad-banyo.jpg" alt="Gri taş fayanslı, cam duşakabinli yenilenmiş banyo" loading="lazy" width="960" height="640"><figcaption><b>Banyo yenileme</b><em>9 iş günü</em><span>Ataşehir, 6 m², duşakabin, gömme rezervuar</span></figcaption></figure>
+      <figure class="ls-fig"><div class="ls" id="ls"><img src="img/tad-banyo.jpg" alt="Sonra: gri taş fayanslı, cam duşakabinli yenilenmiş banyo" loading="lazy" width="960" height="640"><img class="once" src="img/tad-banyo-once.jpg" alt="Önce: aynı banyo, çatlak sararmış fayans, küflü derz, eski armatür" loading="lazy" width="960" height="640"><span class="lsk e1">Önce</span><span class="lsk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div></div>
+        <div class="ls-bar"><span aria-hidden="true">Önce</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Banyo önce ve sonra karşılaştırma"><span aria-hidden="true">Sonra</span></div><figcaption><b>Banyo yenileme</b><em>9 iş günü</em><span>Ataşehir, 6 m², duşakabin, gömme rezervuar</span></figcaption></figure>
       <div class="kayit">
-        <span class="etiket">Örnek iş kaydı: sitede sizin işleriniz ve önce/sonra fotoğraflarınız yer alır</span>
+        <span class="etiket">iş kaydı. Sitede sizin işleriniz ve önce/sonra fotoğraflarınız yer alır</span>
         <ul>
           <li><b>Komple daire</b><em>7 hafta</em><span>Kadıköy, 3+1, 115 m², sıva, boya, zemin, elektrik</span></li>
           <li><b>Mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans</span></li>
@@ -293,7 +337,7 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
     <div>
       <div class="b-bas" style="display:block"><h2>İşi biz yaparız, taşerona vermeyiz</h2></div>
       <p class="usta-yazi">Kalfa Yapı 2009'dan beri Ataşehir'de. Usta başı Hasan Kalfa (örnek ad). Sekiz kişilik kendi ekibimizle çalışırız: iki fayansçı, bir tesisatçı, bir elektrikçi, bir boyacı-alçıcı, bir marangoz-parkeci, bir yardımcı ve şantiyeyi her gün gezen usta başı. Hangi gün evde kim olacağını takvimde yazarız.</p>
-      <div class="puan-rozet"><span class="etiket" style="margin:0 0 10px">Örnek: sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ata%C5%9Fehir%20tadilat" target="_blank" rel="noopener">Haritada aç</a></p></div>
+      <div class="puan-rozet"><span class="etiket" style="margin:0 0 10px">sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ata%C5%9Fehir%20tadilat" target="_blank" rel="noopener">Haritada aç</a></p></div>
     </div>
     <div>
       <h3 class="hiz-bas">Yaptığımız işler</h3>
@@ -310,7 +354,7 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
       <div>
         <fieldset><legend>Ne yapılacak?</legend>
           <div class="tip">
-            <input type="radio" name="tip" id="t1" value="Banyo" checked><label for="t1">Banyo</label>
+            <input type="radio" name="tip" id="t1" value="Banyo"><label for="t1">Banyo</label>
             <input type="radio" name="tip" id="t2" value="Mutfak"><label for="t2">Mutfak</label>
             <input type="radio" name="tip" id="t3" value="Komple daire"><label for="t3">Komple daire</label>
             <input type="radio" name="tip" id="t4" value="Boya, alçı"><label for="t4">Boya, alçı</label>
@@ -328,19 +372,20 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
           </div>
         </fieldset>
         <fieldset><legend><label for="semt" style="display:inline-flex;align-items:center;min-height:44px;min-width:44px">Semt</label></legend>
-          <select id="semt"><option>Ataşehir</option><option>Kadıköy</option><option>Ümraniye</option><option>Maltepe</option><option>Üsküdar</option><option value="başka semt (semtimi yazacağım)">Başka semt</option></select>
+          <select id="semt"><option value="">Semtinizi seçin</option><option>Ataşehir</option><option>Kadıköy</option><option>Ümraniye</option><option>Maltepe</option><option>Üsküdar</option><option value="başka semt (semtimi yazacağım)">Başka semt</option></select>
         </fieldset>
         <label class="onay"><input type="checkbox" id="foto"> Fotoğraf da göndereceğim</label>
       </div>
       <div class="ozet" aria-live="polite">
         <h3>Keşif notu</h3>
         <ul>
-          <li><span>İş</span><b id="o-tip">Banyo</b></li>
+          <li><span>İş</span><b id="o-tip">seçilmedi</b></li>
           <li><span>Alan</span><b id="o-m2">keşifte ölçülür</b></li>
-          <li><span>Semt</span><b id="o-semt">Ataşehir</b></li>
-          <li><span>Tahmini süre</span><b id="o-sure">8-10 iş günü</b></li>
+          <li><span>Semt</span><b id="o-semt">seçilmedi</b></li>
+          <li><span>Tahmini süre</span><b id="o-sure">keşifte belirlenir</b></li>
         </ul>
         <a class="buyuk" id="wa-kesif" href="#" target="_blank" rel="noopener">WhatsApp'tan keşif iste</a>
+        <div class="giden"><b>Gidecek mesaj</b><p id="giden-wa-kesif" aria-live="polite"></p><small>Bu örnekte WhatsApp mesajı kime göndereceğinizi sorar. Gerçek sitede mesaj doğrudan firmanın WhatsApp numarasına gider.</small></div>
         <p class="fiyat-not">Fiyat: keşiften sonra yazılı teklif. Teklifte olmayan iş, yazılı onayınız olmadan yapılmaz ve ücretlendirilmez.</p>
         <p class="garanti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Garanti kapsamı ve süresi teklifte yazılı.</p>
       </div>
@@ -351,7 +396,7 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
 <section class="b">
   <div class="kap">
     <div class="b-bas"><h2>Ev sahipleri ne diyor</h2></div>
-    <span class="etiket">Örnek yorumlar: sitede sizin Google yorumlarınız yer alır</span>
+    <span class="etiket">yorumlar. Sitede sizin Google yorumlarınız yer alır</span>
     <div class="yorumlar">
       <figure class="yorum"><blockquote>Banyo için 9 gün dediler, 9. gün akşam anahtarı verdiler. Her akşam ne yapıldığını fotoğrafla attılar.</blockquote><figcaption>Ataşehir, Atatürk Mahallesi</figcaption></figure>
       <figure class="yorum"><blockquote>Teklifte yazmayan tek kuruş istemediler. Malzemeyi ben seçtim, sadece işçilik ödedim.</blockquote><figcaption>Kadıköy, Kozyatağı</figcaption></figure>
@@ -389,7 +434,7 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
 (function(){
   var k=document.getElementById('karsilastir'),s=document.getElementById('surgu');
   function ayarla(v){k.style.setProperty('--x',v+'%');k.querySelector('.e1').style.opacity=v<18?0:1;k.querySelector('.e2').style.opacity=v>82?0:1}
-  s.addEventListener('input',function(){ayarla(s.value)});
+  s.addEventListener('input',function(){k.classList.add('dokundu');ayarla(s.value)});
   var bx=null,by=null,yatay=false;
   function konum(e){var r=k.getBoundingClientRect();var v=Math.round(Math.min(100,Math.max(0,(e.clientX-r.left)/r.width*100)));s.value=v;ayarla(v)}
   k.addEventListener('pointerdown',function(e){k.classList.add('dokundu');if(window.__acilis){window.__acilis.kill();window.__acilis=null}bx=e.clientX;by=e.clientY;yatay=e.pointerType==='mouse';if(yatay){try{k.setPointerCapture(e.pointerId)}catch(_){}konum(e)}});
@@ -401,17 +446,19 @@ footer dl{grid-template-columns:auto minmax(0,1fr)}
   var kucukTip={"Banyo":2,"Mutfak":3};
   var alanSira=["10 m²'den az","10-30 m²","30-60 m²","60-100 m²","100 m²'den çok"];
   function yaz(){
-    var t=f.querySelector('input[name=tip]:checked').value;
-    var sinir=kucukTip[t]||5,ak=document.getElementById('alan-k');ak.hidden=(t==='Diğer iş');
-    f.querySelectorAll('input[name=m2]').forEach(function(x,i){var l=f.querySelector('label[for='+x.id+']');var gizle=i>=sinir;l.hidden=gizle;x.hidden=gizle;x.disabled=gizle;if(gizle&&x.checked)x.checked=false});
-    if(t==='Diğer iş')f.querySelectorAll('input[name=m2]').forEach(function(x){x.checked=false});
+    var tE=f.querySelector('input[name=tip]:checked'),t=tE?tE.value:null;
+    var sinir=(t&&kucukTip[t])||5;
+    f.querySelectorAll('input[name=m2]').forEach(function(x,i){var l=f.querySelector('label[for='+x.id+']');var gizle=i>=sinir;x.disabled=gizle;l.classList.toggle('pasif',gizle);l.title=gizle?t+' için bu alan seçilemez':'';if(gizle&&x.checked)x.checked=false});
     var mE=f.querySelector('input[name=m2]:checked'),m=mE?mE.value:null,se=document.getElementById('semt').value,fo=document.getElementById('foto').checked;
-    document.getElementById('o-tip').textContent=t;document.getElementById('o-m2').textContent=m||'keşifte ölçülür';document.getElementById('o-semt').textContent=se;document.getElementById('o-sure').textContent=t==='Diğer iş'?'keşifte belirlenir':(m?sure[t][alanSira.indexOf(m)]:sure[t][0]+' ve üstü (alana göre)');
-    var msg='Merhaba, sitenizden yazıyorum. '+(t==='Diğer iş'?'Küçük bir tadilat işi için (ne olduğunu aşağıda yazıyorum) keşif istiyorum. ':t+' için keşif istiyorum. '+(m?'Yaklaşık '+m+', ':'Alanı keşifte ölçersiniz. '))+'Semt: '+se+'.'+(fo?' Fotoğrafları da gönderiyorum.':'')+' Ne zaman gelebilirsiniz?';
+    document.getElementById('o-tip').textContent=t||'seçilmedi';document.getElementById('o-m2').textContent=m||'keşifte ölçülür';document.getElementById('o-semt').textContent=se||'seçilmedi';document.getElementById('o-sure').textContent=!t||t==='Diğer iş'?'keşifte belirlenir':(m?sure[t][alanSira.indexOf(m)]:sure[t][0]+' ve üstü (alana göre)');
+    var msg='Merhaba, sitenizden yazıyorum. '+(!t?'Tadilat için keşif istiyorum (işi yazışırken anlatacağım). '+(m?'Yaklaşık '+m+'. ':''):t==='Diğer iş'?'Küçük bir tadilat işi için (ne olduğunu aşağıda yazıyorum) keşif istiyorum. '+(m?'Yaklaşık '+m+'. ':''):t+' için keşif istiyorum. '+(m?'Yaklaşık '+m+'. ':'Alanı keşifte ölçersiniz. '))+'Semt: '+(se||'yazışırken söyleyeceğim')+'.'+(fo?' Fotoğrafları da gönderiyorum.':'')+' Ne zaman gelebilirsiniz?';
     document.getElementById('wa-kesif').href='https://wa.me/?text='+encodeURIComponent(msg);document.getElementById('wa-cubuk').href=dokundu?document.getElementById('wa-kesif').href:'https://wa.me/?text='+encodeURIComponent('Merhaba, tadilat için ücretsiz keşif istiyorum. Ne zaman gelebilirsiniz?');
   }
   var dokundu=false;f.addEventListener('input',function(){dokundu=true;yaz()});f.addEventListener('change',function(){dokundu=true;yaz()});yaz();
 })();
+(function(){var l=document.getElementById('ls'),r=document.getElementById('ls-surgu');if(!l||!r)return;
+  function a(){l.style.setProperty('--x',r.value+'%');l.querySelector('.e1').style.opacity=r.value<15?0:1;l.querySelector('.e2').style.opacity=r.value>85?0:1}
+  r.addEventListener('input',a);a();})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -422,10 +469,52 @@ window.addEventListener('load',function(){
   var o={v:78};if(document.getElementById('karsilastir').classList.contains('dokundu'))return;window.__acilis=gsap.to(o,{v:50,duration:1.4,delay:.4,ease:'power2.inOut',onUpdate:function(){window.__surgu(o.v)}});
   gsap.from('.hero-yazi',{y:40,opacity:0,duration:.8,delay:.2,ease:'power3.out'});
   gsap.utils.toArray('.is .cubuk').forEach(function(c,i){gsap.from(c,{scaleX:0,transformOrigin:'0 50%',duration:.5,delay:i*.12,ease:'power2.out',scrollTrigger:{trigger:'.takvim',start:'top 80%'}})});
-  document.querySelectorAll('.isler figure').forEach(function(fg){var im=fg.querySelector('img');fg.style.overflow='hidden';
+  document.querySelectorAll('.isler figure:not(.ls-fig)').forEach(function(fg){var im=fg.querySelector('img');fg.style.overflow='hidden';
     fg.addEventListener('mousemove',function(e){var r=fg.getBoundingClientRect();gsap.to(im,{x:(e.clientX-r.left-r.width/2)/35,y:(e.clientY-r.top-r.height/2)/35,scale:1.04,duration:.5})});
     fg.addEventListener('mouseleave',function(){gsap.to(im,{x:0,y:0,scale:1,duration:.5})});});
 });
+</script>
+<script>
+/* hızlı geçiş barı: görünen bölümün bağlantısı dolu görünür (Mahir 3340 #3) */
+(function(){var bar=document.querySelector('.hizli');if(!bar||!('IntersectionObserver' in window))return;
+  var L=[].slice.call(bar.querySelectorAll('a'));var hedef=L.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function sec(i){L.forEach(function(a,j){if(j===i)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var a=L[i];if(a)bar.scrollTo({left:a.offsetLeft-16,behavior:'smooth'})}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=hedef.indexOf(e.target);if(i>-1)sec(i)}})},{rootMargin:'-30% 0px -60% 0px'});
+  hedef.forEach(function(h){if(h)io.observe(h)});})();
+</script>
+<script>
+/* önce/sonra sürgüsü görünüme girince bir kez gidip gelir: kullanıcı oynadığını görür (Mahir 3340 #2, #8) */
+window.addEventListener('load',function(){
+  var r=document.getElementById('ls-surgu');if(!r||!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var o={v:50},dokundu=false;r.addEventListener('input',function(){dokundu=true});
+  function yaz(){if(dokundu)return;r.value=Math.round(o.v);r.dispatchEvent(new Event('input'));dokundu=false}
+  ScrollTrigger.create({trigger:r,start:'top 85%',once:true,onEnter:function(){
+    gsap.timeline().to(o,{v:82,duration:.9,ease:'power2.inOut',onUpdate:yaz}).to(o,{v:22,duration:1.1,ease:'power2.inOut',onUpdate:yaz}).to(o,{v:50,duration:.8,ease:'power2.out',onUpdate:yaz});}});
+});
+/* masaüstü: iş kartları imleçle hafif 3B eğilir, derinlik hissi (Mahir 3340 #8) */
+window.addEventListener('load',function(){
+  if(!window.gsap||!matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('.isler figure:not(.ls-fig),.kayit,.puan-rozet').forEach(function(k){
+    k.style.transformStyle='preserve-3d';k.parentElement.style.perspective='900px';
+    k.addEventListener('mousemove',function(e){var r=k.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      gsap.to(k,{rotationY:x*7,rotationX:-y*6,y:-4,boxShadow:'0 24px 40px -24px rgba(0,0,0,.45)',duration:.4,ease:'power2.out'})});
+    k.addEventListener('mouseleave',function(){gsap.to(k,{rotationY:0,rotationX:0,y:0,boxShadow:'0 0 0 rgba(0,0,0,0)',duration:.6,ease:'power2.out'})});
+  });
+});
+</script>
+<script>
+/* gidecek mesaj önizlemesi: düğmenin ne yaptığı görünür (Mahir 3343 a/b) */
+(function(){var a=document.getElementById('wa-kesif'),o=document.getElementById('giden-wa-kesif');if(!a||!o)return;
+  function g(){var t=(a.getAttribute('href')||'').split('text=')[1];try{o.textContent=t?decodeURIComponent(t):''}catch(e){}}
+  ['input','change','click'].forEach(function(ev){document.addEventListener(ev,function(){setTimeout(g,0)})});setTimeout(g,0);})();
+</script>
+<script>
+/* boş form: ilk basışta görünür uyarı, ikinci basışta genel soru gider (site-sistemi S04, Mahir 3343) */
+(function(){var a=document.getElementById('wa-kesif');if(!a)return;var uy=document.createElement('p');uy.className='bos-uyari';uy.setAttribute('role','alert');uy.hidden=true;
+  uy.textContent='Henüz iş türü seçmediniz. Seçin ya da yine de genel keşif isteği göndermek için tekrar basın.';a.insertAdjacentElement('afterend',uy);var izin=false;
+  a.addEventListener('click',function(e){if(!document.querySelector('#kesif-form input[name=tip]:checked')&&!izin){e.preventDefault();e.stopImmediatePropagation();uy.hidden=false;izin=true;a.focus();}},true);
+  document.addEventListener('change',function(){uy.hidden=true;izin=false});})();
 </script>
 </body>
 </html>
