@@ -29,15 +29,15 @@
 {"@type":"Question","name":"Ödeme nasıl?","acceptedAnswer":{"@type":"Answer","text":"Başta malzeme payı, iş ortasında bir ara ödeme, kalan teslimde. Oranlar teklifte yazılıdır."}}]}]}
 </script>
 <style>
-/* Kalfa Yapı: sayfa bir paftadır. cetvel (gezinme), pafta (görünüş + antet), keşif föyü, iş takvimi, arşiv, lejant, detay balonları, antet altbilgi */
+/* Kalfa Yapı: sayfa bir paftadır. cetvel (gezinme), pafta (görünüş + antet), keşif föyü, iş takvimi, arşiv, iş listesi, detay balonları, antet altbilgi */
 :root{
   --kagit:#FBFAF7; --siva:#F1EFEA; --beyaz:#FFFFFF; --antrasit:#23262B; --metin:#1C1E22; --ikincil:#4F545C;
   --turuncu:#C2410C; --turuncu-koyu:#A3360A; --turuncu-acik:#FBE3D2; --izgara:#ECE9E2; --izgara-2:#E2DED5; --cizgi:#CFCBC2;
   --govde:1.1875rem; --bas:"Schibsted Grotesk",system-ui,sans-serif;
 }
 *{box-sizing:border-box;font-variant-numeric:lining-nums}
-.cubuk,.cetele td.sure,.ozet li b,.gun-baslik{font-variant-numeric:lining-nums tabular-nums}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-bottom:96px}
+.cubuk,.cetele td.sure,.talep-liste b,.gun-baslik{font-variant-numeric:lining-nums tabular-nums}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{margin:0;color:var(--metin);font:400 var(--govde)/1.6 Newsreader,Georgia,serif;
   background:var(--kagit) linear-gradient(var(--izgara) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--izgara) 1px,transparent 1px) 0 0/24px 24px;background-color:var(--kagit)}
@@ -47,8 +47,8 @@ img{max-width:100%;height:auto;display:block}
 a{color:var(--metin)}
 h1,h2,h3{font-family:var(--bas);font-weight:800;margin:0;line-height:1.02;letter-spacing:-.025em;overflow-wrap:break-word}
 .kap{width:min(1240px,100% - 32px);margin-inline:auto}
-.etiket{display:block;color:var(--ikincil);font-size:1.125rem;line-height:1.5;max-width:60ch}
-.etiket::before{content:"ÖRNEK";display:inline-block;margin-right:10px;padding:1px 10px;border-radius:6px;background:#1C1E22;color:#fff;font:700 1.0625rem/1.5 var(--bas);letter-spacing:.04em}
+.etiket{display:block;color:var(--ikincil);font-size:1.125rem;line-height:1.5;max-width:60ch;padding-left:14px;border-left:3px solid var(--antrasit)}
+.etiket b{font-family:var(--bas);color:var(--metin)}
 .ornek-serit{background:var(--turuncu-acik);color:var(--metin);font-size:1.125rem;text-align:center;padding:8px 16px}
 
 /* üst */
@@ -76,28 +76,31 @@ h1,h2,h3{font-family:var(--bas);font-weight:800;margin:0;line-height:1.02;letter
 .olcek a[aria-current]::after{content:"";position:absolute;left:-7px;bottom:-12px;border:6px solid transparent;border-top:8px solid var(--turuncu)}
 .ilerleme{position:absolute;left:0;bottom:0;height:3px;width:var(--p,0%);background:var(--turuncu)}
 .cetvel-eylem{display:flex;align-items:center;gap:12px;padding:6px 0}
-.cetvel-eylem .dugme{min-height:46px;padding:0 18px;font-size:1.0625rem}
+.cetvel-eylem .dugme{min-height:46px;padding:0 18px;font-size:1.125rem}
 section[id],footer[id]{scroll-margin-top:72px}
 
 /* pafta (ilk ekran) */
 .pafta{margin-top:24px;background:var(--beyaz);border:2px solid var(--antrasit);outline:1px solid var(--antrasit);outline-offset:6px;display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr)}
 .gorunus{padding:22px 26px 18px;border-right:2px solid var(--antrasit);min-width:0;display:flex;flex-direction:column}
-.gorunus .karsilastir{aspect-ratio:auto;flex:1;min-height:420px}
+.gorunus .kesit{aspect-ratio:auto;flex:1;min-height:420px}
 .cizim-bas{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin-bottom:12px;font:700 1.125rem var(--bas)}
 .cizim-bas span:first-child{border-bottom:2px solid var(--antrasit);padding-bottom:2px}
 .cizim-bas span:nth-child(2){font:italic 400 1.125rem Newsreader,serif;color:var(--ikincil)}
-.karsilastir{position:relative;aspect-ratio:3/2;overflow:hidden;--x:50%;touch-action:pan-y;cursor:ew-resize;-webkit-user-select:none;user-select:none}
-.karsilastir img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
-.karsilastir .once{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
-.karsilastir .cizgi{position:absolute;top:0;bottom:0;left:var(--x);width:3px;background:#fff;transform:translateX(-1.5px);pointer-events:none}
-.karsilastir .tutamak{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);width:54px;height:54px;background:var(--turuncu);color:#fff;display:grid;place-items:center;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.35)}
-.karsilastir .tutamak svg{width:28px;height:28px}
-.karsilastir input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;pointer-events:none}
-.karsilastir:has(input:focus-visible) .tutamak{outline:3px solid #fff;outline-offset:4px}
+.kesit{position:relative;aspect-ratio:3/2;overflow:hidden;--x:50%;touch-action:pan-y;cursor:ew-resize;-webkit-user-select:none;user-select:none}
+.kesit img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.kesit .once{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.kesit-hat{position:absolute;top:0;bottom:0;left:var(--x);width:0;pointer-events:none;z-index:2}
+.kesit-hat::before{content:"";position:absolute;top:0;bottom:0;left:-2px;width:4px;background:repeating-linear-gradient(180deg,#fff 0 22px,transparent 22px 28px,#fff 28px 32px,transparent 32px 38px);box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.kesit-hat b{position:absolute;left:-20px;width:40px;height:40px;border-radius:50%;background:var(--antrasit);color:#fff;border:2px solid #fff;display:grid;place-items:center;font:800 1.125rem/36px var(--bas)}
+.kesit-hat b:first-child{top:12px}.kesit-hat b:last-child{bottom:12px}
+.kesit-tutamak{position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);width:52px;height:52px;background:var(--turuncu);color:#fff;border:2px solid #fff;display:grid;place-items:center;pointer-events:none;z-index:3}
+.kesit-tutamak svg{width:28px;height:28px}
+.kesit input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;pointer-events:none}
+.kesit:has(input:focus-visible) .kesit-tutamak{outline:3px solid #fff;outline-offset:4px}
 .etk{position:absolute;top:16px;background:var(--beyaz);color:var(--metin);font:700 1.125rem var(--bas);padding:4px 12px;border:2px solid var(--antrasit);z-index:3;transition:opacity .2s}
 .etk.e1{left:16px}.etk.e2{right:16px}
-.ipucu{position:absolute;left:50%;top:calc(50% + 42px);transform:translateX(-50%);background:var(--antrasit);color:#fff;font:700 1.125rem var(--bas);padding:4px 12px;pointer-events:none;z-index:3;transition:opacity .3s}
-.karsilastir.dokundu .ipucu{opacity:0}
+.kesit.sol-uc .e1,.kesit.sag-uc .e2{opacity:0}
+.kesit.kenar .kesit-hat b:first-child{opacity:0}
 /* ölçü çizgisi */
 .olcu{position:relative;display:flex;align-items:center;gap:12px;margin-top:16px;font:700 1.125rem var(--bas)}
 .olcu::before,.olcu::after{content:"";flex:1;height:2px;background:var(--antrasit)}
@@ -115,7 +118,7 @@ section[id],footer[id]{scroll-margin-top:72px}
 .antet dl div{padding:10px 24px 12px;border-bottom:1px solid var(--antrasit);min-width:0}
 .antet dl div.sol{border-right:1px solid var(--antrasit)}
 .antet dl div.genis{grid-column:1/-1;border-right:0}
-.antet dt{font:700 1.0625rem var(--bas);color:var(--ikincil)}
+.antet dt{font:700 1.125rem var(--bas);color:var(--ikincil)}
 .antet dd{margin:2px 0 0;font-size:1.125rem;line-height:1.4}
 .antet .eylem{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:18px 24px 20px}
 .antet .eylem a.tel{font-size:1.125rem}
@@ -127,13 +130,8 @@ section[id],footer[id]{scroll-margin-top:72px}
 .bol-bas p{margin:0;font-size:1.25rem;color:var(--ikincil);max-width:44ch}
 
 /* keşif föyü */
-.foy{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);background:var(--beyaz);border:2px solid var(--antrasit)}
-.foy-sol{padding:0;border-right:2px solid var(--antrasit);min-width:0}
 .foy-bas{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 24px;border-bottom:2px solid var(--antrasit);font:800 1.4rem var(--bas)}
 .foy-bas small{font:400 1.125rem Newsreader,serif;color:var(--ikincil);align-self:center}
-.foy fieldset{border:0;margin:0;padding:18px 24px 20px;border-bottom:1px solid var(--antrasit);min-width:0}
-.foy legend{float:left;width:100%;font:700 1.15rem var(--bas);margin:0 0 12px;padding:0}
-.foy legend+*{clear:both}
 .kutular{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(170px,100%),1fr));gap:0;border-top:1px solid var(--cizgi);border-left:1px solid var(--cizgi)}
 .kutular input{position:absolute;width:1px;height:1px;margin:-1px;opacity:0;clip-path:inset(50%);pointer-events:none}
 .kutular label{position:relative;display:flex;align-items:center;min-height:56px;padding:6px 12px 6px 48px;border-right:1px solid var(--cizgi);border-bottom:1px solid var(--cizgi);cursor:pointer;font:500 1.125rem/1.25 var(--bas);background:var(--beyaz)}
@@ -147,29 +145,92 @@ section[id],footer[id]{scroll-margin-top:72px}
 .kutular label.pasif{opacity:.6;text-decoration:line-through;cursor:not-allowed;background:var(--siva)}
 .anlik{margin:12px 0 0;min-height:1.6em;font:700 1.125rem var(--bas)}
 .alan-not{margin:8px 0 0;font-size:1.125rem;color:var(--ikincil);min-height:1.6em}
-.foy select{min-height:52px;width:100%;max-width:340px;font:500 1.125rem var(--bas);color:var(--metin);background:var(--beyaz);border:2px solid var(--antrasit);border-radius:0;padding:0 12px}
-.foy .semt-alan{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.foy .semt-alan label{font:700 1.15rem var(--bas);min-height:44px;display:inline-flex;align-items:center}
-.onay{display:flex;gap:12px;align-items:center;min-height:52px;padding:10px 24px 14px;cursor:pointer;font:500 1.125rem var(--bas)}
-.onay input{width:24px;height:24px;flex:none;accent-color:var(--turuncu)}
-.zaman-not{margin:10px 0 0;font-size:1.125rem;color:var(--ikincil)}
-.ozet{padding:0;display:flex;flex-direction:column;min-width:0;background:var(--kagit)}
-.ozet h3{font-size:1.4rem;padding:14px 24px;border-bottom:2px solid var(--antrasit)}
-.ozet ul{list-style:none;margin:0;padding:0}
-.ozet li{display:grid;grid-template-columns:8.5em minmax(0,1fr);border-bottom:1px solid var(--antrasit)}
-.ozet li span{padding:10px 12px 10px 24px;border-right:1px solid var(--antrasit);font:700 1.0625rem var(--bas);color:var(--ikincil)}
-.ozet li b{padding:10px 24px 10px 14px;font-weight:500;min-height:1.6em;overflow-wrap:anywhere}
-.ozet-ic{padding:20px 24px 24px}
-.ozet .dugme{width:100%}
-.giden{margin-top:14px;padding:12px 14px;border:1px dashed var(--antrasit);background:var(--beyaz);font-size:1.125rem;overflow-wrap:anywhere;min-width:0}
-.giden b{font-family:var(--bas)}
-.giden p{margin:4px 0 8px;font-style:italic}
-.giden small{display:block;font-size:1.125rem}
-.fiyat-not{margin:16px 0 0;font-weight:500}
 .garanti{margin:12px 0 0;font-size:1.125rem;display:flex;gap:10px}
 .garanti svg{width:1.3em;height:1.3em;flex:none;color:var(--turuncu-koyu)}
-.bos-uyari{margin:10px 0 0;padding:10px 12px;border:2px solid var(--antrasit);background:var(--turuncu-acik);font:700 1.125rem var(--bas)}
-.bos-uyari::before{content:"! ";font-weight:900}
+
+/* keşif föyü: adım adım */
+.foy{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);background:var(--beyaz);border:2px solid var(--antrasit)}
+.foy-sol{border-right:2px solid var(--antrasit);min-width:0;display:flex;flex-direction:column}
+.adim-cetvel{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(5em,100%),1fr));font-size:1rem;border-bottom:2px solid var(--antrasit);position:relative;--dolu:0%}
+.adim-cetvel::after{content:"";position:absolute;left:0;bottom:-2px;height:4px;width:var(--dolu);background:var(--turuncu);transition:width .3s}
+.adim-cetvel li{min-width:0;border-right:1px solid var(--antrasit);box-shadow:0 1px 0 var(--antrasit)}
+.adim-cetvel li:last-child{border-right:0}
+.adim-cetvel button{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center;width:100%;min-height:68px;padding:8px 12px 16px;border:0;background:var(--beyaz) repeating-linear-gradient(90deg,var(--antrasit) 0 1.5px,transparent 1.5px 12px) 0 100%/100% 6px no-repeat;color:var(--metin);text-align:left;cursor:pointer;font:700 1.125rem/1.2 var(--bas)}
+.adim-cetvel .no{grid-row:1/3;width:2.1em;height:2.1em;display:grid;place-items:center;border:2px solid currentColor;font-weight:900}
+.adim-cetvel .ad{min-width:0;overflow-wrap:normal;word-break:normal}
+.adim-cetvel .durum{font:italic 400 1.125rem/1.2 Newsreader,serif;color:var(--ikincil)}
+.adim-cetvel button:hover{background-color:var(--siva)}
+.adim-cetvel li.su button{background-color:var(--antrasit);color:#fff;background-image:repeating-linear-gradient(90deg,#fff 0 1.5px,transparent 1.5px 12px)}
+.adim-cetvel li.su .durum{color:#fff}
+.adim-cetvel li.su button::after{content:"";position:absolute;left:18px;bottom:-12px;border:8px solid transparent;border-top:10px solid var(--turuncu);border-bottom:0;z-index:2}
+.adim-cetvel li.bitti .no{background:var(--antrasit);color:#fff;border-color:var(--antrasit)}
+.adim-cetvel li.bitti .durum{color:var(--metin);font-style:normal;font-family:var(--bas)}
+.adim{border:0;margin:0;padding:22px 24px 8px;min-width:0}
+.adim legend,.talep h3{float:left;width:100%;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;font:800 clamp(1.6rem,2.6vw,2.2rem)/1.1 var(--bas);letter-spacing:-.02em;margin:0 0 6px;padding:0}
+.adim legend:focus,.talep h3:focus{outline:none}
+.adim legend .kac{font:700 1.125rem var(--bas);color:var(--ikincil);border-bottom:2px solid var(--antrasit);letter-spacing:0}
+.adim legend+*{clear:both}
+.soru-not{margin:0 0 14px;font-size:1.125rem;color:var(--ikincil);max-width:56ch}
+.bekle{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:10px 12px;border:2px dashed var(--antrasit);font:500 1.125rem/1.4 var(--bas);overflow-wrap:anywhere}
+.bekle::before{content:"!";flex:none;width:1.4em;height:1.4em;display:grid;place-items:center;background:var(--antrasit);color:#fff;font-weight:900}
+.bekle[hidden],.adim[hidden],.diger-alan[hidden]{display:none}
+.diger-alan{margin:14px 0 0;display:flex;flex-direction:column;gap:6px;max-width:440px}
+.diger-alan label{font:700 1.125rem var(--bas)}
+.diger-alan small{font:400 1.125rem Newsreader,serif;color:var(--ikincil)}
+.diger-alan input{min-height:52px;font:500 1.125rem var(--bas);border:2px solid var(--antrasit);border-radius:0;padding:0 12px;background:var(--beyaz);color:var(--metin)}
+.bekle.vurgu{border-style:solid;background:var(--turuncu-acik);font-weight:700}
+.adim .semt-alan{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.adim .semt-alan label{font:700 1.15rem var(--bas);min-height:44px;display:inline-flex;align-items:center}
+.adim select{min-height:52px;width:100%;max-width:340px;font:500 1.125rem var(--bas);color:var(--metin);background:var(--beyaz);border:2px solid var(--antrasit);border-radius:0;padding:0 12px}
+.adim-yon{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:auto;padding:18px 24px 22px;border-top:1px solid var(--antrasit)}
+.adim-yon .geri{min-height:54px;padding:0 20px;border:2px solid var(--antrasit);background:var(--beyaz);color:var(--metin);font:700 1.125rem var(--bas);cursor:pointer}
+.adim-yon .geri:hover{background:var(--siva)}
+.adim-yon .ileri{margin-left:auto}
+.adim-yon [hidden]{display:none}
+.talep{padding:22px 24px 8px}
+.talep-liste{margin:0 0 18px;padding:0;list-style:none;counter-reset:t;border-top:2px solid var(--antrasit)}
+.talep-liste li{counter-increment:t;display:grid;grid-template-columns:2.4em 7.5em minmax(0,1fr) auto;align-items:center;gap:0 10px;min-height:56px;border-bottom:1px solid var(--antrasit);padding:4px 0}
+.talep-liste li::before{content:counter(t) ".";font:900 1.25rem var(--bas)}
+.talep-liste .ad{font:700 1.125rem var(--bas);color:var(--ikincil)}
+.talep-liste b{font-weight:500;overflow-wrap:anywhere;min-width:0}
+.talep-liste .duzelt{min-height:44px;min-width:44px;padding:0 12px;border:0;background:none;color:var(--metin);font:700 1.125rem var(--bas);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.talep-liste .duzelt:hover{background:var(--siva)}
+.talep .dugme{width:100%}
+.mesaj-satir{margin:12px 0 0;font-size:1.125rem;color:var(--ikincil);overflow-wrap:anywhere}
+.mesaj-satir b{font-family:var(--bas);color:var(--metin)}
+.foy-sag{padding:22px 24px 24px;background:var(--kagit);min-width:0}
+.foy-sag h3{font-size:1.4rem;margin-bottom:12px}
+.sonra{margin:0;padding:0 0 0 1.6em;font-size:1.125rem}
+.sonra li{padding:6px 0;border-bottom:1px solid var(--izgara-2)}
+.sonra li::marker{font:800 1.125rem var(--bas)}
+.sag-tel{margin:16px 0 0;font-size:1.125rem}
+.sag-tel .tel{display:inline-flex}
+.garanti{margin:16px 0 0;font-size:1.125rem;display:flex;gap:10px}
+.garanti svg{width:1.3em;height:1.3em;flex:none;color:var(--turuncu-koyu)}
+.foy-durum{cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 16px;border:2px solid var(--antrasit);background:var(--beyaz);color:var(--antrasit);font:700 1.125rem var(--bas);text-decoration:none;white-space:nowrap}
+#kesif-form{scroll-margin-top:84px}
+.foy-durum:hover{background:var(--siva)}
+.cet-ikon{width:22px;height:14px;border:2px solid currentColor;background:repeating-linear-gradient(90deg,currentColor 0 1.5px,transparent 1.5px 5px) 0 100%/100% 5px no-repeat}
+@media (max-width:1000px){
+  .foy{grid-template-columns:minmax(0,1fr)}
+  .foy-sol{border-right:0;border-bottom:2px solid var(--antrasit)}
+}
+@media (max-width:640px){
+  .adim,.talep{padding:16px 16px 6px}
+  .adim-yon{padding:14px 16px 16px}
+  .foy-sag{padding:16px}
+  .adim-cetvel button{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;justify-items:center;text-align:center;padding:8px 4px 14px;row-gap:2px}
+  .adim-cetvel .no{grid-row:auto;width:1.9em;height:1.9em}
+  .adim-cetvel .durum{font-size:1.125rem}
+  .adim-cetvel li.su button::after{left:50%;margin-left:-8px}
+  .talep-liste li{grid-template-columns:2em minmax(0,1fr) auto;grid-template-rows:auto auto}
+  .talep-liste li::before{grid-row:1/3}
+  .talep-liste .ad{grid-column:2}
+  .talep-liste b{grid-column:2}
+  .talep-liste .duzelt{grid-column:3;grid-row:1/3}
+  .adim-yon .dugme{flex:1}
+}
+@media (max-width:360px){.adim-cetvel .ad{display:none}}
 
 /* iş takvimi (Gantt) */
 .takvim{background:var(--beyaz);border:2px solid var(--antrasit);padding:0}
@@ -189,13 +250,6 @@ section[id],footer[id]{scroll-margin-top:72px}
 /* işler: arşiv */
 .arsiv{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:start}
 .arsiv figure{margin:0;background:var(--beyaz);border:2px solid var(--antrasit)}
-.ls{position:relative;aspect-ratio:3/2;overflow:hidden;--x:50%;touch-action:pan-y;cursor:ew-resize;-webkit-user-select:none;user-select:none}
-.ls img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
-.ls .once{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
-.ls .cizgi{position:absolute;top:0;bottom:0;left:var(--x);width:3px;background:#fff;transform:translateX(-1.5px)}
-.ls-bar{display:flex;align-items:center;gap:12px;padding:10px 18px 0;font:700 1.125rem var(--bas)}
-.ls-bar input{flex:1;min-width:0;height:44px;accent-color:var(--turuncu)}
-.ls-bar span{flex:none}
 .arsiv figcaption{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:12px 18px 16px}
 .arsiv figcaption b{font:800 1.35rem var(--bas)}
 .arsiv figcaption em{font:700 1.15rem var(--bas);font-style:normal}
@@ -203,7 +257,7 @@ section[id],footer[id]{scroll-margin-top:72px}
 .tablo-bas{font:800 1.5rem var(--bas);margin:0 0 10px}
 .cetele{width:100%;border-collapse:collapse;background:var(--beyaz);border:2px solid var(--antrasit);font-size:1.125rem}
 .cetele th,.cetele td{border:1px solid var(--antrasit);padding:10px 12px;text-align:left;vertical-align:top}
-.cetele thead th{font:700 1.0625rem var(--bas);color:var(--ikincil);background:var(--siva)}
+.cetele thead th{font:700 1.125rem var(--bas);color:var(--ikincil);background:var(--siva)}
 .cetele tbody th{font:800 1.15rem var(--bas)}
 .cetele td.sure{font:700 1.125rem var(--bas);white-space:nowrap}
 .cetele q{font-style:italic}
@@ -215,17 +269,12 @@ section[id],footer[id]{scroll-margin-top:72px}
 .usta-yazi{font-size:1.3rem;max-width:52ch;margin:0}
 .puan-rozet{margin-top:24px;background:var(--beyaz);border:2px solid var(--antrasit);padding:16px 20px}
 .puan-rozet p{margin:8px 0 0}
-.puan-rozet b{font:800 2rem var(--bas);margin-right:6px}
+.puan-rozet p b{font:800 2rem var(--bas);margin-right:6px}
 .puan-rozet a{display:inline-flex;align-items:center;min-height:44px;font-weight:500}
 .lejant{background:var(--beyaz);border:2px solid var(--antrasit)}
 .lejant h3{font-size:1.4rem;padding:14px 20px;border-bottom:2px solid var(--antrasit)}
 .lejant ul{list-style:none;margin:0;padding:8px 20px 14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 20px}
-.lejant li{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--izgara-2);font:500 1.125rem/1.3 var(--bas)}
-.lejant li::before{content:"";flex:none;width:26px;height:18px;border:1.5px solid var(--antrasit);background:var(--tarama)}
-.lejant li:nth-child(4n+1){--tarama:repeating-linear-gradient(45deg,var(--antrasit) 0 1.5px,transparent 1.5px 6px)}
-.lejant li:nth-child(4n+2){--tarama:linear-gradient(var(--antrasit) 1px,transparent 1px) 0 0/6px 6px,linear-gradient(90deg,var(--antrasit) 1px,transparent 1px) 0 0/6px 6px}
-.lejant li:nth-child(4n+3){--tarama:radial-gradient(var(--antrasit) 1.2px,transparent 1.6px) 0 0/6px 6px}
-.lejant li:nth-child(4n){--tarama:repeating-linear-gradient(90deg,var(--antrasit) 0 1.5px,transparent 1.5px 7px)}
+.lejant li{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid var(--izgara-2);font:500 1.125rem/1.3 var(--bas)}
 
 /* detay balonları (SSS) */
 .detaylar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start}
@@ -244,31 +293,24 @@ section[id],footer[id]{scroll-margin-top:72px}
 .detay+.detay{margin-top:20px}
 
 /* antet altbilgi */
-footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antrasit);padding:0 0 100px}
+footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antrasit);padding:0 0 40px}
 .antet-alt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:2px solid var(--antrasit);border-top:0;font-size:1.125rem}
 .antet-alt>div{padding:14px 18px 16px;border-right:1px solid var(--antrasit);border-bottom:1px solid var(--antrasit);min-width:0;overflow-wrap:anywhere}
 .antet-alt>div:nth-child(4n){border-right:0}
-.antet-alt .h{display:block;font:700 1.0625rem var(--bas);color:var(--ikincil);margin-bottom:4px}
+.antet-alt .h{display:block;font:700 1.125rem var(--bas);color:var(--ikincil);margin-bottom:4px}
 .antet-alt .firma{font:900 1.6rem/1.1 var(--bas);letter-spacing:.03em}
 .antet-alt .genis{grid-column:span 2}
+.pasif-baglanti small{font-size:1em}
 .antet-alt a{display:inline-flex;align-items:center;min-height:44px}
 
-.alt-cubuk{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;background:var(--kagit);border-top:2px solid var(--antrasit);padding:8px 16px calc(8px + env(safe-area-inset-bottom))}
-.alt-cubuk .iki{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:10px}
-.alt-cubuk a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;text-decoration:none;font:700 1.125rem/1.15 var(--bas);text-align:center;min-width:0;overflow-wrap:anywhere}
-.alt-cubuk svg{width:1.2em;height:1.2em;flex:none}
-.alt-cubuk .ara{background:var(--beyaz);color:var(--metin);border:2px solid var(--antrasit)}
-.alt-cubuk .wa{background:var(--turuncu);color:#fff}
 
 @media (max-width:1000px){
   .pafta{grid-template-columns:minmax(0,1fr);outline-offset:4px}
-  .gorunus .karsilastir{aspect-ratio:3/2;flex:none;min-height:0}
+  .gorunus .kesit{aspect-ratio:3/2;flex:none;min-height:0}
   .gorunus{border-right:0;border-bottom:2px solid var(--antrasit);padding:14px 14px 14px}
   .yan{flex-direction:column}
   .cetvel-eylem{display:none}
-  .alt-cubuk{display:block}
   .foy,.arsiv,.ekip,.detaylar{grid-template-columns:minmax(0,1fr)}
-  .foy-sol{border-right:0;border-bottom:2px solid var(--antrasit)}
   .bol-bas{grid-template-columns:minmax(0,1fr)}
   .bol{padding-top:76px}
   .gun-baslik{display:none}
@@ -289,40 +331,32 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
   .antet dl{grid-template-columns:minmax(0,1fr)}
   .antet dl div{padding:8px 16px 10px;border-right:0!important}
   .antet .eylem{padding:16px}
-  .foy fieldset{padding:16px}
-  .foy-bas,.ozet h3{padding:12px 16px}
-  .onay{padding:10px 16px 14px}
-  .ozet li{grid-template-columns:minmax(0,7em) minmax(0,1fr)}
-  .ozet li span{padding-left:16px}.ozet li b{padding-right:16px}
-  .ozet-ic{padding:16px}
+  .foy-bas{padding:12px 16px}
   .lejant ul{grid-template-columns:minmax(0,1fr)}
   .detay{padding:20px 18px 22px}
   .cetele td.sure{white-space:normal}
   .antet-alt{grid-template-columns:minmax(0,1fr)}
   .antet-alt>div{border-right:0!important}
   .antet-alt .genis{grid-column:auto}
-  .olcu{font-size:1.0625rem}
+  .olcu{font-size:1.125rem}
 }
-@media (max-width:430px){.alt-cubuk svg{display:none}.logo svg{display:none}.logo b{font-size:1.3rem}.cizim-bas span:nth-child(2),.olcu-not{display:none}.gorunus{padding:12px}}
+@media (max-width:430px){.logo svg{display:none}.logo b{font-size:1.3rem}.cizim-bas span:nth-child(2),.olcu-not{display:none}.gorunus{padding:12px}}
 @media (max-width:360px){
   .cetvel{display:none}
   .tel span{display:none}
   .cetele,.cetele tbody,.cetele tr,.cetele th,.cetele td{display:block}
   .cetele thead{display:none}
-  .ozet li{grid-template-columns:minmax(0,1fr)}
-  .ozet li span{border-right:0}
   .arsiv figcaption{grid-template-columns:minmax(0,1fr)}
   .olcu span{white-space:normal;text-align:center}
 }
 .tel{white-space:normal;overflow-wrap:anywhere;min-width:0}.ust-sag{min-width:0}
 .cetele{table-layout:fixed}.cetele th,.cetele td{overflow-wrap:anywhere}.cetele td.sure{white-space:normal}
 .cetele thead th:last-child,.cetele td.sure{width:6.5em}.revizyon .cetele thead th:last-child{width:9em}
-@media (max-width:360px){.lejant li,.balon,.detay *,.foy *,.olcu span{min-width:0;overflow-wrap:anywhere}.olcu span{white-space:normal}.foy .semt-alan{display:block}.kutular{grid-template-columns:minmax(0,1fr)}.foy-bas{display:block}}
-.ls-bar{flex-wrap:wrap;row-gap:4px}.ls-bar input{min-width:0;flex:1 1 120px}.ls-bar span{white-space:nowrap}
+@media (max-width:360px){.lejant li,.balon,.detay *,.foy *,.olcu span{min-width:0;overflow-wrap:anywhere}.olcu span{white-space:normal}.adim .semt-alan{display:block}.kutular{grid-template-columns:minmax(0,1fr)}.foy-bas{display:block}}
 </style>
 </head>
 <body>
-<div class="ornek-serit"><b>Örnek site:</b> işler, süreler, semtler, ekip ve fotoğraflar sizin bilginizle değişir.</div>
+<div class="ornek-serit"><b>Örnek site:</b> işler, süreler, semtler, ekip ve fotoğraflar sizin bilginizle değişir. Demoda WhatsApp, talebin hangi numaraya gideceğini sorar.</div>
 
 <header class="ust">
   <div class="kap">
@@ -338,7 +372,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
   <div class="kap">
     <div class="olcek" id="olcek">
       <ol>
-        <li><a href="#ust">Görünüş</a></li>
+        <li><a href="#ust">Önce / sonra</a></li>
         <li><a href="#kesif">Keşif föyü</a></li>
         <li><a href="#takvim">İş takvimi</a></li>
         <li><a href="#isler">Son işler</a></li>
@@ -348,7 +382,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
       </ol>
       <span class="ilerleme" id="ilerleme" aria-hidden="true"></span>
     </div>
-    <div class="cetvel-eylem"><a class="dugme" id="wa-hizli" href="#" target="_blank" rel="noopener">WhatsApp'tan yaz</a></div>
+    <div class="cetvel-eylem"><button type="button" class="foy-durum" id="foy-durum"><span class="cet-ikon" aria-hidden="true"></span>Keşif randevusu: <span id="cetvel-durum">0/4</span> adım</button></div>
   </div>
 </nav>
 
@@ -357,14 +391,14 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
   <div class="pafta">
     <div class="baslik-bant"><h1>Mutfak, banyo, komple daire.</h1></div>
     <div class="gorunus">
-      <div class="cizim-bas"><span>Görünüş: banyo, önce ve sonra</span><span>sürgüyü çekin</span></div>
-      <div class="karsilastir" id="karsilastir">
+      <div class="cizim-bas"><span>A-A görünüşü: banyo</span><span>A-A çizgisini çekin: solu önce, sağı sonra</span></div>
+      <div class="kesit" id="kesit-banyo">
         <img src="img/tad-banyo.jpg" alt="Tadilattan sonra: gri taş fayanslı, cam duşakabinli yenilenmiş banyo, ahşap lavabo dolabı" width="1536" height="1024" fetchpriority="high" draggable="false">
         <img class="once" src="img/tad-banyo-once.jpg" alt="Tadilattan önce: aynı banyo, çatlak sararmış fayans, küflü derz, paslı eski armatür" width="1536" height="1024" draggable="false">
-        <span class="etk e1">Önce</span><span class="etk e2">Sonra</span><span class="ipucu" aria-hidden="true">Kaydırın</span>
-        <div class="cizgi"></div>
-        <div class="tutamak" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></div>
-        <input type="range" min="0" max="100" value="50" id="surgu" aria-label="Önce ve sonra karşılaştırma sürgüsü, sola çekin sonrası görünsün">
+        <span class="etk e1">Önce</span><span class="etk e2">Sonra</span>
+        <span class="kesit-hat" aria-hidden="true"><b>A</b><b>A</b></span>
+        <span class="kesit-tutamak" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+        <input type="range" min="0" max="100" value="50" aria-label="Banyo, A-A çizgisi: sağa çektikçe öncesi, sola çektikçe sonrası görünür">
       </div>
       <div class="olcu" aria-hidden="true"><i></i><span>yaklaşık 9 iş günü</span><i></i></div>
       <p class="olcu-not">Bir banyonun örnek takvimi aşağıda gün gün.</p>
@@ -385,11 +419,19 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
 
 <section class="bol" id="kesif">
   <div class="kap">
-    <div class="bol-bas"><h2>Keşif isteyin, yazılı teklif alın</h2><p>Üç soru yeter. Fotoğrafınız varsa WhatsApp'ta ekleyin, keşif daha kısa sürer.</p></div>
-    <form class="foy" id="kesif-form" aria-label="Keşif föyü" onsubmit="return false">
-      <div class="foy-sol">
-        <div class="foy-bas">Keşif föyü<small>işaretleyin, mesaj kendiliğinden yazılır</small></div>
-        <fieldset><legend>Ne yapılacak? <small>Ana işi seçin; birden çok işse mesajda yazarsınız</small></legend>
+    <div class="bol-bas"><h2>Keşif isteyin, yazılı teklif alın</h2><p>Telefonda sorulan dört soru, burada dört adım. Her adımda tek soru.</p></div>
+    <div class="foy">
+      <form class="foy-sol" id="kesif-form" aria-label="Keşif föyü" novalidate>
+        <div class="foy-bas">Keşif föyü<small id="adim-yazi" aria-live="polite">Adım 1/4</small></div>
+        <ol class="adim-cetvel" id="adim-cetvel" aria-label="Föy adımları">
+          <li data-a="1"><button type="button" data-git="1"><span class="no">1</span><span class="ad">İş</span><span class="durum">sırada</span></button></li>
+          <li data-a="2"><button type="button" data-git="2"><span class="no">2</span><span class="ad">Alan</span><span class="durum">sırada</span></button></li>
+          <li data-a="3"><button type="button" data-git="3"><span class="no">3</span><span class="ad">Fotoğraf</span><span class="durum">sırada</span></button></li>
+          <li data-a="4"><button type="button" data-git="4"><span class="no">4</span><span class="ad">Gün</span><span class="durum">sırada</span></button></li>
+        </ol>
+
+        <fieldset class="adim" data-adim="1"><legend tabindex="-1"><span class="kac">1/4</span>Ne yapılacak?</legend>
+          <p class="soru-not">Ana işi seçin; birden çok işse mesajda yazarsınız.</p>
           <div class="kutular">
             <input type="radio" name="tip" id="t1" value="Banyo"><label for="t1">Banyo</label>
             <input type="radio" name="tip" id="t2" value="Mutfak"><label for="t2">Mutfak</label>
@@ -397,53 +439,75 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
             <input type="radio" name="tip" id="t4" value="Boya, alçı"><label for="t4">Boya, alçı</label>
             <input type="radio" name="tip" id="t5" value="Zemin, parke"><label for="t5">Zemin, parke</label>
             <input type="radio" name="tip" id="t6" value="Diğer iş"><label for="t6">Diğer / küçük iş</label>
+            <input type="radio" name="tip" id="t7" value="emin değilim"><label for="t7">Emin değilim, keşifte konuşalım</label>
           </div>
-          <p class="anlik" aria-hidden="true"></p>
+          <p class="diger-alan" id="diger-alan" hidden><label for="diger-is">Kısaca hangi iş? <small>(isteğe bağlı)</small></label><input type="text" id="diger-is" maxlength="80" autocomplete="off" placeholder="ör. kapı değişimi, priz ekleme"></p>
+          <p class="bekle" data-bos="1">Henüz seçim yok. Bir şık işaretleyin; karar vermediyseniz "Emin değilim".</p>
         </fieldset>
-        <fieldset id="alan-k"><legend>Yaklaşık alan</legend>
+
+        <fieldset class="adim" data-adim="2"><legend tabindex="-1"><span class="kac">2/4</span>Yaklaşık kaç metrekare?</legend>
+          <p class="soru-not" id="alan-baglam">Bilmiyorsanız sorun değil, keşifte ölçülür.</p>
           <div class="kutular">
-            <input type="radio" name="m2" id="a1" value="10 m²'den az"><label for="a1">10 m²'den az</label>
+            <input type="radio" name="m2" id="a1" value="10 m²'den küçük"><label for="a1">10 m²'den küçük</label>
             <input type="radio" name="m2" id="a2" value="10-30 m²"><label for="a2">10-30 m²</label>
             <input type="radio" name="m2" id="a3" value="30-60 m²"><label for="a3">30-60 m²</label>
             <input type="radio" name="m2" id="a4" value="60-100 m²"><label for="a4">60-100 m²</label>
-            <input type="radio" name="m2" id="a5" value="100 m²'den çok"><label for="a5">100 m²+</label>
+            <input type="radio" name="m2" id="a5" value="100 m²'den büyük"><label for="a5">100 m²+</label>
+            <input type="radio" name="m2" id="a6" value="bilmiyorum"><label for="a6">Bilmiyorum, ölçün</label>
           </div>
           <p class="alan-not" id="alan-not" aria-live="polite"></p>
-          <p class="anlik" aria-hidden="true"></p>
+          <p class="anlik" id="anlik" aria-live="polite"></p>
+          <p class="bekle" data-bos="2">Henüz seçim yok. Bir aralık seçin ya da "Bilmiyorum, ölçün".</p>
         </fieldset>
-        <fieldset><legend>Keşif için ne zaman uygunsunuz?</legend>
+
+        <fieldset class="adim" data-adim="3"><legend tabindex="-1"><span class="kac">3/4</span>Elinizde fotoğraf var mı?</legend>
+          <p class="soru-not">Fotoğrafınız varsa WhatsApp'ta ekleyin, keşif daha kısa sürer.</p>
           <div class="kutular">
-            <input type="radio" name="zaman" id="z1" value="bu hafta"><label for="z1">Bu hafta</label>
-            <input type="radio" name="zaman" id="z2" value="gelecek hafta"><label for="z2">Gelecek hafta</label>
-            <input type="radio" name="zaman" id="z3" value="2-3 hafta içinde"><label for="z3">2-3 hafta içinde</label>
-            <input type="radio" name="zaman" id="z4" value="yazışırken söyleyeceğim"><label for="z4">Yazışırken söylerim</label>
+            <input type="radio" name="foto" id="f1" value="var"><label for="f1">Var, mesajdan sonra atarım</label>
+            <input type="radio" name="foto" id="f2" value="yok"><label for="f2">Yok, keşifte görün</label>
           </div>
-          <p class="zaman-not">Mesajınız firmanın WhatsApp'ına gider, keşif gününü onlar yazar.</p>
+          <p class="bekle" data-bos="3">Henüz seçim yok. "Var" ya da "Yok" deyin.</p>
         </fieldset>
-        <fieldset>
-          <div class="semt-alan"><label for="semt">Semtiniz</label><select id="semt"><option value="">Semtinizi seçin</option><option>Ataşehir</option><option>Kadıköy</option><option>Ümraniye</option><option>Maltepe</option><option>Üsküdar</option><option value="başka semt (semtimi yazacağım)">Başka semt</option></select></div>
+
+        <fieldset class="adim" data-adim="4"><legend tabindex="-1"><span class="kac">4/4</span>Keşfe ne zaman gelelim?</legend>
+          <p class="soru-not">Çalışma saatleri Pazartesi–Cumartesi, 08.00–18.30. Günü firma yazar; siz tercihinizi söyleyin.</p>
+          <div class="kutular">
+            <input type="radio" name="zaman" id="z1" value="hafta içi sabah"><label for="z1">Hafta içi sabah</label>
+            <input type="radio" name="zaman" id="z2" value="hafta içi öğleden sonra"><label for="z2">Hafta içi öğleden sonra</label>
+            <input type="radio" name="zaman" id="z3" value="cumartesi"><label for="z3">Cumartesi</label>
+            <input type="radio" name="zaman" id="z4" value="esnek"><label for="z4">Esnek, siz gün önerin</label>
+          </div>
+          <div class="semt-alan"><label for="semt">Hangi semte?</label><select id="semt"><option value="">Semtinizi seçin</option><option>Ataşehir</option><option>Kadıköy</option><option>Ümraniye</option><option>Maltepe</option><option>Üsküdar</option><option value="başka semt">Başka semt (yazarım)</option></select></div>
+          <p class="bekle" data-bos="4">Henüz seçim yok. Bir zaman şıkkı ve semt seçin.</p>
         </fieldset>
-        <label class="onay"><input type="checkbox" id="foto"> Fotoğraf da göndereceğim</label>
-      </div>
-      <div class="ozet" aria-live="polite">
-        <h3>Keşif notu</h3>
-        <ul>
-          <li><span>İş</span><b id="o-tip">seçilmedi</b></li>
-          <li><span>Alan</span><b id="o-m2">keşifte ölçülür</b></li>
-          <li><span>Semt</span><b id="o-semt">seçilmedi</b></li>
-          <li><span>Keşif zamanı</span><b id="o-zaman">yazışırken</b></li>
-          <li><span>Tahmini süre</span><b id="o-sure">keşifte belirlenir</b></li>
-        </ul>
-        <div class="ozet-ic">
-          <a class="dugme" id="wa-kesif" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2"/></svg>WhatsApp'tan keşif iste</a>
-          <div class="giden"><b>Firmaya gidecek keşif notu</b><p id="giden-wa-kesif" aria-live="polite"></p><small>Demoda alıcı sorulur; gerçek sitede föy doğrudan firmanın WhatsApp numarasına gider.</small></div>
-          <p class="fiyat-not">Fiyat: keşiften sonra yazılı teklif. Teklifte olmayan iş, yazılı onayınız olmadan yapılmaz ve ücretlendirilmez.</p>
-          <p class="garanti" data-iddia-ok><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Garanti kapsamı ve süresi teklifte yazılı.</p>
+
+        <div class="adim talep" data-adim="5" role="group" aria-labelledby="talep-bas">
+          <h3 id="talep-bas" tabindex="-1">Keşif talebi hazır</h3>
+          <p class="soru-not">Firmaya bu sırayla yazılır. Yanlışsa satırdaki "düzelt"e basın.</p>
+          <ol class="talep-liste" id="talep-liste"></ol>
+          <a class="dugme" id="wa-kesif" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2"/></svg>Keşif talebini WhatsApp'tan gönder</a>
+          <p class="mesaj-satir"><b>Mesaj:</b> <span id="giden-wa-kesif"></span></p>
         </div>
-      </div>
-    </form>
+
+        <div class="adim-yon" id="adim-yon">
+          <button type="button" class="geri" id="geri">&larr; Geri</button>
+          <button type="button" class="dugme ileri" id="ileri">İleri: alan &rarr;</button>
+        </div>
+      </form>
+      <aside class="foy-sag" aria-label="Keşiften sonra">
+        <h3>Keşiften sonra</h3>
+        <ol class="sonra">
+          <li>Keşifte ölçü alınır. Keşif ücretsizdir.</li>
+          <li>Ardından yazılı teklif gelir; teslim günü teklifte yazılıdır.</li>
+          <li>Teklifte olmayan iş, yazılı onayınız olmadan yapılmaz ve ücretlendirilmez.</li>
+        </ol>
+        <p class="garanti" data-iddia-ok><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Garanti kapsamı ve süresi teklifte yazılı.</p>
+        <p class="sag-tel">Yazmak yerine konuşmak isterseniz: <a class="tel" href="tel:+902160000000">0216 000 00 00</a></p>
+      </aside>
+    </div>
   </div>
 </section>
+
 
 <section class="bol" id="takvim">
   <div class="kap">
@@ -466,9 +530,8 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <div class="bol-bas"><h2>Son işler</h2><p>Her işte semt, süre ve kapsam yazılı.</p></div>
     <div class="arsiv">
       <figure>
-        <div class="ls" id="ls"><img src="img/tad-sonra.jpg" alt="Sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" loading="lazy" width="960" height="640" draggable="false"><img class="once" src="img/tad-once.jpg" alt="Önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" loading="lazy" width="960" height="640" draggable="false"><span class="etk e1">Önce</span><span class="etk e2">Sonra</span><div class="cizgi" aria-hidden="true"></div></div>
-        <div class="ls-bar"><span aria-hidden="true">◀ sonra</span><input type="range" id="ls-surgu" min="0" max="100" value="50" aria-label="Mutfak önce ve sonra karşılaştırma: sola çekin sonrası, sağa çekin öncesi görünsün"><span aria-hidden="true">önce ▶</span></div>
-        <figcaption><b>Mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans</span></figcaption>
+        <div class="kesit" id="kesit-mutfak"><img src="img/tad-sonra.jpg" alt="Sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" loading="lazy" width="960" height="640" draggable="false"><img class="once" src="img/tad-once.jpg" alt="Önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" loading="lazy" width="960" height="640" draggable="false"><span class="etk e1">Önce</span><span class="etk e2">Sonra</span><span class="kesit-hat" aria-hidden="true"><b>B</b><b>B</b></span><span class="kesit-tutamak" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span><input type="range" min="0" max="100" value="50" aria-label="Mutfak, B-B çizgisi: sağa çektikçe öncesi, sola çektikçe sonrası görünür"></div>
+        <figcaption><b>B-B görünüşü: mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans</span></figcaption>
       </figure>
       <div>
         <p class="tablo-bas">İş kaydı</p>
@@ -480,7 +543,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
             <tr><th scope="row">Parke</th><td>Üsküdar, 45 m², laminat, süpürgelik</td><td class="sure">2 iş günü</td></tr>
           </tbody>
         </table>
-        <span class="etiket">İş kaydı örnektir; sitede sizin işleriniz ve önce/sonra fotoğraflarınız yer alır</span>
+        <span class="etiket"><b>Not 1:</b> iş kaydı ve fotoğraflar örnek veridir; firmanın kendi işleri buraya konur.</span>
         <div class="revizyon">
           <p class="tablo-bas">Ev sahiplerinin notları</p>
           <table class="cetele">
@@ -491,7 +554,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
               <tr><td><q>Komşulara söküm gününü önceden kendileri haber verdi, apartmanda tek şikâyet olmadı.</q></td><td>Ümraniye</td></tr>
             </tbody>
           </table>
-          <span class="etiket">Yorumlar örnektir; sitede sizin Google yorumlarınız yer alır</span>
+          <span class="etiket"><b>Not 2:</b> notlar örnek veridir; firmanın Google yorumları buraya konur.</span>
         </div>
       </div>
     </div>
@@ -503,10 +566,10 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <div>
       <div class="bol-bas" style="display:block"><h2>İşi biz yaparız, taşerona vermeyiz</h2></div>
       <p class="usta-yazi">Örnek metin: Kalfa Yapı 2009'dan beri Ataşehir'de. Usta başı Hasan Kalfa. Sekiz kişilik kendi ekibimizle çalışırız: iki fayansçı, bir tesisatçı, bir elektrikçi, bir boyacı-alçıcı, bir marangoz-parkeci, bir yardımcı ve şantiyeyi her gün gezen usta başı. Hangi gün evde kim olacağını takvimde yazarız.</p>
-      <div class="puan-rozet"><span class="etiket">Puan örnektir; sitede sizin gerçek Google puanınız yer alır</span><p><b>4,9</b> Google'da 120'yi aşkın yorum. <span class="pasif-baglanti" title="Demoda kapalı; gerçek sitede işletmenin kendi Haritalar kaydını açar">Haritada aç <small>(demoda kapalı)</small></span></p></div>
+      <div class="puan-rozet"><span class="etiket"><b>Not 3:</b> puan örnek veridir; firmanın gerçek Google puanı buraya konur.</span><p><b>4,9</b> Google'da 120'yi aşkın yorum. <span class="pasif-baglanti" title="Demoda kapalı; gerçek sitede işletmenin kendi Haritalar kaydını açar">Haritada aç <small>(demoda kapalı)</small></span></p></div>
     </div>
     <div class="lejant">
-      <h3>Lejant: yaptığımız işler</h3>
+      <h3>Yaptığımız işler</h3>
       <ul>
         <li>Banyo yenileme</li><li>Mutfak yenileme</li><li>Komple daire tadilatı</li><li>Su yalıtımı</li><li>Sıhhi tesisat</li><li>Elektrik tesisatı</li><li>Seramik, fayans</li><li>Boya, badana</li><li>Alçı, kartonpiyer</li><li>Asma tavan</li><li>Laminat, parke</li><li>İç kapı değişimi</li><li>Dolap, tezgâh montajı</li><li>Isı yalıtımı (daire içi duvar)</li>
       </ul>
@@ -533,8 +596,8 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
         <div class="detay" role="tabpanel" id="d2" aria-labelledby="b2"><span class="detay-no"><i aria-hidden="true">B</i>Detay</span><h3>Banyo tadilatı kaç gün sürer?</h3><p>Standart bir banyo 8-10 iş gününde biter. Teslim günü teklifte yazılıdır.</p></div>
         <div class="detay" role="tabpanel" id="d3" aria-labelledby="b3"><span class="detay-no"><i aria-hidden="true">C</i>Detay</span><h3>Malzemeyi kim alıyor?</h3><p>İki seçenek var: malzemeyi biz alırız ve faturasını veririz, ya da siz seçersiniz, biz yalnız işçilik alırız.</p></div>
         <div class="detay" role="tabpanel" id="d4" aria-labelledby="b4"><span class="detay-no"><i aria-hidden="true">D</i>Detay</span><h3>Sözleşme yapıyor musunuz?</h3><p>Evet. İşe başlamadan kapsam, malzeme, ödeme planı ve teslim tarihi yazılı sözleşmeye geçer. İş sırasında teklifte olmayan bir şey çıkarsa önce size yazılı sorulur; onayınız olmadan yapılmaz.</p></div>
-        <div class="detay" role="tabpanel" id="d5" aria-labelledby="b5"><span class="detay-no"><i aria-hidden="true">E</i>Detay</span><h3>Evime zarar gelirse? Moloz ve temizlik kimde?</h3><p>Moloz torbalanıp apartmandan bizim tarafımızdan çıkarılır. Kapı, zemin ve ortak alanlar işe başlamadan korunur; iş bitince kaba temizlik yapılır. İşten kaynaklı bir hasar olursa yazılı olarak tespit edilip bizim tarafımızdan giderilir.</p></div>
-        <div class="detay" role="tabpanel" id="d6" aria-labelledby="b6"><span class="detay-no"><i aria-hidden="true">F</i>Detay</span><h3>Neleri yapmıyoruz?</h3><p>Doğalgaz tesisatını yetkili gaz firması yapar, biz yapmayız. Taşıyıcı duvar, cephe ya da ruhsat gerektiren işlere girmeyiz; söküm ve gürültülü işlerden önce apartman yönetimine biz haber veririz.</p></div>
+        <div class="detay" role="tabpanel" id="d5" aria-labelledby="b5"><span class="detay-no"><i aria-hidden="true">E</i>Detay</span><h3>Evime zarar gelirse? Moloz ve temizlik kimde?</h3><p>Moloz torbalanıp apartmandan bizim tarafımızdan çıkarılır. Kapı, zemin ve ortak alanlar işe başlamadan korunur; iş bitince kaba temizlik yapılır. Söküm ve gürültülü işlerden önce apartman yönetimine biz haber veririz. İşten kaynaklı bir hasar olursa yazılı olarak tespit edilip bizim tarafımızdan giderilir.</p></div>
+        <div class="detay" role="tabpanel" id="d6" aria-labelledby="b6"><span class="detay-no"><i aria-hidden="true">F</i>Detay</span><h3>Neleri yapmıyoruz?</h3><p>Doğalgaz tesisatını yetkili gaz firması yapar, biz yapmayız. Taşıyıcı duvar, cephe ya da ruhsat gerektiren işlere girmeyiz.</p></div>
         <div class="detay" data-iddia-ok role="tabpanel" id="d7" aria-labelledby="b7"><span class="detay-no"><i aria-hidden="true">G</i>Detay</span><h3>Garanti veriyor musunuz?</h3><p>Su yalıtımı ve tesisat işçiliği için garanti kapsamı ve süresi teklifte ve sözleşmede yazılı verilir.</p></div>
         <div class="detay" role="tabpanel" id="d8" aria-labelledby="b8"><span class="detay-no"><i aria-hidden="true">H</i>Detay</span><h3>Ödeme nasıl?</h3><p>Başta malzeme payı, iş ortasında bir ara ödeme, kalan teslimde. Oranlar teklifte yazılıdır.</p></div>
       </div>
@@ -553,60 +616,87 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <div class="genis"><span class="h">Kişisel veriler</span>Bu site form verisi toplamaz; WhatsApp'tan yazdıklarınız yalnız keşif yazışmasında kullanılır. <a href="#sss">Sık sorulanlar</a></div>
   </div>
 </footer>
-<div class="alt-cubuk"><div class="iki"><a class="ara" href="tel:+902160000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Ara</a><a class="wa" id="wa-cubuk" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2"/></svg><span id="wa-cubuk-yazi">WhatsApp</span></a></div></div>
 
 <script>
-/* görünüş sürgüsü: fare + dokunma (dikey kaydırmayı bozmaz) + klavye */
+/* kesit görünüşleri: A-A / B-B çizgisi parmakla ya da fareyle çekilir, klavyede ok tuşları; dikey kaydırma bozulmaz */
 (function(){
-  var k=document.getElementById('karsilastir'),s=document.getElementById('surgu');
-  function ayarla(v){k.style.setProperty('--x',v+'%');k.querySelector('.e1').style.opacity=v<18?0:1;k.querySelector('.e2').style.opacity=v>82?0:1}
-  s.addEventListener('input',function(){k.classList.add('dokundu');ayarla(s.value)});
-  var bx=null,by=null,yatay=false;
-  function konum(e){var r=k.getBoundingClientRect();var v=Math.round(Math.min(100,Math.max(0,(e.clientX-r.left)/r.width*100)));s.value=v;ayarla(v)}
-  k.addEventListener('pointerdown',function(e){k.classList.add('dokundu');if(window.__acilis){window.__acilis.kill();window.__acilis=null}bx=e.clientX;by=e.clientY;yatay=e.pointerType==='mouse';if(yatay){try{k.setPointerCapture(e.pointerId)}catch(_){}konum(e)}});
-  k.addEventListener('pointermove',function(e){if(bx===null)return;if(!yatay){var dx=Math.abs(e.clientX-bx),dy=Math.abs(e.clientY-by);if(dx>8&&dx>dy){yatay=true;try{k.setPointerCapture(e.pointerId)}catch(_){}}else if(dy>8){bx=null;return}}if(yatay)konum(e)});
-  ['pointerup','pointercancel','pointerleave'].forEach(function(t){k.addEventListener(t,function(){bx=null;yatay=false})});
-  window.__surgu=function(v){s.value=v;ayarla(v)};
+  function kesitKur(el){
+    var g=el.querySelector('input'),dur={x:null,y:0,yon:null};
+    function koy(v){v=Math.max(0,Math.min(100,Math.round(v)));el.style.setProperty('--x',v+'%');g.value=v;el.classList.toggle('sol-uc',v<18);el.classList.toggle('sag-uc',v>82);el.classList.toggle('kenar',v<30||v>70)}
+    function oran(e){var b=el.getBoundingClientRect();return (e.clientX-b.left)/b.width*100}
+    g.addEventListener('input',function(){el.classList.add('dokundu');koy(g.value)});
+    el.addEventListener('pointerdown',function(e){el.classList.add('dokundu');dur={x:e.clientX,y:e.clientY,yon:e.pointerType==='mouse'?'yatay':null};if(dur.yon){try{el.setPointerCapture(e.pointerId)}catch(_){}koy(oran(e))}});
+    el.addEventListener('pointermove',function(e){if(dur.x===null)return;if(!dur.yon){var dx=Math.abs(e.clientX-dur.x),dy=Math.abs(e.clientY-dur.y);if(dx>8&&dx>dy){dur.yon='yatay';try{el.setPointerCapture(e.pointerId)}catch(_){}}else{if(dy>8)dur.x=null;return}}koy(oran(e))});
+    ['pointerup','pointercancel'].forEach(function(t){el.addEventListener(t,function(){dur.x=null})});
+    koy(g.value);return koy;
+  }
+  window.__kesit={};[].forEach.call(document.querySelectorAll('.kesit'),function(el){window.__kesit[el.id]=kesitKur(el)});
 })();
-/* keşif föyü: tek veri tablosu (süre), özet, mesaj */
+/* keşif föyü: adım adım, her adımda tek soru; sonuç numaralı keşif talebi */
 (function(){
   var f=document.getElementById('kesif-form'),$=function(i){return document.getElementById(i)};
   var sure={"Banyo":["8-10 iş günü","10-14 iş günü","2-3 hafta","3-4 hafta","4-5 hafta"],"Mutfak":["7-12 iş günü","10-15 iş günü","2-3 hafta","3-4 hafta","4-5 hafta"],"Komple daire":["1-2 hafta","2-3 hafta","3-4 hafta","4-6 hafta","6-8 hafta"],"Boya, alçı":["1 iş günü","2-3 iş günü","3-5 iş günü","5-7 iş günü","1-2 hafta"],"Zemin, parke":["1 iş günü","1-2 iş günü","2-3 iş günü","3-4 iş günü","1 hafta"]};
   var kucukTip={"Banyo":2,"Mutfak":3},altSinir={"Komple daire":1};
-  var alanSira=["10 m²'den az","10-30 m²","30-60 m²","60-100 m²","100 m²'den çok"];
-  var dokundu=false,genel='https://wa.me/?text='+encodeURIComponent('Merhaba, tadilat için ücretsiz keşif istiyorum. Ne zaman gelebilirsiniz?');
+  var alanSira=["10 m²'den küçük","10-30 m²","30-60 m²","60-100 m²","100 m²'den büyük"];
+  var adimlar=[].slice.call(f.querySelectorAll('.adim')),cet=[].slice.call($('adim-cetvel').querySelectorAll('li')),ad=["İş","Alan","Fotoğraf","Gün"],su=1;
   function yazT(el,t){if(el&&el.textContent!==t)el.textContent=t}
-  function yaz(){
-    var tE=f.querySelector('input[name=tip]:checked'),t=tE?tE.value:null,sinir=(t&&kucukTip[t])||5,alt=(t&&altSinir[t])||0;
-    f.querySelectorAll('input[name=m2]').forEach(function(x,i){var l=f.querySelector('label[for='+x.id+']');var p=i>=sinir||i<alt;x.disabled=p;l.classList.toggle('pasif',p);l.title=p?t+' için bu alan seçilemez':'';if(p&&x.checked)x.checked=false});
-    yazT($('alan-not'),t&&(kucukTip[t]||altSinir[t])?'Üstü çizili alanlar '+t.toLowerCase()+' için uygun değil.':'');
-    var mE=f.querySelector('input[name=m2]:checked'),m=mE?mE.value:null,zE=f.querySelector('input[name=zaman]:checked'),z=zE?zE.value:null,se=$('semt').value,fo=$('foto').checked;
-    var su=!t||t==='Diğer iş'?'keşifte belirlenir':(m?sure[t][alanSira.indexOf(m)]:sure[t][0]+' ve üstü (alana göre)');
-    yazT($('o-tip'),t||'seçilmedi');yazT($('o-m2'),m||'keşifte ölçülür');yazT($('o-semt'),se||'seçilmedi');yazT($('o-zaman'),z||'yazışırken');yazT($('o-sure'),su);
-    document.querySelectorAll('.anlik').forEach(function(x){yazT(x,t?'Tahmini süre: '+su:'')});
-    var msg='Merhaba, sitenizden yazıyorum. '+(!t?'Tadilat için keşif istiyorum (işi yazışırken anlatacağım). '+(m?'Yaklaşık '+m+'. ':''):t==='Diğer iş'?'Küçük bir tadilat işi için (ne olduğunu aşağıda yazıyorum) keşif istiyorum. '+(m?'Yaklaşık '+m+'. ':''):t+' için keşif istiyorum. '+(m?'Yaklaşık '+m+'. ':'Alanı keşifte ölçersiniz. '))+'Semt: '+(se||'yazışırken söyleyeceğim')+'.'+(z&&z!=='yazışırken söyleyeceğim'?' Keşif için '+z+' uygunum.':'')+(fo?' Fotoğrafları da gönderiyorum.':'')+' Ne zaman gelebilirsiniz?';
-    var href='https://wa.me/?text='+encodeURIComponent(msg);$('wa-kesif').href=href;
-    var cub=dokundu?href:genel;$('wa-cubuk').href=cub;$('wa-hizli').href=cub;
-    yazT($('wa-cubuk-yazi'),dokundu&&t?'Keşif iste: '+t.toLowerCase():'WhatsApp');
-    yazT($('giden-wa-kesif'),msg);
+  function diger(){return ($('diger-is').value||'').trim().replace(/\s+/g,' ').slice(0,80)}
+  function d(n){var e=f.querySelector('input[name='+n+']:checked');return e?e.value:null}
+  function tamam(i){if(i===1)return!!d('tip');if(i===2)return!!d('m2');if(i===3)return!!d('foto');if(i===4)return!!d('zaman')&&!!$('semt').value;return false}
+  function sureHesap(){var t=d('tip'),m=d('m2');if(!t||!sure[t])return'keşifte belirlenir';var i=alanSira.indexOf(m);return i>-1?sure[t][i]:sure[t][0]+' ve üstü (alana göre)'}
+  function mesaj(){
+    var t=d('tip'),m=d('m2'),fo=d('foto'),z=d('zaman'),se=$('semt').value;
+    var is=t==='emin değilim'?'ne yapılacağını keşifte konuşalım':t==='Diğer iş'?(diger()?'küçük bir iş ('+diger()+')':'küçük bir iş (ayrıntısını yazışırken anlatırım)'):t.toLowerCase();
+    var al=m==='bilmiyorum'?'alanı keşifte ölçersiniz':/^\d+-/.test(m)?'yaklaşık '+m:m;
+    var ft=fo==='var'?'fotoğraf atacağım':'fotoğraf yok, yerinde görürsünüz';
+    var zm=z==='esnek'?'gün konusunda esneğim, siz önerin':'keşif için '+z+' uygun';
+    return 'Keşif talebi: '+is+', '+al+', '+ft+'. Semt: '+(se==='başka semt'?'aşağıda yazıyorum':se)+'; '+zm+'.'+(sure[t]?' Sitede tahmini süre '+sureHesap()+' görünüyor.':'')+' Keşif gününü yazar mısınız?';
   }
-  f.addEventListener('input',function(){dokundu=true;yaz()});f.addEventListener('change',function(){dokundu=true;yaz()});yaz();
-  /* boş föy: ilk basışta görünür uyarı + ilk gruba odak; ikinci basışta genel keşif isteği gider */
-  var a=$('wa-kesif'),uy=document.createElement('p');uy.className='bos-uyari';uy.setAttribute('role','alert');uy.hidden=true;
-  uy.textContent='Henüz iş türü seçmediniz. Seçin ya da yine de genel keşif isteği göndermek için tekrar basın.';a.insertAdjacentElement('afterend',uy);var izin=false;
-  a.addEventListener('click',function(e){if(!f.querySelector('input[name=tip]:checked')&&!izin){e.preventDefault();e.stopImmediatePropagation();uy.hidden=false;izin=true;a.focus();uy.scrollIntoView({block:'center'})}},true);
-  f.addEventListener('change',function(){uy.hidden=true;izin=false});
+  function alanlar(){
+    var t=d('tip'),sinir=(t&&kucukTip[t])||5,alt=(t&&altSinir[t])||0;
+    f.querySelectorAll('input[name=m2]').forEach(function(x,i){if(i>4)return;var l=f.querySelector('label[for='+x.id+']');var p=i>=sinir||i<alt;x.disabled=p;l.classList.toggle('pasif',p);l.title=p?t+' için bu alan seçilemez':'';if(p&&x.checked)x.checked=false});
+    yazT($('alan-not'),t&&(kucukTip[t]||altSinir[t])?'Üstü çizili alanlar '+t.toLowerCase()+' için uygun değil.':'');
+    yazT($('alan-baglam'),(t&&t!=='emin değilim'&&t!=='Diğer iş'?t+' için. ':'')+'Bilmiyorsanız sorun değil, keşifte ölçülür.');
+    yazT($('anlik'),t&&sure[t]?'Tahmini süre: '+sureHesap():'');
+  }
+  function talep(){
+    var t=d('tip'),m=d('m2'),fo=d('foto'),z=d('zaman'),se=$('semt').value,ol=$('talep-liste');
+    var sat=[["İş",t==='emin değilim'?'Emin değilim, keşifte konuşulacak':t==='Diğer iş'?'Diğer / küçük iş'+(diger()?': '+diger():''):t,1],["Alan",m==='bilmiyorum'?'Keşifte ölçülecek':m,2],["Fotoğraf",fo==='var'?'Var, mesajdan sonra atılacak':'Yok, keşifte görülecek',3],["Gün, semt",(z==='esnek'?'Esnek':z.charAt(0).toUpperCase()+z.slice(1))+', '+(se==='başka semt'?'başka semt':se),4]];
+    if(sure[t])sat.push(["Tahmini süre",sureHesap()+' (keşifte netleşir)',0]);
+    ol.innerHTML='';sat.forEach(function(s){var li=document.createElement('li');var a=document.createElement('span');a.className='ad';a.textContent=s[0];var b=document.createElement('b');b.textContent=s[1];li.appendChild(a);li.appendChild(b);if(s[2]){var k=document.createElement('button');k.type='button';k.className='duzelt';k.setAttribute('data-git',s[2]);k.setAttribute('aria-label',s[0]+' satırını düzelt');k.textContent='düzelt';li.appendChild(k)}ol.appendChild(li)});
+    var msg=mesaj();$('wa-kesif').href='https://wa.me/?text='+encodeURIComponent(msg);yazT($('giden-wa-kesif'),msg);
+  }
+  function cizCetvel(){
+    var n=0;cet.forEach(function(li,i){var a=i+1,ok=tamam(a),b=li.querySelector('button');if(ok)n++;
+      li.classList.toggle('su',a===su);li.classList.toggle('bitti',ok&&a!==su);
+      if(a===su)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');
+      yazT(li.querySelector('.durum'),a===su?'şu an':ok?'✓ tamam':'sırada');});
+    var g=$('cetvel-durum');if(g)yazT(g,n+'/4');
+    f.style.setProperty('--dolu',(su===5?100:(su-1)*25)+'%');
+  }
+  function goster(a,odak){
+    su=a;adimlar.forEach(function(x){x.hidden=+x.getAttribute('data-adim')!==a});
+    yazT($('adim-yazi'),a===5?'Talep hazır':'Adım '+a+'/4');
+    $('geri').hidden=a===1;var il=$('ileri');il.hidden=a===5;
+    if(a<5){var s=ilkEksik(a+1);yazT(il,a===4||s===5?'Talebi göster →':'İleri: '+ad[a].toLowerCase()+' →')}
+    if(a===5)talep();
+    cizCetvel();
+    if(odak){var h=f.querySelector('[data-adim="'+a+'"] legend, [data-adim="'+a+'"] h3');if(h){h.focus({preventScroll:true});var r=f.getBoundingClientRect();if(r.top<0||r.top>innerHeight*.5)f.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}
+  }
+  function ilkEksik(bas){for(var i=bas;i<=4;i++)if(!tamam(i))return i;for(i=1;i<bas;i++)if(!tamam(i))return i;return 5}
+  function bosUyar(a){var p=f.querySelector('[data-bos="'+a+'"]');p.classList.add('vurgu');p.setAttribute('role','alert');var ilk=f.querySelector('[data-adim="'+a+'"] input:not(:disabled)');if(a===4&&d('zaman'))ilk=$('semt');if(ilk)ilk.focus({preventScroll:true});p.scrollIntoView({block:'center'})}
+  function durumlar(){for(var i=1;i<=4;i++){var p=f.querySelector('[data-bos="'+i+'"]'),ok=tamam(i);p.hidden=ok;if(ok){p.classList.remove('vurgu');p.removeAttribute('role')}}
+    if(d('zaman')&&!$('semt').value)yazT(f.querySelector('[data-bos="4"]'),'Semt eksik. Listeden semtinizi seçin.');else yazT(f.querySelector('[data-bos="4"]'),'Henüz seçim yok. Bir zaman şıkkı ve semt seçin.')}
+  function ileri(){if(su===5)return;if(!tamam(su)){bosUyar(su);return}goster(ilkEksik(su+1),true)}
+  $('ileri').addEventListener('click',ileri);f.addEventListener('submit',function(e){e.preventDefault();ileri()});
+  $('geri').addEventListener('click',function(){goster(su===5?4:su-1,true)});
+  f.addEventListener('click',function(e){var b=e.target.closest('[data-git]');if(!b)return;var a=+b.getAttribute('data-git');if(a<5&&a>ilkEksik(1)&&!tamam(a)){bosUyar(su);return}goster(a,true)});
+  function hrefGuncel(){if(ilkEksik(1)===5){var msg=mesaj();$('wa-kesif').href='https://wa.me/?text='+encodeURIComponent(msg);yazT($('giden-wa-kesif'),msg)}else $('wa-kesif').setAttribute('href','#')}
+  function degisti(){$('diger-alan').hidden=d('tip')!=='Diğer iş';alanlar();hrefGuncel();durumlar();cizCetvel();if(su===5)talep();var il=$('ileri');if(su<5){var s=ilkEksik(su+1);yazT(il,su===4||s===5?'Talebi göster →':'İleri: '+ad[su].toLowerCase()+' →')}}
+  f.addEventListener('change',degisti);f.addEventListener('input',degisti);
+  $('foy-durum').addEventListener('click',function(){goster(su,true)});
+  f.classList.add('adimli');alanlar();durumlar();goster(1,false);
 })();
-/* mutfak sürgüsü */
-(function(){var l=document.getElementById('ls'),r=document.getElementById('ls-surgu');if(!l||!r)return;
-  function a(){l.style.setProperty('--x',r.value+'%');l.querySelector('.e1').style.opacity=r.value<15?0:1;l.querySelector('.e2').style.opacity=r.value>85?0:1}
-  r.addEventListener('input',a);a();
-  var bx=null,by=null,yatay=false;
-  function k(e){var b=l.getBoundingClientRect();r.value=Math.round(Math.min(100,Math.max(0,(e.clientX-b.left)/b.width*100)));r.dispatchEvent(new Event('input'))}
-  l.addEventListener('pointerdown',function(e){window.__lsEl=true;bx=e.clientX;by=e.clientY;yatay=e.pointerType==='mouse';if(yatay){try{l.setPointerCapture(e.pointerId)}catch(_){}k(e)}});
-  l.addEventListener('pointermove',function(e){if(bx===null)return;if(!yatay){var dx=Math.abs(e.clientX-bx),dy=Math.abs(e.clientY-by);if(dx>8&&dx>dy){yatay=true;try{l.setPointerCapture(e.pointerId)}catch(_){}}else if(dy>8){bx=null;return}}if(yatay)k(e)});
-  ['pointerup','pointercancel'].forEach(function(t){l.addEventListener(t,function(){bx=null;yatay=false})});
-  r.addEventListener('pointerdown',function(){window.__lsEl=true});})();
 /* detay balonları: seçili balon dolu, detayı yanında; telefonda detay görünür alana gelir */
 (function(){var L=[].slice.call(document.querySelectorAll('.balon'));
   function sec(c,odak,kaydir){L.forEach(function(x){var s=x===c;x.setAttribute('aria-selected',s);x.tabIndex=s?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!s});if(odak)c.focus();
@@ -627,11 +717,12 @@ window.addEventListener('load',function(){
   if(!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   gsap.registerPlugin(ScrollTrigger);
   /* sürgü bir kez önceden sonraya kayar */
-  if(!document.getElementById('karsilastir').classList.contains('dokundu')){var o={v:78};window.__acilis=gsap.to(o,{v:50,duration:1.4,delay:.4,ease:'power2.inOut',onUpdate:function(){window.__surgu(o.v)}})}
+  function oynat(id){var el=document.getElementById(id);return function(v){if(!el.classList.contains('dokundu'))window.__kesit[id](v)}}
+  var kb=oynat('kesit-banyo'),o={v:78};gsap.to(o,{v:50,duration:1.4,delay:.4,ease:'power2.inOut',onUpdate:function(){kb(o.v)}});
   gsap.utils.toArray('.is .cubuk').forEach(function(c,i){gsap.fromTo(c,{scaleX:0},{scaleX:1,duration:.5,delay:i*.12,ease:'power2.out',scrollTrigger:{trigger:'.takvim',start:'top 80%'}})});
   gsap.fromTo('.cetele tbody tr',{x:-14},{x:0,duration:.5,stagger:.06,ease:'power2.out',scrollTrigger:{trigger:'.arsiv',start:'top 80%'}});
-  var r=document.getElementById('ls-surgu'),m={v:50};function y(){if(window.__lsEl)return;r.value=Math.round(m.v);r.dispatchEvent(new Event('input'))}
-  ScrollTrigger.create({trigger:'#ls',start:'top 85%',once:true,onEnter:function(){gsap.timeline().to(m,{v:82,duration:.9,ease:'power2.inOut',onUpdate:y}).to(m,{v:22,duration:1.1,ease:'power2.inOut',onUpdate:y}).to(m,{v:50,duration:.8,ease:'power2.out',onUpdate:y})}});
+  var km=oynat('kesit-mutfak'),m={v:50};function y(){km(m.v)}
+  ScrollTrigger.create({trigger:'#kesit-mutfak',start:'top 85%',once:true,onEnter:function(){gsap.timeline().to(m,{v:82,duration:.9,ease:'power2.inOut',onUpdate:y}).to(m,{v:22,duration:1.1,ease:'power2.inOut',onUpdate:y}).to(m,{v:50,duration:.8,ease:'power2.out',onUpdate:y})}});
 });
 </script>
 </body>
