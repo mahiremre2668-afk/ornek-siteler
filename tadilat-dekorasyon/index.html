@@ -29,7 +29,7 @@
 {"@type":"Question","name":"Ödeme nasıl?","acceptedAnswer":{"@type":"Answer","text":"Başta malzeme payı, iş ortasında bir ara ödeme, kalan teslimde. Oranlar teklifte yazılıdır."}}]}]}
 </script>
 <style>
-/* Kalfa Yapı: sayfa bir paftadır. cetvel (gezinme), pafta (plan + görünüş + antet), keşif föyü, iş takvimi, arşiv, lejant, detay balonları, antet altbilgi */
+/* Kalfa Yapı: sayfa bir paftadır. cetvel (gezinme), pafta (görünüş + antet), keşif föyü, iş takvimi, arşiv, lejant, detay balonları, antet altbilgi */
 :root{
   --kagit:#FBFAF7; --siva:#F1EFEA; --beyaz:#FFFFFF; --antrasit:#23262B; --metin:#1C1E22; --ikincil:#4F545C;
   --turuncu:#C2410C; --turuncu-koyu:#A3360A; --turuncu-acik:#FBE3D2; --izgara:#ECE9E2; --izgara-2:#E2DED5; --cizgi:#CFCBC2;
@@ -106,7 +106,9 @@ section[id],footer[id]{scroll-margin-top:72px}
 .olcu i:first-of-type{left:-2px}.olcu i:last-of-type{right:-2px}
 .olcu-not{margin:6px 0 0;font-size:1.125rem;color:var(--ikincil);text-align:center}
 .yan{display:flex;flex-direction:column;min-width:0}
-.antet{border-bottom:2px solid var(--antrasit)}
+.antet{flex:1;display:flex;flex-direction:column}
+.antet dl{flex:1}
+.antet dl div{display:flex;flex-direction:column;justify-content:center}
 .baslik-bant{grid-column:1/-1;border-bottom:2px solid var(--antrasit);padding:22px 26px 20px}
 .baslik-bant h1{font-size:clamp(2.6rem,5.6vw,5.4rem);letter-spacing:-.035em}
 .antet dl{margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -117,11 +119,6 @@ section[id],footer[id]{scroll-margin-top:72px}
 .antet dd{margin:2px 0 0;font-size:1.125rem;line-height:1.4}
 .antet .eylem{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:18px 24px 20px}
 .antet .eylem a.tel{font-size:1.125rem}
-.plan{padding:16px 24px 18px;flex:1;display:flex;flex-direction:column;justify-content:center}
-.plan svg{width:100%;max-width:280px;height:auto;margin:6px auto 0;display:block}
-.plan .cizim-bas{margin-bottom:4px}
-.plan figcaption{font-size:1.125rem;color:var(--ikincil);margin-top:8px}
-.plan figure{margin:0}
 
 /* bölümler */
 .bol{padding:104px 0 0}
@@ -267,7 +264,6 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
   .pafta{grid-template-columns:minmax(0,1fr);outline-offset:4px}
   .gorunus .karsilastir{aspect-ratio:3/2;flex:none;min-height:0}
   .gorunus{border-right:0;border-bottom:2px solid var(--antrasit);padding:14px 14px 14px}
-  .plan{border-top:2px solid var(--antrasit)}
   .yan{flex-direction:column}
   .cetvel-eylem{display:none}
   .alt-cubuk{display:block}
@@ -293,7 +289,6 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
   .antet dl{grid-template-columns:minmax(0,1fr)}
   .antet dl div{padding:8px 16px 10px;border-right:0!important}
   .antet .eylem{padding:16px}
-  .plan{padding:14px 16px}
   .foy fieldset{padding:16px}
   .foy-bas,.ozet h3{padding:12px 16px}
   .onay{padding:10px 16px 14px}
@@ -322,7 +317,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
 .tel{white-space:normal;overflow-wrap:anywhere;min-width:0}.ust-sag{min-width:0}
 .cetele{table-layout:fixed}.cetele th,.cetele td{overflow-wrap:anywhere}.cetele td.sure{white-space:normal}
 .cetele thead th:last-child,.cetele td.sure{width:6.5em}.revizyon .cetele thead th:last-child{width:9em}
-@media (max-width:360px){.lejant li,.balon,.detay *,.foy *,.plan *,.olcu span{min-width:0;overflow-wrap:anywhere}.olcu span{white-space:normal}.foy .semt-alan{display:block}.kutular{grid-template-columns:minmax(0,1fr)}.foy-bas{display:block}}
+@media (max-width:360px){.lejant li,.balon,.detay *,.foy *,.olcu span{min-width:0;overflow-wrap:anywhere}.olcu span{white-space:normal}.foy .semt-alan{display:block}.kutular{grid-template-columns:minmax(0,1fr)}.foy-bas{display:block}}
 .ls-bar{flex-wrap:wrap;row-gap:4px}.ls-bar input{min-width:0;flex:1 1 120px}.ls-bar span{white-space:nowrap}
 </style>
 </head>
@@ -384,22 +379,6 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
         </dl>
         <div class="eylem"><a class="dugme" href="#kesif">Ücretsiz keşif iste</a><a class="tel" href="tel:+902160000000">ya da arayın: 0216 000 00 00</a></div>
       </div>
-      <figure class="plan">
-        <div class="cizim-bas"><span>Plan: banyo</span></div>
-        <svg viewBox="0 0 320 220" aria-hidden="true" fill="none" stroke="#23262B" stroke-linecap="square">
-          <path class="ciz" pathLength="1" d="M20 20H300V200H120M70 200H20Z" stroke-width="8"/>
-          <path class="ciz" pathLength="1" d="M70 200A50 50 0 0 1 120 150M120 200V150" stroke-width="1.5"/>
-          <path class="ciz" pathLength="1" d="M130 16H230M130 24H230" stroke-width="2"/>
-          <path class="ciz" pathLength="1" d="M210 32H290V112H210ZM210 32L290 112M290 32L210 112" stroke-width="1.5"/>
-          <circle class="ciz" pathLength="1" cx="250" cy="72" r="6" stroke-width="1.5"/>
-          <path class="ciz" pathLength="1" d="M32 32H112V70H32Z" stroke-width="1.5"/>
-          <ellipse class="ciz" pathLength="1" cx="72" cy="50" rx="24" ry="12" stroke-width="1.5"/>
-          <path class="ciz" pathLength="1" d="M268 132H292V176H268Z" stroke-width="1.5"/>
-          <ellipse class="ciz" pathLength="1" cx="244" cy="154" rx="24" ry="17" stroke-width="1.5"/>
-          <path class="ciz" pathLength="1" d="M20 210V218M300 210V218M20 214H300" stroke="#C2410C" stroke-width="1.5"/>
-        </svg>
-        <figcaption>Duş, lavabo, klozet ve pencere yerleri. Keşifte sizin banyonuz ölçülüp çizilir.</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -647,8 +626,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
 window.addEventListener('load',function(){
   if(!window.gsap||!window.ScrollTrigger||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   gsap.registerPlugin(ScrollTrigger);
-  /* plan çizgileri bir kez çizilir; sürgü bir kez önceden sonraya kayar */
-  gsap.fromTo('.plan .ciz',{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:1.1,stagger:.12,ease:'power2.inOut'});
+  /* sürgü bir kez önceden sonraya kayar */
   if(!document.getElementById('karsilastir').classList.contains('dokundu')){var o={v:78};window.__acilis=gsap.to(o,{v:50,duration:1.4,delay:.4,ease:'power2.inOut',onUpdate:function(){window.__surgu(o.v)}})}
   gsap.utils.toArray('.is .cubuk').forEach(function(c,i){gsap.fromTo(c,{scaleX:0},{scaleX:1,duration:.5,delay:i*.12,ease:'power2.out',scrollTrigger:{trigger:'.takvim',start:'top 80%'}})});
   gsap.fromTo('.cetele tbody tr',{x:-14},{x:0,duration:.5,stagger:.06,ease:'power2.out',scrollTrigger:{trigger:'.arsiv',start:'top 80%'}});
