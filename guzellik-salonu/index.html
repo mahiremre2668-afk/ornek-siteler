@@ -79,13 +79,15 @@ a{color:var(--erik)}
 
 /* salonla yazışma: sohbet balonları */
 .secim{background:var(--krem);padding:88px 0}
-.secim .kap{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:48px;align-items:start}
+.secim .kap{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);grid-template-rows:auto 1fr;gap:8px 48px;align-items:start}
 .secim .kap>*{min-width:0}
 .secim h2,.b h2{font-size:max(2rem,min(clamp(2.3rem,4.4vw,3.5rem),11vw))}
 .secim .acik{margin:14px 0 0;max-width:46ch}
-.yaz-sol{position:sticky;top:96px}
+.yaz-sol{grid-column:1;grid-row:1}
+.sohbet{grid-column:2;grid-row:1/span 2}
+.yaz-not{grid-column:1;grid-row:2;align-self:start}
+.yaz-not p{color:var(--ikincil);max-width:46ch;font-size:1.125rem;margin:16px 0 0}
 .yaz-sol p{color:var(--ikincil);max-width:46ch}
-.yaz-sol .kucuk{font-size:1.125rem;margin:16px 0 0}
 .sohbet{background:var(--sut);border-radius:6px;box-shadow:0 30px 50px -34px rgba(0,0,0,.26)}
 .sohbet-ust{display:flex;align-items:center;gap:14px;padding:14px 20px;background:var(--erik);color:var(--sut);border-radius:6px 6px 0 0}
 .sohbet-ust img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-view-box:inset(16% 24% 52% 48%);flex:none;background:var(--erik-2)}
@@ -139,11 +141,12 @@ a{color:var(--erik)}
 @keyframes gel{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .yazac{position:sticky;bottom:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:var(--kum);border-radius:0 0 6px 6px}
 .yazac p{margin:0;flex:1 1 14em;font-size:1.125rem;line-height:1.4}
+.yazac .kisa,.wa-kisa{display:none}
 .wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:6px 20px;border-radius:8px;background:var(--erik);color:var(--sut);text-decoration:none;font-weight:600;font-size:1.15rem;text-align:center;flex:0 1 auto}
 .wa:hover{background:var(--erik-2)}
 .wa svg{width:1.25em;height:1.25em;flex:none}
 .wa{min-width:0;max-width:100%;overflow-wrap:anywhere}
-.bos-uyari{flex-basis:100%;margin:0;padding:10px 12px;background:var(--ayva);font-weight:600;font-size:1.125rem;border-radius:4px}
+.bos-uyari{margin:0 0 12px;padding:10px 12px;background:var(--ayva);font-weight:600;font-size:1.125rem;border-radius:4px}
 .bos-uyari::before{content:"! ";font-weight:800}
 
 /* önce / sonra */
@@ -214,7 +217,8 @@ footer .alt-ad{margin:0}
   .portre .ayna{aspect-ratio:5/4;border-radius:160px 160px 8px 8px}
   .secim{padding:64px 0}
   .secim .kap{grid-template-columns:minmax(0,1fr);gap:24px}
-  .yaz-sol{position:static}
+  .yaz-sol,.sohbet,.yaz-not{grid-column:1;grid-row:auto}
+  .yaz-not p{margin:0 0 12px}
   .sohbet{margin-inline:-8px}
   .akis{padding:18px 12px 8px}
   .yazac{padding:12px 12px calc(12px + env(safe-area-inset-bottom))}
@@ -228,10 +232,17 @@ footer .alt-ad{margin:0}
   .ust .kap{min-height:60px}
   .tel{min-height:44px}
   .kartela{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .yazac .wa{flex:1 1 100%}
+  .yazac{flex-wrap:nowrap;padding:6px 10px calc(6px + env(safe-area-inset-bottom));gap:10px}
+  .yazac p{flex:1 1 auto;min-width:0;line-height:1.25}
+  .yazac .uzun{display:none}.yazac .kisa{display:inline}
+  .yazac .wa{flex:0 1 auto;min-height:48px;padding:4px 14px}
   .logo span{display:none}
   .cip .ad{font-size:1.2rem}
   .hafta{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:420px){
+  .yazac .wa-uzun{display:none}.yazac .wa-kisa{display:inline}
+  .yazac .wa{flex:none}
 }
 @media (max-width:340px){
   .kartela{grid-template-columns:1fr}
@@ -277,19 +288,20 @@ footer .alt-ad{margin:0}
   <div class="kap">
     <div class="yaz-sol">
       <h2>Randevuyu yazışarak alalım</h2>
-      <p class="acik">Randevuyu zaten WhatsApp'tan yazışarak veriyoruz. Burada aynı yazışmayı başlatın: soruları cevaplayın, işlemlerin süresi ve fiyatı sohbette toplanır.</p>
-      <p class="kucuk">“Siz” yazan balonlar salona giden mesajın kendisidir; ayrıca bir şey yazmanız gerekmez.</p>
-      <p class="kucuk">Fiyatlar başlangıç fiyatıdır; kesin tutarı randevu yazışmasında söyleriz. Sonuç kişiden kişiye değişir; ne kadar süreceğini ve neyi beklemenizi ilk görüşmede konuşuruz.</p>
-      <p class="kucuk">Bu bir randevu isteğidir: boş saati salon yazıp onaylar. Pazartesi–Cumartesi 10.00-20.00, Pazar kapalıyız.</p>
+      <p class="acik">Soruları cevaplayın; “Siz” yazan balonlar salona giden WhatsApp mesajıdır.</p>
     </div>
     <div class="sohbet" id="yazisma" aria-label="Salonla yazışma">
       <div class="sohbet-ust"><img id="avatar" src="img/guz-uzman.jpg" alt="" width="52" height="52"><div><b>Defne, Ayva</b><span>salonun WhatsApp yazışması</span></div></div>
       <ol class="akis" id="akis" aria-live="polite"></ol>
       <div class="yazac">
-        <p id="yazac-durum">İlk soru sizi bekliyor.</p>
-        <a class="wa" id="wa-randevu" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>WhatsApp'ta devam et</a>
-        <p class="bos-uyari" id="bos-uyari" role="alert" hidden>Henüz hangi işlem için yazdığınızı seçmediniz. İlk soruda bir işleme dokunun ya da “Emin değilim” deyin.</p>
+        <p id="yazac-durum"><span class="uzun">İlk soru sizi bekliyor.</span><span class="kisa">İlk soru bekliyor</span></p>
+        <a class="wa" id="wa-randevu" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg><span class="wa-uzun">WhatsApp'ta devam et</span><span class="wa-kisa">WhatsApp'a geç</span></a>
       </div>
+    </div>
+    <div class="yaz-not">
+      <p>Randevuyu zaten WhatsApp'tan yazışarak veriyoruz. Burada aynı yazışmayı başlatın: soruları cevaplayın, işlemlerin süresi ve fiyatı sohbette toplanır.</p>
+      <p>Fiyatlar başlangıç fiyatıdır; kesin tutarı randevu yazışmasında söyleriz. Sonuç kişiden kişiye değişir; ne kadar süreceğini ve neyi beklemenizi ilk görüşmede konuşuruz.</p>
+      <p>Bu bir randevu isteğidir: boş saati salon yazıp onaylar. Pazartesi–Cumartesi 10.00-20.00, Pazar kapalıyız.</p>
     </div>
   </div>
 </section>
@@ -376,10 +388,10 @@ footer .alt-ad{margin:0}
   function kucuk(t){return t.charAt(0).toLocaleLowerCase('tr-TR')+t.slice(1)}
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   /* sohbet: salon sorar, müşteri hızlı cevaplara dokunur; müşteri balonları = giden mesaj */
-  var S={islem:null,gun:null,saat:null,foto:null},duz=null,ilk=true,sessiz=false;
+  var S={islem:null,gun:null,saat:null,foto:null},duz=null,ilk=true,sessiz=false,bosU=false;
   var GUN=[["bu","Bu hafta","Bu hafta uygunum."],["gelecek","Gelecek hafta","Gelecek hafta uygunum."],["ileri","2-3 hafta içinde","2-3 hafta içinde uygunum."],["sonra","Yazışırken söylerim","Günü yazışırken söylerim."]];
   var SAAT=[["sabah","Sabah","10-13","Sabah, 10.00-13.00 arası.",3],["ogle","Öğleden sonra","13-16","Öğleden sonra, 13.00-16.00 arası.",3],["aksam","Akşam","16-20","Akşam, 16.00-20.00 arası.",4],["fark","Saat fark etmez","","Saat fark etmez.",0]];
-  var FOTO=[["var","Var, fotoğrafını atacağım","Beğendiğim bir model var, birazdan fotoğrafını yolluyorum."],["yok","Yok, birlikte karar verelim","Modelim yok, birlikte karar verelim."]];
+  var FOTO=[["var","Evet, beğendiğim bir model var","Beğendiğim bir model var, birazdan fotoğrafını yolluyorum."],["yok","Yok, birlikte karar verelim","Modelim yok, birlikte karar verelim."]];
   function secili(){return S.islem&&S.islem!=='emin'?S.islem.map(function(i){return H[i]}):[]}
   function fotoSor(){return S.islem==='emin'||secili().some(function(h){return h[1]==='kas'||h[1]==='el'})}
   function adimlar(){var a=['islem','gun','saat'];if(fotoSor())a.push('foto');return a}
@@ -404,7 +416,7 @@ footer .alt-ad{margin:0}
   }
   function cevapAlani(ad){
     if(ad==='islem'){
-      var h='<p class="cevap-baslik">İşlemler ve başlangıç fiyatları</p><fieldset class="kartela" id="kartela"><legend>İşlemler</legend>';
+      var h=(bosU?'<p class="bos-uyari" id="bos-uyari" role="alert">Henüz hangi işlem için yazdığınızı seçmediniz. Aşağıda bir işleme dokunun ya da “Emin değilim” deyin.</p>':'')+'<p class="cevap-baslik">İşlemler ve başlangıç fiyatları</p><fieldset class="kartela" id="kartela"><legend>İşlemler</legend>';
       var on=S.islem&&S.islem!=='emin'?S.islem:[];
       H.forEach(function(x,i){h+='<label class="cip" data-g="'+x[1]+'"><input type="checkbox" name="islem" value="'+i+'"'+(on.indexOf(i)>-1?' checked':'')+'><span class="serit">'+x[2]+'</span><span class="ad">'+x[0]+'</span><span class="bilgi">'+x[5]+'</span><span class="tl">'+tl(x[4])+'</span><span class="hal"><span class="yok">Seç</span><span class="evet">Seçildi</span></span></label>'});
       return h+'</fieldset><p class="toplam" id="toplam"></p><div class="cipler"><button type="button" class="hizli" data-tamam>Bunlar tamam, sıradaki soru</button><button type="button" class="hizli" data-emin>Emin değilim, konuşalım</button></div><p class="adim-uyari" id="adim-uyari" role="alert" hidden>Önce bir işleme dokunun ya da “Emin değilim”i seçin.</p><p class="cevap-baslik" style="margin-top:10px">İsterseniz şimdi de gönderebilirsiniz; işaretlediğiniz işlemler mesaja eklenir.</p>';
@@ -430,18 +442,19 @@ footer .alt-ad{margin:0}
     var m=A.filter(function(a){return S[a]!==null}).map(sizMetni).join(' ');
     var wa=document.getElementById('wa-randevu');wa.href='https://wa.me/?text='+encodeURIComponent(m);
     var n=A.filter(function(a){return S[a]!==null}).length;
-    document.getElementById('yazac-durum').textContent=duz?'Cevabınızı değiştiriyorsunuz; seçince yazışma güncellenir.':S.islem===null?'İlk soru sizi bekliyor.':(n===A.length?'Yazışma hazır: '+n+' cevap. Gönderebilirsiniz.':n+' / '+A.length+' soru cevaplandı. İsterseniz şimdi de gönderebilirsiniz.');
+    durumYaz(duz?'Cevabınızı değiştiriyorsunuz; seçince yazışma güncellenir.':S.islem===null?'İlk soru sizi bekliyor.':(n===A.length?'Yazışma hazır: '+n+' cevap. Gönderebilirsiniz.':n+' / '+A.length+' soru cevaplandı. İsterseniz şimdi de gönderebilirsiniz.'),duz?'Değiştiriyorsunuz':S.islem===null?'İlk soru bekliyor':(n===A.length?'Hazır, '+n+' cevap':n+'/'+A.length+' cevap'));
     yz&&yzOl();document.getElementById('durum').textContent=n?'Yazışma: '+n+' cevap':'Defne\'ye yazın';
-    if(S.islem!==null)document.getElementById('bos-uyari').hidden=true;
+    if(S.islem!==null)bosU=false;
     if(!ilk&&!sessiz){var q=aktif?akis.querySelector('[data-a="s-'+aktif+'"]'):akis.lastElementChild,gor=aktif==='islem'?q:(aktif?akis.lastElementChild:q);if(q){q.focus({preventScroll:true});gor.scrollIntoView({block:aktif==='islem'?'start':'end',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}
     ilk=false;
   }
+  function durumYaz(u,k){var d=document.getElementById('yazac-durum');d.children[0].textContent=u;d.children[1].textContent=k}
   function toplamYaz(){
     var on=[].slice.call(akis.querySelectorAll('input[name=islem]:checked')).map(function(x){return H[+x.value]}),t=document.getElementById('toplam');
-    if(S.islem===null)document.getElementById('yazac-durum').textContent=on.length?on.length+' işlem işaretli. Şimdi gönderebilir ya da sıradaki soruya geçebilirsiniz.':'İlk soru sizi bekliyor.';
+    if(S.islem===null)durumYaz(on.length?on.length+' işlem işaretli. Şimdi gönderebilir ya da sıradaki soruya geçebilirsiniz.':'İlk soru sizi bekliyor.',on.length?on.length+' işlem işaretli':'İlk soru bekliyor');
     t.textContent=on.length?'Seçtikleriniz: '+on.length+' işlem, yaklaşık '+sure(on.reduce(function(a,h){return a+h[3]},0))+', '+tl(on.reduce(function(a,h){return a+h[4]},0))+'\'den':'Henüz işlem seçmediniz.';
   }
-  akis.addEventListener('change',function(e){if(e.target.name==='islem'){toplamYaz();var u=document.getElementById('adim-uyari');if(u)u.hidden=true}});
+  akis.addEventListener('change',function(e){if(e.target.name==='islem'){toplamYaz();var u=document.getElementById('adim-uyari');if(u)u.hidden=true;var bu=document.getElementById('bos-uyari');if(bu){bu.remove();bosU=false}}});
   akis.addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
     if(b.hasAttribute('data-tamam')){var on=[].slice.call(akis.querySelectorAll('input[name=islem]:checked')).map(function(x){return +x.value});if(!on.length){document.getElementById('adim-uyari').hidden=false;return}S.islem=on;duz=null;if(!fotoSor())S.foto=null;ciz();return}
@@ -455,7 +468,7 @@ footer .alt-ad{margin:0}
   document.getElementById('wa-randevu').addEventListener('click',function(e){
     var isa=[].slice.call(akis.querySelectorAll('input[name=islem]:checked')).map(function(x){return +x.value});
     if(isa.length&&(S.islem===null||duz==='islem')){S.islem=isa;duz=null;if(!fotoSor())S.foto=null;sessiz=true;ciz();sessiz=false;e.preventDefault();window.open(this.href,'_blank','noopener');return}
-    if(S.islem===null){e.preventDefault();document.getElementById('bos-uyari').hidden=false;var q=akis.querySelector('[data-a="s-islem"]');q.focus({preventScroll:true});q.scrollIntoView({block:'start'})}});
+    if(S.islem===null){e.preventDefault();bosU=true;sessiz=true;ciz();sessiz=false;var q=akis.querySelector('[data-a="s-islem"]');q.focus({preventScroll:true});q.scrollIntoView({block:'start'})}});
   /* önce/sonra sürgüsü */
   var sg=document.getElementById('surgu'),r=sg.querySelector('input'),o=sg.querySelector('.once'),c=sg.querySelector('.cizgi'),t=sg.querySelector('.tutamak');
   window.__surgu=function(v){o.style.clipPath='inset(0 '+(100-v)+'% 0 0)';c.style.left=v+'%';t.style.left=v+'%'};
