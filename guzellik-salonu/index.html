@@ -61,6 +61,7 @@ a{color:var(--erik)}
 /* ilk ekran: dev başlık + kemer üstlü uzman portresi yeri */
 .giris .kap{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:56px;align-items:end;padding:36px 0 64px}
 .giris .kap>*{min-width:0}
+.giris .not .not-kisa{display:none}
 .giris .not{margin:0 0 18px;font-size:1.125rem;color:var(--ikincil);max-width:60ch}
 .giris h1{font-size:max(2.6rem,min(clamp(2.9rem,6.4vw,5.75rem),12.5vw));letter-spacing:-.01em;max-width:13ch}
 .giris .alt{font-size:1.3rem;max-width:42ch;margin:24px 0 0}
@@ -212,9 +213,21 @@ footer .alt-ad{margin:0}
 @media (max-width:900px){
   .durum{display:none}
   .tel{margin-left:auto}
-  .giris .kap{grid-template-columns:1fr;gap:36px;padding:24px 0 56px}
-  .portre{max-width:420px}
-  .portre .ayna{aspect-ratio:5/4;border-radius:160px 160px 8px 8px}
+  .ust{position:static}
+  html{scroll-padding-top:12px}
+  .giris .kap{grid-template-columns:minmax(0,1fr);gap:0;padding:14px 0 48px;align-items:start}
+  .giris .kap>div{display:contents}
+  .giris .kap>div>*{min-width:0;max-width:100%}
+  .giris .not{order:0;margin:0 0 14px}
+  .giris .not .not-uzun{display:none}.giris .not .not-kisa{display:inline}
+  .portre{order:1;display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;align-items:center;margin:0 0 16px}
+  .portre .ayna{aspect-ratio:4/5;border-radius:46px 46px 6px 6px}
+  .portre figcaption{margin:0;font-size:1.125rem;line-height:1.35}
+  .portre figcaption b{font-size:1.35rem}
+  .giris h1,.giris .alt,.giris .guven,.giris .git,.giris .dizin{order:2}
+  .giris .git{justify-self:start}
+  .yazac{position:static}
+  .akis>li{scroll-margin:12px 0 16px}
   .secim{padding:64px 0}
   .secim .kap{grid-template-columns:minmax(0,1fr);gap:24px}
   .yaz-sol,.sohbet,.yaz-not{grid-column:1;grid-row:auto}
@@ -270,7 +283,7 @@ footer .alt-ad{margin:0}
 <section class="giris">
   <div class="kap">
     <div>
-      <p class="not"><span class="ornek">Örnek site:</span> hizmet, fiyat, süre, çalışma saati, puan ve fotoğraflar sizin bilginizle değişir. Demoda WhatsApp, mesajı kime göndereceğinizi sorar; gerçek sitede doğrudan salona gider.</p>
+      <p class="not"><span class="ornek">Örnek site</span><span class="not-kisa"> · bilgiler sizinkiyle değişir</span><span class="not-uzun">: hizmet, fiyat, süre, çalışma saati, puan ve fotoğraflar sizin bilginizle değişir. Demoda WhatsApp, mesajı kime göndereceğinizi sorar; gerçek sitede doğrudan salona gider.</span></p>
       <h1>Göztepe'de cilt, kaş ve tırnak bakımı</h1>
       <p class="alt">Küçük bir atölyeyiz: her randevuda aynı uzman, aynı oda. Randevuyu burada yazışarak başlatın; yazışma WhatsApp'ta sürer.</p>
       <p class="guven"><b>4,9</b> Google puanı, 160 yorum. Uzmanınız Defne Aydın, 12 yıl.</p>
@@ -372,7 +385,7 @@ footer .alt-ad{margin:0}
   </div>
 </section>
 </main>
-<footer><div class="kap"><p class="alt-ad">Ayva Cilt ve Bakım Atölyesi, örnek site.</p><p class="alt-baglar"><a href="#sorular">Sorular</a><a href="#kvkk">Kişisel veriler</a><span class="pasif">Instagram hesabı gerçek sitede bağlanır.</span></p>
+<footer><div class="kap"><p class="alt-ad">Ayva Cilt ve Bakım Atölyesi, örnek site.</p><p>Örnek site: hizmet, fiyat, süre, çalışma saati, puan ve fotoğraflar sizin bilginizle değişir. Demoda WhatsApp, mesajı kime göndereceğinizi sorar; gerçek sitede doğrudan salona gider.</p><p class="alt-baglar"><a href="#sorular">Sorular</a><a href="#kvkk">Kişisel veriler</a><span class="pasif">Instagram hesabı gerçek sitede bağlanır.</span></p>
 <p id="kvkk">Kişisel veriler: bu sayfa yazdıklarınızı kaydetmez. Sohbette seçtikleriniz yalnız salonla WhatsApp yazışmanıza geçer, randevu dışında kullanılmaz, kimseyle paylaşılmaz; silinmesini Defne'ye yazarak isteyebilirsiniz. Gerçek sitede salonun KVKK aydınlatma metni yer alır.</p></div></footer>
 
 <script>
