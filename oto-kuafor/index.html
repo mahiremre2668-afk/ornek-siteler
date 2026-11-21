@@ -195,7 +195,10 @@ details.dert summary h3{display:inline}
 /* atölyeden: parlak siyah boya bandı */
 .parlak-bant{margin:0;position:relative;overflow:hidden}
 .parlak-bant img{width:100%;height:clamp(220px,36vw,440px);object-fit:cover;object-position:50% 50%}
-.parlak-bant figcaption{position:absolute;left:16px;width:fit-content;max-width:calc(100% - 32px);bottom:12px;padding:4px 10px;border-radius:var(--r);background:rgba(22,25,28,.9)}
+.parlak-bant[data-glow]::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(ellipse 42% 15% at var(--gx,50%) var(--gy,40%),rgba(255,244,225,.75),rgba(255,244,225,.2) 45%,transparent 72%)}
+@media (prefers-reduced-motion:reduce){.parlak-bant[data-glow]::after{display:none}}
+.parlak-bant figcaption{z-index:1;position:absolute;left:16px;width:fit-content;max-width:calc(100% - 32px);bottom:12px;padding:4px 10px;border-radius:var(--r);background:rgba(22,25,28,.9)}
 .atolye{padding-top:var(--a4)}
 .foto-uc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--a3);margin-top:var(--a4)}
 .isfoto{margin:0}
@@ -428,7 +431,7 @@ section[id],form[id],fieldset[id],div[id]{scroll-margin-top:calc(var(--bar) + 16
 </section>
 
 <section id="atolye">
-  <figure class="parlak-bant"><img src="img/oto-siyah-boya.jpg" alt="Cilalanmış siyah kapı ve arka çamurlukta atölyenin tavan ışıkları keskin çizgiler olarak yansıyor" width="1800" height="1029" loading="lazy"><figcaption><span class="ornek">Örnek görsel:</span> cilalanmış siyah boyada atölye ışığı.</figcaption></figure>
+  <figure class="parlak-bant" data-glow><img src="img/oto-siyah-boya.jpg" alt="Cilalanmış siyah kapı ve arka çamurlukta atölyenin tavan ışıkları keskin çizgiler olarak yansıyor" width="1800" height="1029" loading="lazy"><figcaption><span class="ornek">Örnek görsel:</span> cilalanmış siyah boyada atölye ışığı.</figcaption></figure>
   <div class="kap atolye b">
     <div class="isik" aria-hidden="true"><i></i><i></i><i></i></div>
     <h2>Atölyeden</h2>
@@ -697,6 +700,15 @@ window.addEventListener('load',function(){
   var ba=document.getElementById('ba'),o={x:50};
   ScrollTrigger.create({trigger:ba,start:'top 70%',once:true,onEnter:function(){gsap.timeline().to(o,{x:72,duration:.7,ease:'power2.inOut',onUpdate:function(){window.__baKoy(o.x)}}).to(o,{x:50,duration:.6,ease:'power2.inOut',onUpdate:function(){window.__baKoy(o.x)}})}});
 });
+</script>
+<script>
+/* hareket kütüphanesi: glow (web-sitesi-satis/_hareket). Boyada atölye lambası yansıması parmağı/fareyi izler; dokunulmayınca yavaşça kendi gezer. */
+(function(){var el=document.querySelector('.parlak-bant[data-glow]');if(!el||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var h=[50,40],p=[50,40],s=0,g=true;function yz(cx,cy){var r=el.getBoundingClientRect();h=[(cx-r.left)/r.width*100,(cy-r.top)/r.height*100];s=performance.now()}
+el.addEventListener('pointermove',function(e){yz(e.clientX,e.clientY)},{passive:true});el.addEventListener('touchmove',function(e){var t=e.touches[0];t&&yz(t.clientX,t.clientY)},{passive:true});
+if('IntersectionObserver'in window)new IntersectionObserver(function(es){g=es[0].isIntersecting}).observe(el);
+(function d(t){if(g){if(t-s>2500)h=[50+38*Math.sin(t/3200),42+16*Math.cos(t/2700)];p[0]+=(h[0]-p[0])*.1;p[1]+=(h[1]-p[1])*.1;
+el.style.setProperty('--gx',p[0].toFixed(1)+'%');el.style.setProperty('--gy',p[1].toFixed(1)+'%')}requestAnimationFrame(d)})(0)})();
 </script>
 </body>
 </html>
