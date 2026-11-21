@@ -96,6 +96,8 @@ section[id],footer[id]{scroll-margin-top:72px}
 .cizim-bas{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin-bottom:12px;font:700 1.125rem var(--bas)}
 .cizim-bas span:first-child{border-bottom:2px solid var(--antrasit);padding-bottom:2px}
 .cizim-bas span:nth-child(2){font:italic 400 1.125rem Newsreader,serif;color:var(--ikincil)}
+.h-var [data-belir="maske"]{clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(.7,0,.2,1)}
+.h-var [data-belir="maske"]:not(.h-gorundu){clip-path:inset(0 0 100% 0)}
 .kesit{position:relative;aspect-ratio:3/2;overflow:hidden;--x:50%;touch-action:pan-y;cursor:ew-resize;-webkit-user-select:none;user-select:none}
 .kesit img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
 .kesit .once{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
@@ -544,7 +546,7 @@ footer{margin-top:104px;background:var(--beyaz);border-top:2px solid var(--antra
     <div class="bol-bas"><h2>Son işler</h2><p>Her işte semt, süre ve kapsam yazılı.</p></div>
     <div class="arsiv">
       <figure>
-        <div class="kesit" id="kesit-mutfak"><img src="img/tad-sonra.jpg" alt="Sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" loading="lazy" width="960" height="640" draggable="false"><img class="once" src="img/tad-once.jpg" alt="Önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" loading="lazy" width="960" height="640" draggable="false"><span class="etk e1">Önce</span><span class="etk e2">Sonra</span><span class="kesit-hat" aria-hidden="true"><b>B</b><b>B</b></span><span class="kesit-tutamak" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span><input type="range" min="0" max="100" value="50" aria-label="Mutfak, B-B çizgisi: sağa çektikçe öncesi, sola çektikçe sonrası görünür"></div>
+        <div class="kesit" id="kesit-mutfak" data-belir="maske"><img src="img/tad-sonra.jpg" alt="Sonra: koyu yeşil yeni dolaplar, beyaz tezgâh, eviye pencere önünde, ankastre fırın" loading="lazy" width="960" height="640" draggable="false"><img class="once" src="img/tad-once.jpg" alt="Önce: aynı mutfak, çizik ve kırık eski dolaplar, lekeli fayans, eski zemin" loading="lazy" width="960" height="640" draggable="false"><span class="etk e1">Önce</span><span class="etk e2">Sonra</span><span class="kesit-hat" aria-hidden="true"><b>B</b><b>B</b></span><span class="kesit-tutamak" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span><input type="range" min="0" max="100" value="50" aria-label="Mutfak, B-B çizgisi: sağa çektikçe öncesi, sola çektikçe sonrası görünür"></div>
         <figcaption><b>B-B görünüşü: mutfak yenileme</b><em>8 iş günü</em><span>Ümraniye, 9 m², dolap, tezgâh, fayans</span></figcaption>
       </figure>
       <div>
@@ -723,6 +725,13 @@ window.addEventListener('load',function(){
   var km=oynat('kesit-mutfak'),m={v:50};function y(){km(m.v)}
   ScrollTrigger.create({trigger:'#kesit-mutfak',start:'top 85%',once:true,onEnter:function(){gsap.timeline().to(m,{v:82,duration:.9,ease:'power2.inOut',onUpdate:y}).to(m,{v:22,duration:1.1,ease:'power2.inOut',onUpdate:y}).to(m,{v:50,duration:.8,ease:'power2.out',onUpdate:y})}});
 });
+</script>
+<script>
+/* hareket kütüphanesi: maske açılışı (web-sitesi-satis/_hareket). Hareket azaltılmışsa ya da JS yoksa kesit baştan görünür. */
+(function(){var az=matchMedia('(prefers-reduced-motion: reduce)').matches;if(az||!('IntersectionObserver'in window))return;document.documentElement.classList.add('h-var');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('h-gorundu');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('[data-belir]').forEach(function(el){io.observe(el)});
+var emn=0;addEventListener('scroll',function(){clearTimeout(emn);emn=setTimeout(function(){document.querySelectorAll('[data-belir]:not(.h-gorundu)').forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('h-gorundu')})},250)},{passive:true})})();
 </script>
 </body>
 </html>
