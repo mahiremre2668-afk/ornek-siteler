@@ -91,7 +91,8 @@ h1,h2,h3{font-family:Alegreya,Georgia,serif;font-weight:800;margin:0;line-height
 .bordur::before,.bordur::after{content:"";position:absolute;top:10px;bottom:10px;width:16px;background:repeating-linear-gradient(180deg,var(--sacak) 0 2px,transparent 2px 6px)}
 .bordur::before{left:-18px}.bordur::after{right:-18px}
 .tarla{position:relative;overflow:hidden;height:clamp(440px,70vh,640px);outline:4px solid var(--yun)}
-.tarla img{width:100%;height:112%;object-fit:cover;object-position:30% 45%}
+.tarla img,.tarla video{width:100%;height:112%;object-fit:cover;object-position:30% 45%}
+.tarla video{position:absolute;inset:0;opacity:0;transition:opacity .8s}.tarla video.oynuyor{opacity:1}
 .etiket-dikili{position:absolute;right:56px;bottom:54px;width:min(540px,52%);background:var(--yun);color:var(--murekkep);padding:26px 30px 28px;box-shadow:0 18px 40px -22px rgba(0,0,0,.55)}
 .etiket-dikili::before{content:"";position:absolute;inset:8px;border:2px dashed rgba(30,45,90,.45);pointer-events:none}
 .etiket-dikili h1{font-size:clamp(2.4rem,3.6vw,3.6rem);color:var(--civit)}
@@ -444,7 +445,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px}
 <section class="ilk" id="ust">
   <div class="bordur">
     <div class="desen" aria-hidden="true"></div>
-    <div class="tarla"><img src="img/hali-hero.jpg" alt="Atölyede kurutma askısında yıkanmış renkli halılar" width="1536" height="1024" fetchpriority="high"></div>
+    <div class="tarla"><img src="img/hali-hero.jpg" alt="Atölyede kurutma askısında yıkanmış renkli halılar" width="1536" height="1024" fetchpriority="high"><video data-dongu muted loop playsinline preload="none" poster="img/hali-hero.jpg" aria-hidden="true" src="img/hali-dongu.mp4"></video></div>
     <div class="etiket-dikili">
       <h1>Halınızı kapıdan alıp yıkıyor, paketli getiriyoruz</h1>
       <p class="semt">Kadıköy, Maltepe, Ataşehir ve Üsküdar.</p>
@@ -843,7 +844,7 @@ window.addEventListener('load',function(){
   /* bordür ilmek ilmek dokunur (yalnız desen katmanı; fotoğraf ve yazı hep görünür) */
   gsap.fromTo('.desen',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.3,ease:'steps(26)'});
   gsap.fromTo('.etiket-dikili',{rotate:-1.5,y:-14},{rotate:0,y:0,duration:.9,ease:'power3.out'});
-  gsap.fromTo('.tarla img',{yPercent:0},{yPercent:-9,ease:'none',scrollTrigger:{trigger:'.ilk',start:'top top',end:'bottom top',scrub:true}});
+  gsap.fromTo('.tarla img,.tarla video',{yPercent:0},{yPercent:-9,ease:'none',scrollTrigger:{trigger:'.ilk',start:'top top',end:'bottom top',scrub:true}});
   gsap.fromTo('.cozgu-ip',{scaleY:0},{scaleY:1,duration:.8,stagger:.15,ease:'power2.out',scrollTrigger:{trigger:'.cozgu',start:'top 80%'}});
   gsap.fromTo('.tezgah-kiris',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1,ease:'steps(20)',scrollTrigger:{trigger:'.cozgu',start:'top 85%'}});
   /* leke sürgüsü görünüme girince bir kez gidip gelir (dokunulduysa durur) */
@@ -851,6 +852,13 @@ window.addEventListener('load',function(){
   function y(){if(window.__lsEl)return;r.value=Math.round(o.v);r.dispatchEvent(new Event('input'))}
   ScrollTrigger.create({trigger:'#ls',start:'top 80%',once:true,onEnter:function(){gsap.timeline().to(o,{v:82,duration:.9,ease:'power2.inOut',onUpdate:y}).to(o,{v:22,duration:1.1,ease:'power2.inOut',onUpdate:y}).to(o,{v:50,duration:.8,ease:'power2.out',onUpdate:y})}});
 });
+</script>
+<script>
+/* hareket kütüphanesi: hafif döngü video (web-sitesi-satis/_hareket). Foto önce görünür; video ekrandayken ve hareket azaltılmamışsa yumuşakça biner. */
+(function(){var v=document.querySelector('.tarla video');if(!v||matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData))return;
+v.muted=true;if(innerWidth<700)v.src='img/hali-dongu-k.mp4';v.addEventListener('playing',function(){v.classList.add('oynuyor')});v.preload='auto';
+if(!('IntersectionObserver'in window))return v.play().catch(function(){});
+new IntersectionObserver(function(es){es[0].isIntersecting?v.play().catch(function(){}):v.pause()},{threshold:.2}).observe(v)})();
 </script>
 </body>
 </html>
