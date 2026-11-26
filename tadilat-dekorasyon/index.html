@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<meta name="ornek-site" content="1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kalfa Yapı Tadilat | Ataşehir mutfak, banyo, komple daire tadilatı</title>
 <meta name="description" content="Ataşehir, Kadıköy, Ümraniye, Maltepe ve Üsküdar'da mutfak, banyo ve komple daire tadilatı. Ücretsiz keşif, yazılı teklif, gün gün iş takvimi ve yazılı sözleşme.">
@@ -733,5 +734,6 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('[data-belir]').forEach(function(el){io.observe(el)});
 var emn=0;addEventListener('scroll',function(){clearTimeout(emn);emn=setTimeout(function(){document.querySelectorAll('[data-belir]:not(.h-gorundu)').forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('h-gorundu')})},250)},{passive:true})})();
 </script>
+<p class="ornek-kose" style="position:fixed;right:8px;bottom:8px;z-index:9999;margin:0;padding:4px 10px;border-radius:6px;background:#111;color:#fff;font:600 13px/1.4 system-ui,-apple-system,sans-serif;pointer-events:none;opacity:.92;border:1px solid rgba(255,255,255,.7)">Bu bir örnek sitedir</p>
 </body>
 </html>
