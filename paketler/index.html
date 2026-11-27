@@ -6,7 +6,7 @@
 <title>Site paketleri · Mahir</title>
 <meta name="description" content="Yerel işletmeler için telefona göre site: üç paket, ne aldığınız madde madde, bakım ve ödeme nasıl işler.">
 <meta name="robots" content="noindex">
-<meta property="og:title" content="Site paketleri: 15.000 / 20.000 / 25.000 TL">
+<meta property="og:title" content="Site paketleri: 13.500 / 20.000 / 30.000 TL">
 <meta property="og:description" content="Ne aldığınız madde madde. Siteyi bitmiş hâliyle görün, beğenirseniz ödeyin.">
 <meta property="og:image" content="https://mahiremre2668-afk.github.io/ornek-siteler/paketler/og.png">
 <meta property="og:type" content="website">
@@ -107,6 +107,12 @@ section{padding:36px 0;scroll-margin-top:72px}
 .sss details[open] summary::after{content:"–"}
 .sss details[open]{background:var(--yesil-acik);border-left:4px solid var(--yesil);padding-left:14px}
 .sss p{margin:0 0 16px;color:var(--ikincil);max-width:68ch}
+.tablo-kap{overflow-x:auto}
+.dtablo{width:100%;border-collapse:collapse;background:var(--kart);border:1.5px solid var(--cizgi);border-radius:var(--r);font-size:1.05rem}
+.dtablo th,.dtablo td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--cizgi);vertical-align:top}
+.dtablo thead th{background:var(--kum);font-weight:700}
+.dtablo tbody th{font-weight:600}
+@media (max-width:520px){.dtablo thead{display:none}.dtablo tr{display:block;padding:10px 0;border-bottom:1px solid var(--cizgi)}.dtablo tbody th,.dtablo td{display:block;border:0;padding:4px 14px}.dtablo td::before{font-weight:700;color:var(--ikincil)}.dtablo td:nth-of-type(1)::before{content:"İlk 30 gün: "}.dtablo td:nth-of-type(2)::before{content:"Bakımla: "}.dtablo td:nth-of-type(3)::before{content:"Bakımsız: "}.dtablo td[colspan]::before{content:""}}
 .ornekler{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .ornekler a{display:block;background:var(--kart);border:1.5px solid var(--cizgi);border-radius:var(--r);padding:16px;text-decoration:none;color:var(--murekkep);font-weight:600}
 .ornekler a span{display:block;color:var(--ikincil);font-weight:400;font-size:.95rem}
@@ -141,6 +147,7 @@ footer{padding:36px 0 60px;color:var(--ikincil);border-top:1px solid var(--cizgi
 </style>
 </head>
 <body>
+
 <header class="ust"><div class="kap">
   <div class="ad">Mahir <small>· yerel işletmelere site</small></div>
   <nav class="git" aria-label="Bölümler"><a href="#paketler">Paketler</a><a href="#bakim">Bakım</a><a href="#nasil">Nasıl işler</a><a href="#sorular">Sorular</a></nav>
@@ -149,8 +156,8 @@ footer{padding:36px 0 60px;color:var(--ikincil);border-top:1px solid var(--cizgi
 
 <main>
 <div class="kap giris"><div class="giris-metin" data-yukle>
-  <h1>Telefona göre, size ait bir site.</h1>
-  <p>Üç seçenek var. Hepsinde site, Google'da çıkma ayarları ve Haritalar kartınızın düzenlenmesi var. Fark, sitenin dışındaki ölçüm, randevu ve bakımda.</p>
+  <h1>Size ait, anahtar teslim bir site.</h1>
+  <p>Siteyi, alan adını, Google ve Haritalar ayarlarını biz yaparız; siz yalnız bilgilerinizi gönderirsiniz. Üç paket var; fark, işinize özel bölümde, yapay zekâ aramalarında görünmede ve bakımda.</p>
   <a class="ana" href="#paketler">Paketleri gör</a>
   <ul class="ozet"><li>Site 1-3 günde hazır</li><li>Görür, beğenirseniz ödersiniz</li><li>Alan adı sizin adınıza</li></ul>
 </div>
@@ -170,73 +177,81 @@ footer{padding:36px 0 60px;color:var(--ikincil);border-top:1px solid var(--cizgi
 </div>
 
 <section id="paketler"><div class="kap">
-  <div class="bas"><h2>Paketler</h2><p>Fiyatlar tek seferlik. Herkese aynı.</p></div>
+  <div class="bas"><h2>Paketler</h2><p>Tek seferlik fiyat. Herkese aynı. Her site telefonda, tablette ve bilgisayarda düzgün görünür.</p></div>
   <div class="paketler">
     <article class="paket" data-glow>
       <div class="no">Paket 1</div>
-      <h3>Site</h3>
-      <div class="fiyat">15.000 TL <small>tek sefer</small></div>
-      <p class="kime">Yalnız site isteyenlere.</p>
+      <h3>Başlangıç</h3>
+      <div class="fiyat">13.500 TL <small>tek sefer</small></div>
+      <p class="kime">"İnternette düzgün bir yerim olsun" diyenlere.</p>
       <ul data-belir="sira">
-        <li>Telefona göre site: adınız, hizmetleriniz, fiyatlarınız, fotoğraflarınız, semtleriniz, saatleriniz</li>
-        <li>Örnekte gördüğünüz özel bölüm (fiyat fişi, randevu defteri, önce/sonra sürgüsü)</li>
-        <li>Müşterinin seçtikleriyle WhatsApp'ınıza hazır gelen mesaj</li>
-        <li>Yayına alma, kendi alan adınıza bağlama, kilit simgesi (güvenli bağlantı)</li>
-        <li>Google'da çıkma ayarları (SEO)</li>
-        <li>Yapay zekâ aramalarında doğru anlatılma: ChatGPT, Gemini (GEO)</li>
-        <li>Google'a sitenizin tanıtılması (Search Console)</li>
-        <li>Haritalar kartınızın düzenlenmesi: kategori, saat, açıklama, site bağlantısı</li>
-        <li>Form için kişisel veri bilgilendirme metni</li>
-        <li>2 düzeltme hakkı</li>
+        <li>Size özel tasarlanmış site: adınız, hizmetleriniz, fiyatlarınız, fotoğraflarınız, saatleriniz</li>
+        <li>Anahtar teslim: alan adı (ilk yıl dâhil), yayında tutma, kilit simgesi. Hepsini biz yaparız, ayrı ücret yok</li>
+        <li>Google'da bulunma kurulumu (SEO): "semtiniz + işiniz" aranınca bulunabilmeniz için ayarlar</li>
+        <li>Müşteri size nereden yazıyorsa o düğme: WhatsApp, telefon, Instagram ya da form</li>
+        <li>Haritalar kartınıza site bağlantısı</li>
+        <li>Yayından sonra 30 gün ücretsiz düzeltme</li>
       </ul>
     </article>
     <article class="paket onerilen" data-glow>
       <span class="etiket">Önerilen</span>
       <div class="no">Paket 2</div>
-      <h3>Site + ölçüm</h3>
+      <h3>Önerilen</h3>
       <div class="fiyat">20.000 TL <small>tek sefer</small></div>
-      <p class="kime">Siteden kaç müşteri geldiğini görmek isteyenlere.</p>
+      <p class="kime">Müşterisini internetten almak isteyenlere.</p>
       <ul data-belir="sira">
-        <li class="ust">Paket 1'deki her şey, artı:</li>
+        <li class="ust">Başlangıç'taki her şey, artı:</li>
+        <li>Yapay zekâ aramalarında görünme (GEO): ChatGPT ya da Gemini'ye "yakınımda iyi bir …" diye sorulunca adınızın doğru bilgiyle geçebilmesi için hazırlık</li>
+        <li>İşinize özel bölüm: halıcıda metrekare hesabı, kuaförde randevu yazışması, tadilatta keşif soruları. Müşterinin isteği size hazır gelir</li>
         <li>Haritalar kartının tam düzenlenmesi: hizmet listesi, 10 fotoğraf, ilk gönderi</li>
-        <li>Ziyaretçi sayacı: kaç kişi girdi, kaçı WhatsApp'a bastı (Google Analytics)</li>
-        <li>Meta pikseli: ileride Instagram/Facebook reklamı verirseniz, sitenize gelenlere yeniden gösterebilirsiniz</li>
-        <li>Çerez izin bandı (izin vermeyen ziyaretçide ölçüm çalışmaz)</li>
-        <li>30. gün raporu: Google'da kaç kez çıktınız, kaç kişi girdi, kaç kişi yazdı</li>
-        <li>İlk ay bakım ücretsiz</li>
+        <li>İlk ay bakım dâhil</li>
       </ul>
     </article>
     <article class="paket" data-glow>
       <div class="no">Paket 3</div>
-      <h3>Tam paket</h3>
-      <div class="fiyat">25.000 TL <small>tek sefer</small></div>
-      <p class="kime">Randevuyla çalışan ve işini göstermek isteyenlere.</p>
+      <h3>Tam</h3>
+      <div class="fiyat">30.000 TL <small>tek sefer</small></div>
+      <p class="kime">Randevuyla çalışan, işini göstermek ve zaman kazanmak isteyenlere.</p>
       <ul data-belir="sira">
-        <li class="ust">Paket 2'deki her şey, artı:</li>
-        <li>Online randevu takvimi: müşteri boş saatleri görür, 8 haftaya kadar ileri randevu alır</li>
-        <li>Randevu telefonunuzdaki takvime düşer, size bildirim, müşteriye onay e-postası gider</li>
-        <li>İş galerisi sayfası: 6-10 işinizin önce/sonra fotoğrafı, ayrı sayfa</li>
+        <li class="ust">Önerilen'deki her şey, artı:</li>
+        <li>Randevu takvimi: müşteri boş saatinizi görür, kendisi seçer, telefonunuzdaki takvime düşer (aylık ücret yok)</li>
+        <li>İş fotoğrafları sayfası: önce/sonra fotoğraflarınız ayrı bir sayfada</li>
+        <li>Ziyaretçi sayacı ve reklam pikseli kurulumu (takibini siz yaparsınız)</li>
         <li>İlk 3 ay bakım dâhil</li>
-        <li>3 düzeltme hakkı</li>
       </ul>
     </article>
   </div>
-  <p class="not">Randevu takvimi için size aylık ücret çıkmaz (Google Takvim'in ücretsiz randevu sayfası kullanılır). Halı yıkamada "adresten alım günü", tadilatta "keşif günü" olarak kurulur.</p>
+  <p class="not">Ziyaretçi sayacı + reklam pikseli diğer paketlere ek olarak 750 TL. Kurarız, nasıl bakılacağını bir sayfada anlatırız; takibini siz yaparsınız, rapor vermeyiz. Google'da ya da yapay zekâda ilk sıra garantisi verilmez; garanti veren yanıltıyordur.</p>
+</div></section>
+
+<section id="degisiklik"><div class="kap">
+  <div class="bas"><h2>Değişiklik ne zaman ücretsiz?</h2><p>Zam geldi, saat değişti, yeni eleman aldınız: hangisi nereye girer.</p></div>
+  <div class="tablo-kap"><table class="dtablo">
+    <thead><tr><th>Değişiklik</th><th>İlk 30 gün</th><th>Bakımla</th><th>Bakımsız</th></tr></thead>
+    <tbody>
+      <tr><th>Bizden kaynaklı hata</th><td>ücretsiz</td><td>ücretsiz</td><td><b>her zaman ücretsiz</b></td></tr>
+      <tr><th>Fiyat listesi (zam)</th><td>ücretsiz</td><td><b>ayda 1 toplu, sayılmaz</b></td><td>500 TL</td></tr>
+      <tr><th>Saat, çalışan, yeni hizmet satırı</th><td>ücretsiz</td><td>küçük değişiklik</td><td>500 TL</td></tr>
+      <tr><th>Beğenmediğiniz bir yer</th><td>2 kez ücretsiz</td><td>küçük değişiklik</td><td>500 TL</td></tr>
+      <tr><th>Yeni bölüm, yeniden tasarım</th><td colspan="3">ayrı ücret, önceden söylenir</td></tr>
+    </tbody>
+  </table></div>
 </div></section>
 
 <section id="bakim"><div class="kap">
   <div class="bakim">
     <div>
       <h2>Bakım</h2>
-      <div class="fiyat">1.000 TL'den <small>aylık, isteğe bağlı</small></div>
-      <p>Site bir kez kurulur ve bakım almasanız da çalışır. Google'da üstte kalmak için kartınızın ve sitenizin canlı tutulması gerekir; bakım bunun içindir. Yapılacak işe göre ücret artabilir; önceden söylenir.</p>
+      <div class="fiyat">1.000 TL <small>aylık, isteğe bağlı</small></div>
+      <p>Site bakım almasanız da açık kalır. Bakım; zamları, saatleri, yeni hizmetleri güncel tutmak ve Google'da canlı görünmek içindir.</p>
+      <p><b style="color:#fff">Bakım dışında (önceden söylenir):</b> yeni bölüm 2.000-3.500 TL · yeniden tasarım paketinizin yarısı · yeni özellik (ikinci dil, form, ödeme bağlantısı) ayrı fiyat.</p>
     </div>
     <ol>
-      <li><b>Her gün kontrol:</b> site açık mı, kilit simgesi geçerli mi, alan adının süresi doluyor mu</li>
-      <li><b>Ayda bir:</b> Google'ın gördüğü hatalar bulunur, düzeltilir</li>
-      <li><b>Ayda 1-2:</b> Haritalar kartına gönderi ya da yeni fotoğraf (fotoğrafı siz gönderirsiniz)</li>
-      <li><b>Ayda 3'e kadar:</b> fiyat, saat, kampanya, fotoğraf değişikliği</li>
-      <li><b>Ayda bir rapor:</b> WhatsApp'tan kısa özet; Google'da kaç kez çıktınız, kaç kişi girdi, neler güncellendi</li>
+      <li><b>Güvenlik ve kilit:</b> site her gün kendiliğinden kontrol edilir, kilit simgesi süresi dolmadan yenilenir, yedek tutulur</li>
+      <li><b>Fiyat listesi:</b> ayda 1 toplu güncelleme (zam); küçük değişikliklerden sayılmaz</li>
+      <li><b>Ayda 3 küçük değişiklik:</b> saat, çalışan, yeni hizmet, fotoğraf, metin, kampanya bandı</li>
+      <li><b>Ayda 1-2 Haritalar gönderisi:</b> fotoğrafı siz gönderirsiniz, yazısını biz yazarız</li>
+      <li><b>Alan adı yenilemesinin takibi</b> ve ayda bir "bakımınız yapıldı" mesajı</li>
     </ol>
   </div>
 </div></section>
@@ -255,7 +270,7 @@ footer{padding:36px 0 60px;color:var(--ikincil);border-top:1px solid var(--cizgi
 <section><div class="kap">
   <div class="bas"><h2>Alan adı sizin adınıza</h2></div>
   <div class="sizin">
-    <div><b>Alan adı</b>Kayıt sahibi sizsiniz. Kendiniz alabilirsiniz; bilmiyorsanız biz alır, sizin adınıza kaydederiz. Yılda yaklaşık 500-1.000 TL, fiyatın içinde değil. Yenileme otomatik açıktır; ayrılırsanız taşıma kodu size verilir.</div>
+    <div><b>Alan adı</b>Kayıt sahibi sizsiniz. Biz alır, sizin adınıza kaydederiz; ilk yıl fiyatın içinde. Sonraki yıllarda yenileme yaklaşık 500-1.000 TL. Yenileme otomatik açıktır; ayrılırsanız taşıma kodu size verilir.</div>
     <div><b>Yayın</b>Siteniz bizim hesabımızda (Cloudflare, ücretsiz) yayınlanır. Sizden hesap, şifre ya da yetki istenmez.</div>
     <div><b>Ayrılırsanız</b>Bakımı bırakır ya da başka birine geçerseniz, site dosyaları 7 gün içinde size teslim edilir. Teslime kadar siteniz açık kalır.</div>
   </div>
@@ -265,7 +280,7 @@ footer{padding:36px 0 60px;color:var(--ikincil);border-top:1px solid var(--cizgi
   <div class="bas"><h2>Sorular</h2></div>
   <details><summary>Google'da çıkma ayarı (SEO) her ay mı yapılıyor?</summary><p>Kurulum bir kez, site yapılırken yapılır ve her pakette var. Her ay yapılan iş, Haritalar kartınızın ve sitenizin güncel tutulması; bu bakımın içinde.</p></details>
   <details><summary>Reklam vermiyorum. Meta pikseli bana ne kazandırır?</summary><p>Reklam vermiyorsanız bugün bir faydası yok. İleride Instagram ya da Facebook reklamı düşünüyorsanız, şimdiden kurulursa sitenize gelenlerin listesi birikir. Düşünmüyorsanız Paket 1 yeterli.</p></details>
-  <details><summary>Bakım almazsam site kapanır mı?</summary><p>Hayır. Site çalışmaya devam eder. Alan adının yıllık yenileme ücreti size aittir; teslimde yenileme tarihini yazıp veriyorum.</p></details>
+  <details><summary>Bakım almazsam site kapanır mı?</summary><p>Hayır. Site çalışmaya devam eder. Alan adının ilk yılı fiyatın içinde; sonraki yıllarda yenileme ücreti size aittir. Teslimde yenileme tarihini yazıp veriyorum.</p></details>
   <details><summary>Düzeltme ne demek?</summary><p>Yazı, fiyat, fotoğraf, renk tonu gibi değişiklikler. Ödemeden önceki 1-2 küçük düzenleme de bu türdendir. Yeni bölüm ya da baştan başka bir tasarım düzeltme sayılmaz, ayrıca konuşulur.</p></details>
   <details><summary>Süre ne zaman başlar?</summary><p>Bilgiler ve fotoğraflar geldiği gün başlar. Site 1-2 günde, en geç 3. günde biter. Ödemeden sonra 1-2 günde yayında.</p></details>
   <details><summary>Fatura kesiyor musunuz?</summary><p>Bu çalışmayı şu an bireysel olarak yürütüyorum, bu yüzden fatura kesemiyorum. Ödeme IBAN'a havaleyle, site bitip siz beğendikten sonra yapılır. Beğenmezseniz hiçbir şey ödemezsiniz.</p></details>
